@@ -1,0 +1,68 @@
+#about .header {
+  margin-bottom: 50px;
+}
+
+.two-colm {
+  display: flex;
+  margin-bottom: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.two-colm p {
+  width: 45%;
+  line-height: 40px;
+}
+
+.two-colm .img-container {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+}
+.two-colm.reverse {
+  flex-direction: row-reverse;
+}
+
+.two-colm .img {
+  height: 400px;
+  width: 400px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.two-colm .img.problem {
+  background-image: url("../../images/problem.png");
+}
+.two-colm .img.survey {
+  background-image: url("../../images/survey.png");
+}
+.two-colm .img.concept {
+  background-image: url("../../images/concept.png");
+}
+
+.team {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.team .teamNode {
+  width: 21%;
+  margin-bottom: 40px;
+}
+.team .teamNode .picture {
+  background-color: red;
+  width: 100%;
+  padding-top: 100%;
+}
+
+.team .teamNode .name {
+  margin: 20px 0 10px;
+  font-weight: 600;
+}
+
+.team .teamNode .title {
+  font-size: 16px;
+  font-weight: 300;
+}
