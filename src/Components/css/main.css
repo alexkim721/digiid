@@ -2,6 +2,11 @@ body {
   background-color: black;
 }
 
+.maincontent {
+  width: 1220px;
+  margin: 20px auto 0;
+}
+
 * {
   font-family: "Work Sans", sans-serif;
   margin: 0;
@@ -17,6 +22,10 @@ a {
   text-decoration: none;
 }
 
+p.header {
+  font-size: 60px;
+}
+
 p.subheader {
   font-size: 28px;
 }
@@ -25,10 +34,11 @@ p.subheader {
   width: calc(100vw - 64px);
   border: 2px solid white;
   margin: 20px auto;
+  padding-bottom: 60px;
 }
 
 #navbar {
-  width: calc(100vw - 44px);
+  width: calc(100vw - 64px);
   top: 50px;
   position: absolute;
 }
@@ -49,4 +59,52 @@ p.subheader {
 
 #navbar .content .navitem a:hover {
   color: #ff00c7;
+}
+
+#socialbar {
+  position: fixed;
+  /* width: calc(100vw - 64px); */
+  top: 30vh;
+  display: flex;
+  justify-content: center;
+  right: 10px;
+}
+
+/* #socialbar .fixer {
+  width: 1220px;
+  display: flex;
+  justify-content: flex-end;
+} */
+
+#socialbar .content {
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+  background-color: black;
+  height: 350px;
+}
+#socialbar .content .line {
+  background-color: white;
+  height: 50px;
+  width: 2px;
+  margin-left: 7px;
+}
+#socialbar .content .links {
+  display: flex;
+  flex-direction: column;
+}
+#socialbar .content .links a {
+  height: 16px;
+  width: 16px;
+  border-radius: 20px;
+  background-color: white;
+  display: block;
+  margin-top: 15px;
+}
+#socialbar .content .note {
+  transform-origin: center left;
+  transform: rotate(90deg) translateY(-7px);
+  width: 250px;
+  font-size: 16px;
+  margin-top: 20px;
 }

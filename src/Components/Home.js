@@ -60,7 +60,7 @@ class Home extends React.Component {
   };
   render() {
     return (
-      <div className="home" id="home">
+      <div className="home maincontent" id="home">
         <div className="content">
           {console.log(this.state)}
           <p id="title">
@@ -81,7 +81,7 @@ class Home extends React.Component {
             <span className="link">
               <NavLink
                 className="introbutton"
-                to="gallery"
+                to="about"
                 activeClassName="selectedlink"
               >
                 learn more <span className="arrow">→</span>
