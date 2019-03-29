@@ -1,25 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Home from "./Components/Home";
+import "./Components/css/main.css";
+import Navbar from "./Components/Topbar";
 
 class App extends Component {
+  handlePathChange = path => {
+    const firstPart = path.split("/")[1];
+    switch (firstPart) {
+      case "about":
+        return <Home />;
+      case "gallery":
+        return <Home />;
+      case "blog":
+        return <Home />;
+      case "":
+        return <Home />;
+      default:
+        return <Home />;
+    }
+  };
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div id="content">
+          <Navbar />
+          <Home />
+        </div>
       </div>
     );
   }
