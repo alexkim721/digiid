@@ -14,17 +14,17 @@ class Navbar extends React.Component {
             </NavLink>
           </div>
           <div className="navitem">
-            <NavLink to="about" activeClassName="selectedlink">
+            <NavLink to="/about" activeClassName="selectedlink">
               about
             </NavLink>
           </div>
           <div className="navitem">
-            <NavLink to="gallery" activeClassName="selectedlink">
+            <NavLink to="/gallery" activeClassName="selectedlink">
               gallery
             </NavLink>
           </div>
           <div className="navitem">
-            <NavLink to="blog" activeClassName="selectedlink">
+            <NavLink to="/blog" activeClassName="selectedlink">
               blog
             </NavLink>
           </div>

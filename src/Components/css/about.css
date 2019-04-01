@@ -52,9 +52,34 @@
   margin-bottom: 40px;
 }
 .team .teamNode .picture {
-  background-color: red;
   width: 100%;
   padding-top: 100%;
+  background-size: cover;
+  background-position: 0px 25%;
+}
+.team .teamNode .picture.alex {
+  background-image: url("../../images/alex-web.jpg");
+}
+.team .teamNode .picture.shelb {
+  background-image: url("../../images/shelby-web.jpg");
+}
+.team .teamNode .picture.caren {
+  background-image: url("../../images/caren-web.jpg");
+}
+.team .teamNode .picture.erika {
+  background-image: url("../../images/erika-web.jpg");
+}
+.team .teamNode .picture.ian {
+  background-image: url("../../images/ian-web.jpg");
+}
+.team .teamNode .picture.zach {
+  background-image: url("../../images/zach-web.jpg");
+}
+.team .teamNode .picture.matt {
+  background-image: url("../../images/matthew-web.jpg");
+}
+.team .teamNode .picture.pat {
+  background-image: url("../../images/patrick-web.jpg");
 }
 
 .team .teamNode .name {

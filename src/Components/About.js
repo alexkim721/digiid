@@ -40,42 +40,42 @@ class About extends React.Component {
         <p className="header">meet the team</p>
         <div className="team">
           <div className="teamNode">
-            <div className="picture" />
+            <div className="picture alex" />
             <p className="name">Alexander Kim</p>
             <p className="title">Leader | Lead Developer</p>
           </div>
           <div className="teamNode">
-            <div className="picture" />
+            <div className="picture shelb" />
             <p className="name">Shelby Mason</p>
             <p className="title">Lead Designer</p>
           </div>
           <div className="teamNode">
-            <div className="picture" />
+            <div className="picture caren" />
             <p className="name">Caren Flohr</p>
             <p className="title">Designer</p>
           </div>
           <div className="teamNode">
-            <div className="picture" />
+            <div className="picture erika" />
             <p className="name">Erika Kallio</p>
             <p className="title">Designer</p>
           </div>
           <div className="teamNode">
-            <div className="picture" />
+            <div className="picture ian" />
             <p className="name">Ian Loomis</p>
             <p className="title">Designer</p>
           </div>
           <div className="teamNode">
-            <div className="picture" />
+            <div className="picture zach" />
             <p className="name">Zach Burdett</p>
             <p className="title">Designer | Developer</p>
           </div>
           <div className="teamNode">
-            <div className="picture" />
+            <div className="picture matt" />
             <p className="name">Matthew Freeberg</p>
             <p className="title">Developer</p>
           </div>
           <div className="teamNode">
-            <div className="picture" />
+            <div className="picture pat" />
             <p className="name">Patrick Bell</p>
             <p className="title">Developer</p>
           </div>

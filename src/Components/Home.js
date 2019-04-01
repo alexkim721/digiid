@@ -43,7 +43,9 @@ class Home extends React.Component {
           alt={post.title.rendered}
         />
         <div className="postContent">
-          <p className="postTitle">{post.title.rendered}</p>
+          <NavLink className="postTitle" to={`blog/${post.slug}`}>
+            {post.title.rendered}
+          </NavLink>
           <p className="divider">-</p>
           <p className="postAbst">{post.acf.excerpt}</p>
           <div className="postFoot">
