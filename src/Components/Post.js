@@ -3,6 +3,7 @@ import axios from "axios";
 import renderHTML from "react-render-html";
 import "../Components/css/post.css";
 import "../Components/css/main.css";
+import moment from "moment";
 
 const apibase = "https://clients.alexander-kim.com/digiid/wp-json/wp/v2";
 class Post extends React.Component {
@@ -34,9 +35,9 @@ class Post extends React.Component {
         <p className="divider">-</p>
         <p className="author">
           {!this.state.authors.loading &&
-            `${this.checkAuthor(this.props.data.author)} | ${
+            `${this.checkAuthor(this.props.data.author)} | ${moment(
               this.props.data.date
-            }`}
+            ).format("MMMM Do YYYY, h:mm:ss a")}`}
         </p>
         <div className="text">
           {renderHTML(this.props.data.content.rendered)}

@@ -2,6 +2,7 @@ import React from "react";
 import "../Components/css/home.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import moment from "moment";
 
 const apibase = "https://clients.alexander-kim.com/digiid/wp-json/wp/v2";
 class Home extends React.Component {
@@ -52,7 +53,9 @@ class Home extends React.Component {
             <div className="left">
               <p>
                 <span>{this.checkAuthor(post.author)}</span> |{" "}
-                <span>{post.date}</span>
+                <span>
+                  {moment(post.date).format("MMMM Do YYYY, h:mm:ss a")}
+                </span>
               </p>
             </div>
           </div>

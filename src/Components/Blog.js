@@ -5,6 +5,7 @@ import axios from "axios";
 import "../Components/css/blog.css";
 import "../Components/css/main.css";
 import Post from "./Post";
+import moment from "moment";
 
 const apibase = "https://clients.alexander-kim.com/digiid/wp-json/wp/v2";
 class Blog extends React.Component {
@@ -55,7 +56,9 @@ class Blog extends React.Component {
             <div className="left">
               <p>
                 <span>{this.checkAuthor(post.author)}</span> |{" "}
-                <span>{post.date}</span>
+                <span>
+                  {moment(post.date).format("MMMM Do YYYY, h:mm:ss a")}
+                </span>
               </p>
             </div>
           </div>
