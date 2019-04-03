@@ -1,5 +1,6 @@
 import React from "react";
 import "../Components/css/home.css";
+import "../Components/css/main.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
@@ -38,11 +39,13 @@ class Home extends React.Component {
   renderPosts = data => {
     return data.map(post => (
       <div className="postitem" key={post.id}>
-        <img
-          className="postimg"
-          src={post.acf.hero.sizes.large}
-          alt={post.title.rendered}
-        />
+        <NavLink to={`blog/${post.slug}`}>
+          <img
+            className="postimg"
+            src={post.acf.hero.sizes.large}
+            alt={post.title.rendered}
+          />
+        </NavLink>
         <div className="postContent">
           <NavLink className="postTitle" to={`blog/${post.slug}`}>
             {post.title.rendered}

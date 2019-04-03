@@ -1,0 +1,14 @@
+#gallery .items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+#gallery .items .item {
+  width: 23%;
+  padding-top: 23%;
+  background-color: red;
+  margin-bottom: 2vw;
+  border: 2px solid white;
+}

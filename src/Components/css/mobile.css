@@ -1,0 +1,129 @@
+@media screen and (max-width: 1350px) {
+  .maincontent {
+    width: 1000px;
+  }
+  #navbar .content {
+    width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .maincontent {
+    width: 820px;
+  }
+  #navbar .content {
+    width: 820px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .maincontent {
+    width: 80%;
+  }
+  #navbar .content {
+    width: 80%;
+    justify-content: center;
+  }
+  #post {
+    width: 100% !important;
+  }
+  .header {
+    margin-top: 100px;
+  }
+  #recent .articles .postitem img {
+    height: 200px;
+  }
+  p {
+    font-size: 16px;
+  }
+  .articles .postitem img {
+    height: 200px !important;
+  }
+  #post p.header {
+    font-size: 40px;
+  }
+  #home .content .intro {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    overflow-y: auto;
+  }
+  #content {
+    border: none;
+    margin: 0;
+    width: 100%;
+  }
+
+  p.header {
+    margin: 0;
+    font-size: 28px;
+  }
+
+  #home {
+    margin: 20px auto 0;
+  }
+  #home #title {
+    font-size: 28px;
+    margin: 0;
+  }
+  #home p.subheader {
+    font-size: 18px;
+    margin: 10px 0 60px;
+    font-weight: 300;
+  }
+  #home .intro .link {
+    display: block;
+  }
+  #home .content .introheader {
+    margin: 40px 0 20px;
+  }
+  #recent p.subheader {
+    margin: 40px 0 40px;
+    font-size: 24px;
+  }
+  #recent .articles {
+    flex-direction: column;
+    margin-top: 0;
+  }
+  #recent .articles .postitem {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .two-colm,
+  #about .two-colm.reverse {
+    flex-direction: column-reverse;
+  }
+  #about .two-colm p {
+    width: 100%;
+  }
+  #about .two-colm .img-container {
+    width: 100%;
+  }
+  #about .team .teamNode {
+    width: 48%;
+  }
+  #about .team .teamNode p {
+    font-size: 14px;
+  }
+
+  #content #gallery .items .item {
+    width: 48%;
+    padding-top: 48%;
+  }
+
+  #blog .articles {
+    flex-direction: column;
+  }
+  #blog .articles .postitem {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  #post p.header {
+    font-size: 28px;
+  }
+}
