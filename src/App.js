@@ -37,11 +37,11 @@ class App extends Component {
   openMobile = () => {
     if (!this.state.bartoggle) {
       this.setState({ bartoggle: true });
-      document.querySelector("#mobilebar").style.transform = "translateX(0)";
+      document.querySelector("#mobilebar").style.transform =
+        "translateX(-100vw)";
       document.querySelector("body").classList.add("hidebar");
     } else {
-      document.querySelector("#mobilebar").style.transform =
-        "translateX(100vw)";
+      document.querySelector("#mobilebar").style.transform = "translateX(0)";
       document.querySelector("body").classList.remove("hidebar");
       this.setState({ bartoggle: false });
     }
