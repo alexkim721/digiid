@@ -7,7 +7,6 @@ class Mobilebar extends React.Component {
   render() {
     return (
       <div className="mobilebar" id="mobilebar">
-        {console.log(this.props)}
         <div className="content">
           <div className="navitem">
             <NavLink

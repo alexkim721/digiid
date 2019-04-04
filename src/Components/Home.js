@@ -37,7 +37,7 @@ class Home extends React.Component {
   };
 
   renderPosts = data => {
-    return data.map(post => (
+    return data.slice(0, 2).map(post => (
       <div className="postitem" key={post.id}>
         <NavLink to={`blog/${post.slug}`}>
           <img
@@ -70,7 +70,6 @@ class Home extends React.Component {
     return (
       <div className="home maincontent" id="home">
         <div className="content">
-          {console.log(this.state)}
           <p id="title">
             <span>digital</span> identities
           </p>

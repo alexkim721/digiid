@@ -140,7 +140,6 @@ p.subheader {
   height: 100vh;
   position: fixed;
   left: 100vw;
-
   transition: 0.5s;
   top: 0;
   display: flex;

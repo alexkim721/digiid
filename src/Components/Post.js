@@ -43,7 +43,6 @@ class Post extends React.Component {
         <div className="text">
           {renderHTML(this.props.data.content.rendered)}
         </div>
-        {console.log(this.props)}
       </div>
     );
   }

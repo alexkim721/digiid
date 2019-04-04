@@ -2,10 +2,12 @@
   display: flex;
   justify-content: space-between;
   margin-top: 80px;
+  flex-wrap: wrap;
 }
 
 .articles .postitem {
   width: 48%;
+  margin-bottom: 5vw;
 }
 
 .articles .postitem img {
