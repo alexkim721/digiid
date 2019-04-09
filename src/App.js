@@ -9,6 +9,7 @@ import Blog from "./Components/Blog";
 import Socialbar from "./Components/Socialbar";
 import Mobilebar from "./Components/Mobilebar";
 import Mobilefooter from "./Components/Mobilefooter";
+import logo from "./images/logo.png";
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class App extends Component {
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
+    window.addEventListener("mousemove", this.parallax);
   }
 
   componentWillUnmount() {
@@ -34,6 +36,11 @@ class App extends Component {
       this.setState({ mobile: false });
     }
   }
+  parallax = e => {
+    document.querySelector(
+      ".floatingbg"
+    ).style.transform = `translate(${e.clientX / 90}px,${e.clientY / 90}px`;
+  };
   openMobile = () => {
     if (!this.state.bartoggle) {
       this.setState({ bartoggle: true });
@@ -62,19 +69,25 @@ class App extends Component {
         return <Home />;
     }
   };
+
   render() {
     return (
       <div className="App">
         <div id="content">
           {this.state.width <= 500 && (
             <div className="mobiletoggle">
-              <div className="hamburg">
+              <div
+                className={this.state.bartoggle ? "hamburg active" : "hamburg"}
+              >
                 <div
                   className="hamLine"
                   onClick={() => {
                     this.openMobile();
                   }}
-                />
+                >
+                  <div className="line first" />
+                  <div className="line" />
+                </div>
               </div>
             </div>
           )}
@@ -84,6 +97,10 @@ class App extends Component {
           {this.handlePathChange(this.props.history.location.pathname)}
           {this.state.width <= 500 ? <Mobilefooter /> : <Socialbar />}
         </div>
+        {this.state.width > 1050 &&
+          this.props.history.location.pathname.split("/")[1] === "" && (
+            <img src={logo} alt="logo" className="floatingbg" />
+          )}
       </div>
     );
   }

@@ -8,23 +8,26 @@ class Socialbar extends React.Component {
         <div className="content">
           <div className="links">
             <a
-              href="https://google.com"
+              href="https://fb.me/digitalid.rit"
               target="_blank"
               rel="noopener noreferrer"
+              className="facebook"
             >
               {" "}
             </a>
             <a
-              href="https://google.com"
+              href="https://www.instagram.com/digitalid.rit/"
               target="_blank"
               rel="noopener noreferrer"
+              className="instagram"
             >
               {" "}
             </a>
             <a
-              href="https://google.com"
+              href="https://www.rit.edu/imagine/"
               target="_blank"
               rel="noopener noreferrer"
+              className="imagine"
             >
               {" "}
             </a>

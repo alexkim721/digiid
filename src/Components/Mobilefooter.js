@@ -16,6 +16,7 @@ class Mobilefooter extends React.Component {
               href="https://google.com"
               target="_blank"
               rel="noopener noreferrer"
+              className="facebook"
             >
               {" "}
             </a>
@@ -25,6 +26,7 @@ class Mobilefooter extends React.Component {
               href="https://google.com"
               target="_blank"
               rel="noopener noreferrer"
+              className="instagram"
             >
               {" "}
             </a>
@@ -34,6 +36,7 @@ class Mobilefooter extends React.Component {
               href="https://google.com"
               target="_blank"
               rel="noopener noreferrer"
+              className="imagine"
             >
               {" "}
             </a>

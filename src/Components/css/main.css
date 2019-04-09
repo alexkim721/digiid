@@ -102,7 +102,6 @@ p.subheader {
   height: 16px;
   width: 16px;
   border-radius: 20px;
-  background-color: white;
   display: block;
   margin-top: 15px;
 }
@@ -112,6 +111,21 @@ p.subheader {
   width: 250px;
   font-size: 16px;
   margin-top: 20px;
+}
+.facebook {
+  background-image: url(../../images/logo_fb_3.png);
+  background-size: cover;
+  background-position: center;
+}
+.instagram {
+  background-image: url(../../images/logo_insta_3.png);
+  background-size: cover;
+  background-position: center;
+}
+.imagine {
+  background-image: url(../../images/logo_R_3.png);
+  background-size: cover;
+  background-position: center;
 }
 
 /*mobile bars*/
@@ -129,11 +143,38 @@ p.subheader {
   justify-content: flex-end;
 }
 .mobiletoggle .hamburg .hamLine {
-  background-color: red;
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  transition: 0.2s;
 }
+.mobiletoggle .hamburg .hamLine .line {
+  background-color: #ff00c7;
+  height: 2px;
+  width: 25px;
+  transition: 0.2s;
+}
+.mobiletoggle .hamburg .hamLine .line.first {
+  width: 15px;
+}
+.mobiletoggle .hamburg .hamLine:hover .line.first,
+.mobiletoggle .hamburg.active .hamLine .line.first {
+  width: 25px;
+}
+.mobiletoggle .hamburg.active .hamLine {
+  position: relative;
+}
+.mobiletoggle .hamburg.active .hamLine .line {
+  position: absolute;
+  transform: rotate(45deg);
+}
+.mobiletoggle .hamburg.active .hamLine .line.first {
+  transform: rotate(-45deg);
+}
+
 #mobilebar {
   background-color: white;
   width: 100vw;
@@ -186,10 +227,16 @@ p.subheader {
   margin: 25px auto;
 }
 #footer .socialmedia .item a {
-  border: 2px solid white;
   height: 25px;
   width: 25px;
   margin: 0 10px;
   display: inline-block;
-  border-radius: 100px;
+}
+
+.floatingbg {
+  position: absolute;
+  width: 40vw;
+  top: 15vh;
+  left: 50vw;
+  transform: translate(0, 0);
 }
