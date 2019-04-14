@@ -41,6 +41,15 @@ p.subheader {
   overflow-y: hidden;
   position: relative;
 }
+#content.inquiz {
+  width: calc(100vw - 44px);
+  height: calc(100vh - 44px);
+  padding-bottom: 0;
+  margin: 20px auto;
+}
+#content.nocontent {
+  padding-bottom: 0;
+}
 
 #navbar {
   width: calc(100vw - 60px);
@@ -239,4 +248,7 @@ p.subheader {
   top: 15vh;
   left: 50vw;
   transform: translate(0, 0);
+}
+.floatingbg.hidden {
+  display: none;
 }

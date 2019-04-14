@@ -1,0 +1,48 @@
+p {
+  color: white;
+  font-size: 18px;
+}
+#quiz {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+#quiz .pages {
+  height: 100%;
+  display: flex;
+  position: absolute;
+  transition: 0.5s;
+}
+#quiz .pages .page {
+  width: calc(100vw - 44px);
+  height: 100%;
+}
+
+#quiz .pagectrl {
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  justify-content: center;
+}
+#quiz .pgnum {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+#quiz .pgnum .circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 20px;
+  border: 2px solid white;
+  margin: 0 5px;
+}
+#quiz .pgnum .curpg {
+  background-color: white;
+  width: 8px;
+  height: 8px;
+  border-radius: 20px;
+  position: absolute;
+  margin-left: 11px;
+  transition: 0.3s;
+}

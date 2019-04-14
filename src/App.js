@@ -6,6 +6,7 @@ import Navbar from "./Components/Topbar";
 import About from "./Components/About";
 import Gallery from "./Components/Gallery";
 import Blog from "./Components/Blog";
+import Quiz from "./Components/Quiz";
 import Socialbar from "./Components/Socialbar";
 import Mobilebar from "./Components/Mobilebar";
 import Mobilefooter from "./Components/Mobilefooter";
@@ -63,6 +64,8 @@ class App extends Component {
         return <Gallery />;
       case "blog":
         return <Blog />;
+      case "quiz":
+        return <Quiz />;
       case "":
         return <Home />;
       default:
@@ -70,10 +73,30 @@ class App extends Component {
     }
   };
 
+  content = () => {
+    if (this.props.history.location.pathname.split("/")[1] === "quiz") {
+      return "inquiz";
+    } else if (
+      this.props.history.location.pathname.split("/")[1] === "gallery"
+    ) {
+      return "nocontent";
+    } else {
+      return "";
+    }
+  };
+
   render() {
     return (
       <div className="App">
-        <div id="content">
+        <div
+          id="content"
+          className={
+            this.content()
+            // this.props.history.location.pathname.split("/")[1] === "quiz"
+            //   ? "inquiz"
+            //   : ""
+          }
+        >
           {this.state.width <= 500 && (
             <div className="mobiletoggle">
               <div
@@ -97,10 +120,20 @@ class App extends Component {
           {this.handlePathChange(this.props.history.location.pathname)}
           {this.state.width <= 500 ? <Mobilefooter /> : <Socialbar />}
         </div>
-        {this.state.width > 1050 &&
+        <img
+          src={logo}
+          alt="logo"
+          className={
+            this.state.width > 1050 &&
+            this.props.history.location.pathname.split("/")[1] === ""
+              ? "floatingbg"
+              : "floatingbg hidden"
+          }
+        />
+        {/* {this.state.width > 1050 &&
           this.props.history.location.pathname.split("/")[1] === "" && (
             <img src={logo} alt="logo" className="floatingbg" />
-          )}
+          )} */}
       </div>
     );
   }

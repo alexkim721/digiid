@@ -126,4 +126,7 @@
   #post p.header {
     font-size: 28px;
   }
+  #gallery {
+    height: 60vh !important;
+  }
 }
