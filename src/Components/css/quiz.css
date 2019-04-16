@@ -17,6 +17,54 @@ p {
   width: calc(100vw - 44px);
   height: 100%;
 }
+#quiz .pages .page .content {
+  width: 600px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#quiz .pages .page1 .content .subheader,
+#quiz .pages .page2 .content .subheader {
+  text-align: center;
+  margin: 0 0 60px;
+}
+#quiz .pages .page .inputs {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+#quiz .pages .page input {
+  background-color: black;
+  padding: 15px;
+  color: white;
+  border: 2px solid white;
+  transition: 0.2s;
+  font-size: 18px;
+  width: 33%;
+}
+#quiz .pages .page input:focus {
+  background-color: #222222;
+}
+#quiz .page0 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#quiz .page0 .subheader {
+  margin: 30px 0 60px;
+}
+#quiz .start {
+  color: #ff00c7;
+  border: 2px solid #ff00c7;
+  padding: 20px;
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  cursor: pointer;
+}
 
 #quiz .pagectrl {
   display: flex;
@@ -24,6 +72,19 @@ p {
   bottom: 20px;
   width: 100%;
   justify-content: center;
+  transition: 0.5s;
+}
+#quiz .pagectrl.hidden {
+  transform: translateY(100px);
+}
+#quiz .pagectrl .ctrl {
+  cursor: pointer;
+  border: 2px solid white;
+  padding: 10px 20px;
+  margin: 0 20px;
+}
+#quiz .pagectrl .ctrl p {
+  font-size: 16px;
 }
 #quiz .pgnum {
   display: flex;
@@ -36,6 +97,7 @@ p {
   border-radius: 20px;
   border: 2px solid white;
   margin: 0 5px;
+  cursor: pointer;
 }
 #quiz .pgnum .curpg {
   background-color: white;
