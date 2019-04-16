@@ -1,20 +1,28 @@
 import React from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 import "../Components/css/quiz.css";
 
 class Quiz extends React.Component {
-  state = {
-    pagenum: 0,
-    answers: {
-      quest1: "",
-      quest2: "",
-      quest3: "",
-      quest4: "",
-      quest5: ""
-    },
-    pages: 0,
-    pagesloaded: false,
-    ctrlhidden: true
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      pagenum: 0,
+      answers: {
+        quest1: "",
+        quest2: "",
+        quest3: "",
+        quest4: "",
+        quest5: ""
+      },
+      pages: 0,
+      pagesloaded: false,
+      ctrlhidden: true,
+      startDate: new Date()
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
   //   finalans = {
   //     quest1: "",
   //     quest2: "",
@@ -85,6 +93,16 @@ class Quiz extends React.Component {
       }
     });
   };
+  handleChange(date) {
+    this.setState({
+      ...this.state,
+      answers: {
+        ...this.state.answers,
+        quest3: date.toDateString()
+      },
+      startDate: date
+    });
+  }
 
   render() {
     return (
@@ -124,10 +142,17 @@ class Quiz extends React.Component {
           <div className="page page2">
             <div className="content">
               <p className="subheader">When is your birthday?</p>
-              <div className="inputs">
+              {/* <div className="inputs">
                 <input type="text" name="bmonth" placeholder="month" />
                 <input type="text" name="bday" placeholder="day" />
                 <input type="text" name="byear" placeholder="year" />
+              </div> */}
+              <div className="calendar">
+                <DatePicker
+                  selected={this.state.startDate}
+                  onChange={this.handleChange}
+                  placeholderText="Click to select a date"
+                />
               </div>
             </div>
           </div>

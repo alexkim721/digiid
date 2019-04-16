@@ -66,6 +66,16 @@ p {
   cursor: pointer;
 }
 
+#quiz .pages .page2 input {
+  width: 220px;
+  text-align: center;
+}
+#quiz .pages .page2 .calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #quiz .pagectrl {
   display: flex;
   position: absolute;
