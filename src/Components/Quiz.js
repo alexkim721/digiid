@@ -10,7 +10,10 @@ class Quiz extends React.Component {
     this.state = {
       pagenum: 0,
       answers: {
-        quest1: "",
+        quest1: {
+          nfirst: "",
+          nlast: ""
+        },
         quest2: "",
         quest3: "",
         quest4: "",
@@ -23,13 +26,6 @@ class Quiz extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
-  //   finalans = {
-  //     quest1: "",
-  //     quest2: "",
-  //     quest3: "",
-  //     quest4: "",
-  //     quest5: ""
-  //   };
   componentDidMount() {
     this.setState({
       pages: document.querySelector(".pages").childElementCount
@@ -89,7 +85,10 @@ class Quiz extends React.Component {
       ...this.state,
       answers: {
         ...this.state.answers,
-        [e.target.name]: e.target.value
+        quest1: {
+          ...this.state.answers.quest1,
+          [e.target.name]: e.target.value
+        }
       }
     });
   };
@@ -98,7 +97,7 @@ class Quiz extends React.Component {
       ...this.state,
       answers: {
         ...this.state.answers,
-        quest3: date.toDateString()
+        quest2: date.toDateString()
       },
       startDate: date
     });
@@ -126,13 +125,13 @@ class Quiz extends React.Component {
               <div className="inputs">
                 <input
                   type="text"
-                  name="quest1"
+                  name="nfirst"
                   placeholder="first name"
                   onChange={this.handleTextChange}
                 />
                 <input
                   type="text"
-                  name="quest2"
+                  name="nlast"
                   placeholder="last name"
                   onChange={this.handleTextChange}
                 />
@@ -157,13 +156,251 @@ class Quiz extends React.Component {
             </div>
           </div>
           <div className="page page3">
-            <p>this is page 3</p>
+            <div className="content">
+              <p className="subheader">
+                Would you rather live in the city, suburbs or country?
+              </p>
+              <div className="options">
+                <div
+                  className={
+                    this.state.answers.quest3 === "city"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="city"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest3: "city"
+                      }
+                    });
+                  }}
+                />
+                <div
+                  className={
+                    this.state.answers.quest3 === "suburbs"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="suburbs"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest3: "suburbs"
+                      }
+                    });
+                  }}
+                />
+                <div
+                  className={
+                    this.state.answers.quest3 === "country"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="country"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest3: "country"
+                      }
+                    });
+                  }}
+                />
+              </div>
+            </div>
           </div>
           <div className="page page4">
-            <p>this is page 4</p>
+            <div className="content">
+              <p className="subheader">
+                How does pinapple on pizza make you feel?
+              </p>
+              <div className="two-colm">
+                <div className="img" />
+                <div className="choices">
+                  <div
+                    className="option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest4: "Disgust"
+                        }
+                      });
+                    }}
+                  >
+                    <span className="circle">
+                      <span
+                        className={
+                          this.state.answers.quest4 === "Disgust"
+                            ? "select selected"
+                            : "select"
+                        }
+                      />
+                    </span>
+                    Disgust
+                  </div>
+                  <div
+                    className="option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest4: "Disagreement"
+                        }
+                      });
+                    }}
+                  >
+                    <span className="circle">
+                      <span
+                        className={
+                          this.state.answers.quest4 === "Disagreement"
+                            ? "select selected"
+                            : "select"
+                        }
+                      />
+                    </span>
+                    Disagreement
+                  </div>
+                  <div
+                    className="option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest4: "Discomfort"
+                        }
+                      });
+                    }}
+                  >
+                    <span className="circle">
+                      <span
+                        className={
+                          this.state.answers.quest4 === "Discomfort"
+                            ? "select selected"
+                            : "select"
+                        }
+                      />
+                    </span>
+                    Discomfort
+                  </div>
+                  <div
+                    className="option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest4: "Indifference"
+                        }
+                      });
+                    }}
+                  >
+                    <span className="circle">
+                      <span
+                        className={
+                          this.state.answers.quest4 === "Indifference"
+                            ? "select selected"
+                            : "select"
+                        }
+                      />
+                    </span>
+                    Indifference
+                  </div>
+                  <div
+                    className="option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest4: "Elated"
+                        }
+                      });
+                    }}
+                  >
+                    <span className="circle">
+                      <span
+                        className={
+                          this.state.answers.quest4 === "Elated"
+                            ? "select selected"
+                            : "select"
+                        }
+                      />
+                    </span>
+                    Elated
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="page page5">
-            <p>this is page 5</p>
+            <div className="content">
+              <p className="subheader">
+                Are you a morning person or a night owl?
+              </p>
+              <div className="options">
+                <div
+                  className={
+                    this.state.answers.quest5 === "morning"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="morning"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest5: "morning"
+                      }
+                    });
+                  }}
+                />
+                <div
+                  className={
+                    this.state.answers.quest5 === "both"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="both"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest5: "both"
+                      }
+                    });
+                  }}
+                />
+                <div
+                  className={
+                    this.state.answers.quest5 === "night"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="night"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest5: "night"
+                      }
+                    });
+                  }}
+                />
+              </div>
+            </div>
           </div>
           <div className="page page6">
             <p>this is page 6</p>
