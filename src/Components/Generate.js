@@ -1,5 +1,5 @@
 import React from "react";
-import firebase from 'firebase';
+import firebase from "firebase";
 import "../Components/css/main.css";
 
 let database;
@@ -10,8 +10,12 @@ class Generate extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      easyID: ""
+      easyID: "",
+      answers: {}
     };
+  }
+  componentDidUpdate() {
+    console.log(this.state);
   }
   componentWillMount() {
     // Initialize Firebase
@@ -28,22 +32,28 @@ class Generate extends React.Component {
 
     // Create a database variable from firebase
     database = firebase.database();
-  };
+  }
 
   getSurveyResults = data => {
     let results = data.val();
     let keys = Object.keys(results);
-    for(let i = 0; i < keys.length; i++) {
+    for (let i = 0; i < keys.length; i++) {
       ref = database.ref("users/" + keys[i]);
 
       // CHANGE THE EQUALTO VALUE BELOW TO THE EASYID VARIABLE
+      ref
+        .orderByChild("easyID")
+        .equalTo(parseInt(this.state.easyID))
+        .on("value", snap => {
+          if (snap.val() !== null) {
+            console.log("Data retrieved from firebase:");
+            const val = snap.val();
 
-      ref.orderByChild("easyID").equalTo(2).on('value', function(snap){
-        if(snap.val() !== null) {
-          console.log("Data retrieved from firebase:");
-          console.log(snap.val());
-        }
-      });
+            for (const key in val) {
+              this.setState({ answers: val[key].answers });
+            }
+          }
+        });
     }
   };
 
@@ -53,15 +63,15 @@ class Generate extends React.Component {
     console.log(err);
   };
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({
       ...this.state,
-      answers: e.target.name
+      easyID: e.target.value
     });
-  }
+  };
   submitID = () => {
     console.log("Submit button pushed");
-    
+
     // Reference data from the database
     ref = database.ref("users");
 
@@ -78,7 +88,7 @@ class Generate extends React.Component {
             type="text"
             name="easyID"
             placeholder="User ID"
-            onChange={this.handleTextChange}
+            onChange={this.handleChange}
           />
           <div className="submit" onClick={() => this.submitID()}>
             submit
