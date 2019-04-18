@@ -1,6 +1,5 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 import "../Components/css/quiz.css";
 
@@ -17,12 +16,17 @@ class Quiz extends React.Component {
         quest2: "",
         quest3: "",
         quest4: "",
-        quest5: ""
+        quest5: "",
+        quest6: "",
+        quest7: "2",
+        quest8: "2",
+        quest9: ""
       },
       pages: 0,
       pagesloaded: false,
       ctrlhidden: true,
-      startDate: new Date()
+      startDate: new Date(),
+      answeredQs: 0
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -32,7 +36,7 @@ class Quiz extends React.Component {
     });
     for (
       let i = 1;
-      i < document.querySelector(".pages").childElementCount;
+      i < document.querySelector(".pages").childElementCount - 1;
       i++
     ) {
       let div = document.createElement("div");
@@ -50,10 +54,8 @@ class Quiz extends React.Component {
     console.log(this.state);
   }
   nextPage = () => {
-    if (this.state.pagenum === this.state.pages - 1) {
-      this.setState({
-        pagenum: 1
-      });
+    if (this.state.pagenum === this.state.pages - 2) {
+      this.setState({ ctrlhidden: true, pagenum: this.state.pagenum + 1 });
     } else {
       this.setState({
         pagenum: this.state.pagenum + 1
@@ -65,9 +67,6 @@ class Quiz extends React.Component {
   };
   prevPage = () => {
     if (this.state.pagenum === 1) {
-      this.setState({
-        pagenum: this.state.pages - 1
-      });
     } else {
       this.setState({
         pagenum: this.state.pagenum - 1
@@ -102,6 +101,13 @@ class Quiz extends React.Component {
       startDate: date
     });
   }
+  fiveScale = quest => {
+    let style = {
+      // transform: `translateX(calc(25% * ${this.state.answers.quest7}))`
+      marginLeft: `calc((25% * ${this.state.answers[quest]}) + 7px)`
+    };
+    return style;
+  };
 
   render() {
     return (
@@ -114,6 +120,7 @@ class Quiz extends React.Component {
               className="start"
               onClick={() => {
                 this.nextPage();
+                this.setState({ disablenext: true });
               }}
             >
               start
@@ -403,21 +410,358 @@ class Quiz extends React.Component {
             </div>
           </div>
           <div className="page page6">
-            <p>this is page 6</p>
+            <div className="content">
+              <p className="subheader">Do you prefer Dogs or Cats?</p>
+              <div className="options">
+                <div
+                  className={
+                    this.state.answers.quest6 === "dogs"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="dogs"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest6: "dogs"
+                      }
+                    });
+                  }}
+                />
+                <div
+                  className={
+                    this.state.answers.quest6 === "both"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="both"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest6: "both"
+                      }
+                    });
+                  }}
+                />
+                <div
+                  className={
+                    this.state.answers.quest6 === "cats"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="cats"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest6: "cats"
+                      }
+                    });
+                  }}
+                />
+                <div
+                  className={
+                    this.state.answers.quest6 === "neither"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="neither"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest6: "neither"
+                      }
+                    });
+                  }}
+                />
+              </div>
+            </div>
           </div>
           <div className="page page7">
-            <p>this is page 7</p>
+            <div className="content">
+              <p className="subheader">
+                From a scale of 1 to 5, how messy or organized do you consider
+                yourself?
+              </p>
+              <div className="options">
+                <div className="scale">
+                  <div
+                    className="1 option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest7: 0
+                        }
+                      });
+                    }}
+                  />
+                  <div
+                    className="2 option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest7: 1
+                        }
+                      });
+                    }}
+                  />
+                  <div
+                    className="3 option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest7: 2
+                        }
+                      });
+                    }}
+                  />
+                  <div
+                    className="4 option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest7: 3
+                        }
+                      });
+                    }}
+                  />
+                  <div
+                    className="5 option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest7: 4
+                        }
+                      });
+                    }}
+                  />
+
+                  <div className="line" />
+                </div>
+
+                <div className="circCont">
+                  <div
+                    className="selectedScale"
+                    style={this.fiveScale("quest7")}
+                  />
+                </div>
+                <div className="labels">
+                  <div className="label">Messy</div>
+                  <div className="label">Organized</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="page page8">
-            <p>this is page 8</p>
+            <div className="content">
+              <p className="subheader">
+                From a scale of 1 to 5, how Introverted or Extroverted do you
+                think you are?
+              </p>
+              <div className="options">
+                <div className="scale">
+                  <div
+                    className="1 option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest8: 0
+                        }
+                      });
+                    }}
+                  />
+                  <div
+                    className="2 option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest8: 1
+                        }
+                      });
+                    }}
+                  />
+                  <div
+                    className="3 option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest8: 2
+                        }
+                      });
+                    }}
+                  />
+                  <div
+                    className="4 option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest8: 3
+                        }
+                      });
+                    }}
+                  />
+                  <div
+                    className="5 option"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest8: 4
+                        }
+                      });
+                    }}
+                  />
+
+                  <div className="line" />
+                </div>
+
+                <div className="circCont">
+                  <div
+                    className="selectedScale"
+                    style={this.fiveScale("quest8")}
+                  />
+                </div>
+                <div className="labels">
+                  <div className="label">Introvert</div>
+                  <div className="label">Extrovert</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="page page9">
-            <p>this is page 9</p>
+            <div className="content">
+              <p className="subheader">
+                Do you consider yourself more Methodical or Spontaneous?
+              </p>
+              <div className="options">
+                <div
+                  className={
+                    this.state.answers.quest9 === "methodical"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="methodical"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest9: "methodical"
+                      }
+                    });
+                  }}
+                />
+                <div
+                  className={
+                    this.state.answers.quest9 === "spontaneous"
+                      ? "option active"
+                      : "option"
+                  }
+                  id="spontaneous"
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      answers: {
+                        ...this.state.answers,
+                        quest9: "spontaneous"
+                      }
+                    });
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="page page10">
+            <div className="content">
+              <p className="subheader">Review your Answers</p>
+              <div className="answers">
+                <p className="answer">
+                  Name:{" "}
+                  {`${this.state.answers.quest1.nfirst} ${
+                    this.state.answers.quest1.nlast
+                  }`}
+                </p>
+                <p className="answer">
+                  Birthday:{" "}
+                  {`${this.state.answers.quest2
+                    .split(" ")
+                    .slice(1)
+                    .join(" ")}`}
+                </p>
+                <p className="answer">
+                  Would you rather live in the city, suburbs or country?:{" "}
+                  {`${this.state.answers.quest3}`}
+                </p>
+                <p className="answer">
+                  How does pinapple on pizza make you feel?:{" "}
+                  {`${this.state.answers.quest4}`}
+                </p>
+                <p className="answer">
+                  Are you a morning person or a night owl?:{" "}
+                  {`${this.state.answers.quest5}`}
+                </p>
+                <p className="answer">
+                  Do you prefer Dogs or Cats?: {`${this.state.answers.quest6}`}
+                </p>
+                <p className="answer">
+                  From a scale of 1 to 5, how messy or organized do you consider
+                  yourself? {`${this.state.answers.quest7}`}
+                </p>
+                <p className="answer">
+                  From a scale of 1 to 5, how Introverted or Extroverted do you
+                  think you are?: {`${this.state.answers.quest8}`}
+                </p>
+                <p className="answer">
+                  Do you consider yourself more Methodical or Spontaneous?:{" "}
+                  {`${this.state.answers.quest9}`}
+                </p>
+              </div>
+              <div className="ctrls">
+                <div
+                  className="back ctrl"
+                  onClick={() => {
+                    this.prevPage();
+                    this.setState({ ctrlhidden: false });
+                  }}
+                >
+                  back
+                </div>
+                <div className="submit ctrl">submit</div>
+              </div>
+            </div>
           </div>
         </div>
         <div className={this.state.ctrlhidden ? "pagectrl hidden" : "pagectrl"}>
           <div
-            className="prev ctrl"
+            className={
+              this.state.pagenum <= 1 ? "prev ctrl inactive" : "prev ctrl"
+            }
             onClick={() => {
               this.prevPage();
             }}
@@ -431,7 +775,10 @@ class Quiz extends React.Component {
             </p>
           </div> */}
           <div className="pgnum">
-            <div className="curpg" style={this.curPg()} />
+            <div
+              className="curpg"
+              style={this.state.pagenum < 10 ? this.curPg() : {}}
+            />
           </div>
           <div
             className="next ctrl"
