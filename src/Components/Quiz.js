@@ -2,15 +2,13 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Components/css/quiz.css";
-import firebase from 'firebase';
+import firebase from "firebase";
 
 let database;
 let ref;
-let storage;
 let easyIDvar;
 
 class Quiz extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -33,19 +31,20 @@ class Quiz extends React.Component {
       pagesloaded: false,
       ctrlhidden: true,
       startDate: new Date(),
-      answeredQs: 0
+      answeredQs: 0,
+      easyID: ""
     };
     this.handleChange = this.handleChange.bind(this);
   }
   componentWillMount() {
     // Initialize Firebase
     let config = {
-        apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
-        authDomain: "digital-identities.firebaseapp.com",
-        databaseURL: "https://digital-identities.firebaseio.com",
-        projectId: "digital-identities",
-        storageBucket: "digital-identities.appspot.com",
-        messagingSenderId: "834438338603"
+      apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
+      authDomain: "digital-identities.firebaseapp.com",
+      databaseURL: "https://digital-identities.firebaseio.com",
+      projectId: "digital-identities",
+      storageBucket: "digital-identities.appspot.com",
+      messagingSenderId: "834438338603"
     };
 
     firebase.initializeApp(config);
@@ -53,21 +52,23 @@ class Quiz extends React.Component {
     // Create a database variable from firebase
     database = firebase.database();
 
-    // Create a storage variable for firebase
-    storage = firebase.storage();
-
     // Reference data from the database
-    ref = database.ref('users');
+    ref = database.ref("users");
 
     // Grab the data from the database
-    ref.on('value', this.assignEasyID, this.errData);
+    ref.on("value", this.assignEasyID, this.errData);
 
-    firebase.auth().signInAnonymously()
-      .then( () => {
-        console.log("User " + firebase.auth().currentUser.uid + " signed in with an easyID of " + easyIDvar);
+    firebase
+      .auth()
+      .signInAnonymously()
+      .then(() => {
+        console.log(
+          "User " +
+            firebase.auth().currentUser.uid +
+            " signed in with an easyID of " +
+            easyIDvar
+        );
       });
-
-    // Log user out of firebase
   }
   componentDidMount() {
     this.setState({
@@ -92,33 +93,33 @@ class Quiz extends React.Component {
       easyID: easyIDvar,
       answers: this.state.answers
     };
+    this.setState({ easyID: easyIDvar });
 
     // See what's being sent
     console.log("Following data is being sent to the database:");
     console.log(data);
 
     // Create a reference to the database
-    ref = database.ref('users/' + firebase.auth().currentUser.uid );
+    ref = database.ref("users/" + firebase.auth().currentUser.uid);
 
     // Push the data to the database
     ref.push(data);
 
     // Confirm send
     console.log("Data sent.");
-  }
+  };
 
-  assignEasyID = (data) => {
+  assignEasyID = data => {
     let results = data.val();
     let keys = Object.keys(results);
-    let keyLength = keys.length;
     easyIDvar = keys.length;
-  }
+  };
 
   // Throw an error if data can't be gotten
-  errData = (err) => {
-    console.log('Error!');
+  errData = err => {
+    console.log("Error!");
     console.log(err);
-  }
+  };
   componentDidUpdate() {
     document.querySelector(".pages").style.marginLeft = `calc(-100% * ${
       this.state.pagenum
@@ -825,7 +826,20 @@ class Quiz extends React.Component {
                   back
                 </div>
                 <div
-                  className="submit ctrl"
+                  className={
+                    this.state.answers.quest1.fname === "" ||
+                    this.state.answers.quest1.lname === "" ||
+                    this.state.answers.quest2 === "" ||
+                    this.state.answers.quest3 === "" ||
+                    this.state.answers.quest4 === "" ||
+                    this.state.answers.quest5 === "" ||
+                    this.state.answers.quest6 === "" ||
+                    this.state.answers.quest7 === "" ||
+                    this.state.answers.quest8 === "" ||
+                    this.state.answers.quest9 === ""
+                      ? "submit ctrl inactive"
+                      : "submit ctrl"
+                  }
                   onClick={() => {
                     if (
                       this.state.answers.quest1.fname === "" ||
@@ -841,9 +855,15 @@ class Quiz extends React.Component {
                     ) {
                       console.log("cannot submit");
                     } else {
+                      // Log user out of firebase
                       firebase.auth().signOut();
-                      console.log("User " + firebase.auth().currentUser.uid + " has logged out.");
+                      console.log(
+                        "User " +
+                          firebase.auth().currentUser.uid +
+                          " has logged out."
+                      );
                       this.submitData();
+                      this.setState({ pagenum: this.state.pagenum + 1 });
                     }
                   }}
                 >
@@ -854,7 +874,15 @@ class Quiz extends React.Component {
           </div>
           <div className="page page11">
             <div className="content">
-              <p>page 11</p>
+              <p className="subheader">
+                Your unique ID is{" "}
+                <span className="colored">{this.state.easyID}</span>!
+              </p>
+              <p>
+                Please be sure to remember your ID so we can quickly pull up
+                your responses.
+              </p>
+              <p className="bye">Thank you for visiting digital identities!</p>
             </div>
           </div>
         </div>

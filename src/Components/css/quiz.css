@@ -253,6 +253,23 @@ p {
   color: #ff00c7;
   border: 2px solid #ff00c7;
 }
+#quiz .pages .page10 .ctrls .ctrl.submit.inactive {
+  color: white;
+  border: 2px solid white;
+  opacity: 0.2;
+}
+#quiz .pages .page11 p.subheader {
+  margin-bottom: 40px;
+}
+#quiz .pages .page11 p {
+  text-align: center;
+  width: 400px;
+  line-height: 30px;
+  margin: 0 auto;
+}
+#quiz .pages .page11 p.bye {
+  margin-top: 40px;
+}
 
 #quiz .pagectrl {
   display: flex;
@@ -302,4 +319,7 @@ p {
   position: absolute;
   margin-left: 11px;
   transition: 0.3s;
+}
+.colored {
+  color: #ff00c7;
 }
