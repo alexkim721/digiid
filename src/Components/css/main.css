@@ -274,3 +274,9 @@ p.subheader {
   font-size: 18px;
   width: 40%;
 }
+#generate .submit {
+  color: #ff00c7;
+  border: 2px solid #ff00c7;
+  padding: 20px 30px;
+  margin-top: 60px;
+}
