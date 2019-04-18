@@ -15,9 +15,7 @@ class Generate extends React.Component {
       answers: e.target.name
     });
   }
-  submitID = () => {
-
-  }
+  submitID = () => {};
   render() {
     return (
       <div className="generate maincontent" id="generate">
@@ -30,7 +28,9 @@ class Generate extends React.Component {
             placeholder="User ID"
             onChange={this.handleTextChange}
           />
-          <div className="submit" onClick={()=>submitID()>submit</div>
+          <div className="submit" onClick={() => this.submitID()}>
+            submit
+          </div>
         </div>
         <div className="generator">
           <div className="art" />
