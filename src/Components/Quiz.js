@@ -2,8 +2,15 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Components/css/quiz.css";
+import firebase from 'firebase';
+
+let database;
+let ref;
+let storage;
+let easyIDvar;
 
 class Quiz extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -30,6 +37,38 @@ class Quiz extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
+  componentWillMount() {
+    // Initialize Firebase
+    let config = {
+        apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
+        authDomain: "digital-identities.firebaseapp.com",
+        databaseURL: "https://digital-identities.firebaseio.com",
+        projectId: "digital-identities",
+        storageBucket: "digital-identities.appspot.com",
+        messagingSenderId: "834438338603"
+    };
+
+    firebase.initializeApp(config);
+
+    // Create a database variable from firebase
+    database = firebase.database();
+
+    // Create a storage variable for firebase
+    storage = firebase.storage();
+
+    // Reference data from the database
+    ref = database.ref('users');
+
+    // Grab the data from the database
+    ref.on('value', this.assignEasyID, this.errData);
+
+    firebase.auth().signInAnonymously()
+      .then( () => {
+        console.log("User " + firebase.auth().currentUser.uid + " signed in with an easyID of " + easyIDvar);
+      });
+
+    // Log user out of firebase
+  }
   componentDidMount() {
     this.setState({
       pages: document.querySelector(".pages").childElementCount
@@ -46,6 +85,39 @@ class Quiz extends React.Component {
       };
       document.querySelector(".pgnum").appendChild(div);
     }
+  }
+  // Sends data to firebase
+  submitData = () => {
+    let data = {
+      easyID: easyIDvar,
+      answers: this.state.answers
+    };
+
+    // See what's being sent
+    console.log("Following data is being sent to the database:");
+    console.log(data);
+
+    // Create a reference to the database
+    ref = database.ref('users/' + firebase.auth().currentUser.uid );
+
+    // Push the data to the database
+    ref.push(data);
+
+    // Confirm send
+    console.log("Data sent.");
+  }
+
+  assignEasyID = (data) => {
+    let results = data.val();
+    let keys = Object.keys(results);
+    let keyLength = keys.length;
+    easyIDvar = keys.length;
+  }
+
+  // Throw an error if data can't be gotten
+  errData = (err) => {
+    console.log('Error!');
+    console.log(err);
   }
   componentDidUpdate() {
     document.querySelector(".pages").style.marginLeft = `calc(-100% * ${
@@ -769,7 +841,9 @@ class Quiz extends React.Component {
                     ) {
                       console.log("cannot submit");
                     } else {
-                      console.log("can submit");
+                      firebase.auth().signOut();
+                      console.log("User " + firebase.auth().currentUser.uid + " has logged out.");
+                      this.submitData();
                     }
                   }}
                 >
