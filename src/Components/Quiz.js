@@ -74,18 +74,25 @@ class Quiz extends React.Component {
     this.setState({
       pages: document.querySelector(".pages").childElementCount
     });
-    for (
-      let i = 1;
-      i < document.querySelector(".pages").childElementCount - 2;
-      i++
-    ) {
-      let div = document.createElement("div");
-      div.classList.add(`circ${i}`, "circle");
-      div.onclick = () => {
-        this.setState({ pagenum: i });
-      };
-      document.querySelector(".pgnum").appendChild(div);
-    }
+    // for (
+    //   let i = 1;
+    //   i < document.querySelector(".pages").childElementCount - 2;
+    //   i++
+    // ) {
+    //   let div = document.createElement("div");
+    //   div.classList.add(`circ${i}`, "circle");
+    //   div.onclick = () => {
+    //     this.setState({ pagenum: i });
+    //   };
+    //   document.querySelector(".pgnum").appendChild(div);
+    // }
+    let div = document.createElement("div");
+    div.classList.add(`bar`, "circle");
+    document.querySelector(
+      ".pgnum"
+    ).style.width = `calc(30px * ${document.querySelector(".pages")
+      .childElementCount - 3})`;
+    document.querySelector(".pgnum").appendChild(div);
   }
   // Sends data to firebase
   submitData = () => {
@@ -127,15 +134,29 @@ class Quiz extends React.Component {
     console.log(this.state);
   }
   nextPage = () => {
-    if (this.state.pagenum === this.state.pages - 3) {
-      this.setState({ ctrlhidden: true, pagenum: this.state.pagenum + 1 });
-    } else {
-      this.setState({
-        pagenum: this.state.pagenum + 1
-      });
-    }
     if (this.state.ctrlhidden && this.state.pagenum === 0) {
       this.setState({ ctrlhidden: false });
+    }
+    if (this.state.pagenum === 1) {
+      console.log("on page 1");
+      if (
+        this.state.answers.quest1.nfirst !== "" &&
+        this.state.answers.quest1.nlast !== ""
+      ) {
+        this.setState({ pagenum: this.state.pagenum + 1 });
+      }
+    } else if (this.state.pagenum === 2) {
+      if (this.state.answers.quest2 !== "") {
+        this.setState({ pagenum: this.state.pagenum + 1 });
+      }
+    } else {
+      if (this.state.pagenum === this.state.pages - 3) {
+        this.setState({ ctrlhidden: true, pagenum: this.state.pagenum + 1 });
+      } else {
+        this.setState({
+          pagenum: this.state.pagenum + 1
+        });
+      }
     }
   };
   prevPage = () => {
@@ -148,7 +169,7 @@ class Quiz extends React.Component {
   };
   curPg = () => {
     let pgpos = {
-      marginLeft: `${30 * (this.state.pagenum - 1) + 11}px`
+      width: `${30 * (this.state.pagenum - 1) + 6}px`
     };
     return pgpos;
   };
@@ -163,6 +184,12 @@ class Quiz extends React.Component {
         }
       }
     });
+    if (
+      this.state.answers.quest1.nfirst !== "" &&
+      this.state.answers.quest1.nlast !== ""
+    ) {
+      document.querySelector(".page1 .next").classList.add("active");
+    }
   };
   handleChange(date) {
     this.setState({
@@ -173,6 +200,9 @@ class Quiz extends React.Component {
       },
       startDate: date
     });
+    if (this.state.answers.quest2 !== "") {
+      document.querySelector(".page2 .next").classList.add("active");
+    }
   }
   fiveScale = quest => {
     let style = {
@@ -216,6 +246,14 @@ class Quiz extends React.Component {
                   onChange={this.handleTextChange}
                 />
               </div>
+              <div
+                className="next"
+                onClick={() => {
+                  this.nextPage();
+                }}
+              >
+                next
+              </div>
             </div>
           </div>
           <div className="page page2">
@@ -232,6 +270,14 @@ class Quiz extends React.Component {
                   onChange={this.handleChange}
                   placeholderText="Click to select a date"
                 />
+              </div>
+              <div
+                className="next"
+                onClick={() => {
+                  this.nextPage();
+                }}
+              >
+                next
               </div>
             </div>
           </div>
@@ -256,6 +302,7 @@ class Quiz extends React.Component {
                         quest3: "city"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
                 <div
@@ -273,6 +320,7 @@ class Quiz extends React.Component {
                         quest3: "suburbs"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
                 <div
@@ -290,6 +338,7 @@ class Quiz extends React.Component {
                         quest3: "country"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
               </div>
@@ -313,6 +362,7 @@ class Quiz extends React.Component {
                           quest4: "Disgust"
                         }
                       });
+                      this.nextPage();
                     }}
                   >
                     <span className="circle">
@@ -336,6 +386,7 @@ class Quiz extends React.Component {
                           quest4: "Disagreement"
                         }
                       });
+                      this.nextPage();
                     }}
                   >
                     <span className="circle">
@@ -359,6 +410,7 @@ class Quiz extends React.Component {
                           quest4: "Discomfort"
                         }
                       });
+                      this.nextPage();
                     }}
                   >
                     <span className="circle">
@@ -382,6 +434,7 @@ class Quiz extends React.Component {
                           quest4: "Indifference"
                         }
                       });
+                      this.nextPage();
                     }}
                   >
                     <span className="circle">
@@ -405,6 +458,7 @@ class Quiz extends React.Component {
                           quest4: "Elated"
                         }
                       });
+                      this.nextPage();
                     }}
                   >
                     <span className="circle">
@@ -443,6 +497,7 @@ class Quiz extends React.Component {
                         quest5: "morning"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
                 <div
@@ -460,6 +515,7 @@ class Quiz extends React.Component {
                         quest5: "both"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
                 <div
@@ -477,6 +533,7 @@ class Quiz extends React.Component {
                         quest5: "night"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
               </div>
@@ -501,6 +558,7 @@ class Quiz extends React.Component {
                         quest6: "dogs"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
                 <div
@@ -518,6 +576,7 @@ class Quiz extends React.Component {
                         quest6: "both"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
                 <div
@@ -535,6 +594,7 @@ class Quiz extends React.Component {
                         quest6: "cats"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
                 <div
@@ -552,6 +612,7 @@ class Quiz extends React.Component {
                         quest6: "neither"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
               </div>
@@ -575,6 +636,7 @@ class Quiz extends React.Component {
                           quest7: 0
                         }
                       });
+                      this.nextPage();
                     }}
                   />
                   <div
@@ -587,6 +649,7 @@ class Quiz extends React.Component {
                           quest7: 1
                         }
                       });
+                      this.nextPage();
                     }}
                   />
                   <div
@@ -599,6 +662,7 @@ class Quiz extends React.Component {
                           quest7: 2
                         }
                       });
+                      this.nextPage();
                     }}
                   />
                   <div
@@ -611,6 +675,7 @@ class Quiz extends React.Component {
                           quest7: 3
                         }
                       });
+                      this.nextPage();
                     }}
                   />
                   <div
@@ -623,6 +688,7 @@ class Quiz extends React.Component {
                           quest7: 4
                         }
                       });
+                      this.nextPage();
                     }}
                   />
 
@@ -660,6 +726,7 @@ class Quiz extends React.Component {
                           quest8: 0
                         }
                       });
+                      this.nextPage();
                     }}
                   />
                   <div
@@ -672,6 +739,7 @@ class Quiz extends React.Component {
                           quest8: 1
                         }
                       });
+                      this.nextPage();
                     }}
                   />
                   <div
@@ -684,6 +752,7 @@ class Quiz extends React.Component {
                           quest8: 2
                         }
                       });
+                      this.nextPage();
                     }}
                   />
                   <div
@@ -696,6 +765,7 @@ class Quiz extends React.Component {
                           quest8: 3
                         }
                       });
+                      this.nextPage();
                     }}
                   />
                   <div
@@ -708,6 +778,7 @@ class Quiz extends React.Component {
                           quest8: 4
                         }
                       });
+                      this.nextPage();
                     }}
                   />
 
@@ -748,6 +819,7 @@ class Quiz extends React.Component {
                         quest9: "methodical"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
                 <div
@@ -765,6 +837,7 @@ class Quiz extends React.Component {
                         quest9: "spontaneous"
                       }
                     });
+                    this.nextPage();
                   }}
                 />
               </div>
@@ -804,11 +877,11 @@ class Quiz extends React.Component {
                 </p>
                 <p className="answer">
                   From a scale of 1 to 5, how messy or organized do you consider
-                  yourself? {`${this.state.answers.quest7}`}
+                  yourself? {`${this.state.answers.quest7 + 1}`}
                 </p>
                 <p className="answer">
                   From a scale of 1 to 5, how Introverted or Extroverted do you
-                  think you are?: {`${this.state.answers.quest8}`}
+                  think you are?: {`${this.state.answers.quest8 + 1}`}
                 </p>
                 <p className="answer">
                   Do you consider yourself more Methodical or Spontaneous?:{" "}
@@ -816,7 +889,7 @@ class Quiz extends React.Component {
                 </p>
               </div>
               <div className="ctrls">
-                <div
+                {/* <div
                   className="back ctrl"
                   onClick={() => {
                     this.prevPage();
@@ -824,7 +897,7 @@ class Quiz extends React.Component {
                   }}
                 >
                   back
-                </div>
+                </div> */}
                 <div
                   className={
                     this.state.answers.quest1.fname === "" ||
@@ -887,7 +960,7 @@ class Quiz extends React.Component {
           </div>
         </div>
         <div className={this.state.ctrlhidden ? "pagectrl hidden" : "pagectrl"}>
-          <div
+          {/* <div
             className={
               this.state.pagenum <= 1 ? "prev ctrl inactive" : "prev ctrl"
             }
@@ -896,7 +969,7 @@ class Quiz extends React.Component {
             }}
           >
             <p>prev</p>
-          </div>
+          </div> */}
           {/* <div className="pgnum">
             <p>
               <span>{this.state.pagenum}</span>/
@@ -909,14 +982,14 @@ class Quiz extends React.Component {
               style={this.state.pagenum < 10 ? this.curPg() : {}}
             />
           </div>
-          <div
+          {/* <div
             className="next ctrl"
             onClick={() => {
               this.nextPage();
             }}
           >
             <p>next</p>
-          </div>
+          </div> */}
         </div>
       </div>
     );

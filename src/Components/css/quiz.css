@@ -25,6 +25,21 @@ p {
   flex-direction: column;
   justify-content: center;
 }
+#quiz .pages .page .content .next {
+  border: 2px solid white;
+  color: white;
+  align-self: center;
+  padding: 20px 30px;
+  position: absolute;
+  bottom: 100px;
+  opacity: 0.3;
+  transition: 0.2s;
+}
+#quiz .pages .page .content .next.active {
+  opacity: 1;
+  color: #ff00c7;
+  border: 2px solid #ff00c7;
+}
 #quiz .pages .page1 .content .subheader,
 #quiz .pages .page2 .content .subheader {
   text-align: center;
@@ -209,6 +224,7 @@ p {
   z-index: 3;
   margin: -17px 7px 7px 7px;
   transition: 0.5s;
+  display: none;
 }
 #quiz .pages .options .labels {
   display: flex;
@@ -301,18 +317,17 @@ p {
   position: relative;
 }
 #quiz .pgnum .circle {
-  width: 16px;
+  width: 100%;
   height: 16px;
   border-radius: 20px;
   border: 2px solid white;
   margin: 0 5px;
-  cursor: pointer;
 }
 #quiz .pgnum .circle.inactive {
   opacity: 0.3;
 }
 #quiz .pgnum .curpg {
-  background-color: white;
+  background-color: #ff00c7;
   width: 8px;
   height: 8px;
   border-radius: 20px;
