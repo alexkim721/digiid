@@ -36,7 +36,7 @@ class Quiz extends React.Component {
     });
     for (
       let i = 1;
-      i < document.querySelector(".pages").childElementCount - 1;
+      i < document.querySelector(".pages").childElementCount - 2;
       i++
     ) {
       let div = document.createElement("div");
@@ -54,7 +54,7 @@ class Quiz extends React.Component {
     console.log(this.state);
   }
   nextPage = () => {
-    if (this.state.pagenum === this.state.pages - 2) {
+    if (this.state.pagenum === this.state.pages - 3) {
       this.setState({ ctrlhidden: true, pagenum: this.state.pagenum + 1 });
     } else {
       this.setState({
@@ -752,8 +752,35 @@ class Quiz extends React.Component {
                 >
                   back
                 </div>
-                <div className="submit ctrl">submit</div>
+                <div
+                  className="submit ctrl"
+                  onClick={() => {
+                    if (
+                      this.state.answers.quest1.fname === "" ||
+                      this.state.answers.quest1.lname === "" ||
+                      this.state.answers.quest2 === "" ||
+                      this.state.answers.quest3 === "" ||
+                      this.state.answers.quest4 === "" ||
+                      this.state.answers.quest5 === "" ||
+                      this.state.answers.quest6 === "" ||
+                      this.state.answers.quest7 === "" ||
+                      this.state.answers.quest8 === "" ||
+                      this.state.answers.quest9 === ""
+                    ) {
+                      console.log("cannot submit");
+                    } else {
+                      console.log("can submit");
+                    }
+                  }}
+                >
+                  submit
+                </div>
               </div>
+            </div>
+          </div>
+          <div className="page page11">
+            <div className="content">
+              <p>page 11</p>
             </div>
           </div>
         </div>
