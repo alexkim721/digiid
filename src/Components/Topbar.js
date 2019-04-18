@@ -7,7 +7,8 @@ class Navbar extends React.Component {
   render() {
     return (
       <div className="navbar" id="navbar">
-        {this.props.history.location.pathname.split("/")[1] === "quiz" ? (
+        {this.props.history.location.pathname.split("/")[1] === "quiz" ||
+        this.props.history.location.pathname.split("/")[1] === "generate" ? (
           <div />
         ) : (
           <div className="content">

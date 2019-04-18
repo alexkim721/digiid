@@ -11,6 +11,7 @@ import Socialbar from "./Components/Socialbar";
 import Mobilebar from "./Components/Mobilebar";
 import Mobilefooter from "./Components/Mobilefooter";
 import logo from "./images/logo.png";
+import Generate from "./Components/Generate";
 
 class App extends Component {
   constructor(props) {
@@ -66,6 +67,8 @@ class App extends Component {
         return <Blog />;
       case "quiz":
         return <Quiz />;
+      case "generate":
+        return <Generate />;
       case "":
         return <Home />;
       default:
@@ -74,7 +77,10 @@ class App extends Component {
   };
 
   content = () => {
-    if (this.props.history.location.pathname.split("/")[1] === "quiz") {
+    if (
+      this.props.history.location.pathname.split("/")[1] === "quiz" ||
+      this.props.history.location.pathname.split("/")[1] === "generate"
+    ) {
       return "inquiz";
     } else if (
       this.props.history.location.pathname.split("/")[1] === "gallery"
