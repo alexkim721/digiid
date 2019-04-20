@@ -280,3 +280,8 @@ p.subheader {
   padding: 20px 30px;
   margin-top: 60px;
 }
+#generate .art {
+  position: absolute;
+  margin: -20px 0 0 -20px;
+  background-color: white;
+}

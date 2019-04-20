@@ -1,4 +1,13 @@
 import firebase from 'firebase';
+import answersExp from './Generate.js'
+
+
+// let allAnswers;
+
+// getanswers = answers => {
+//   allAnswers = answers;
+// }
+
 
 const sketch = p => {
   let database;
@@ -7,20 +16,9 @@ const sketch = p => {
   let easyIDvar;
 
   p.setup = function() {
+    // console.log(props);
     // Create the canvas
     p.createCanvas(window.innerWidth, window.innerHeight);
-
-    // Initialize Firebase
-    let config = {
-        apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
-        authDomain: "digital-identities.firebaseapp.com",
-        databaseURL: "https://digital-identities.firebaseio.com",
-        projectId: "digital-identities",
-        storageBucket: "digital-identities.appspot.com",
-        messagingSenderId: "834438338603"
-    };
-
-    firebase.initializeApp(config);
 
     // Create a database variable from firebase
     database = firebase.database();
@@ -42,7 +40,7 @@ const sketch = p => {
 
     //p.gradientBackground(p.hexWithAlpha("#222222", 0.5), p.hexWithAlpha("#222222", 0.5));
 
-    // p.symShapes("richard");
+    p.symShapes("richard");
 
     //p.circGrid(40, p.color(0), p.color(255));
 
@@ -90,7 +88,7 @@ const sketch = p => {
     let qPlan = "methodical";
     // let qPlan = "spontaneous";
 
-    
+    let answers;
 
 
 
@@ -100,6 +98,12 @@ const sketch = p => {
     //   console.log("User " + firebase.auth().currentUser.uid + " has logged out.");
     // }, 1000);
   }
+
+  p.myCustomRedrawAccordingToNewPropsHandler = props =>{
+        if(props.answers){
+            p.answers = props.answers;
+        }
+    }
 
   p.draw = function() {
 
@@ -532,3 +536,4 @@ const sketch = p => {
 }
 
 export default sketch
+// export {getanswers()}
