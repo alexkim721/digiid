@@ -1,6 +1,9 @@
 #post {
   width: 820px;
 }
+#post .header {
+  width: 60%;
+}
 #post .hero {
   width: 100%;
   max-height: 400px;
