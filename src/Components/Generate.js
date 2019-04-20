@@ -19,9 +19,6 @@ class Generate extends React.Component {
       canSubmit: false
     };
   }
-  componentDidUpdate() {
-    console.log(this.state);
-  }
   componentWillMount() {
     // Initialize Firebase
     let config = {
@@ -45,15 +42,13 @@ class Generate extends React.Component {
     if (this.state.easyID <= keys.length) {
       for (let i = 0; i < keys.length; i++) {
         ref = database.ref("users/" + keys[i]);
-
         ref
           .orderByChild("easyID")
           .equalTo(parseInt(this.state.easyID))
           .on("value", snap => {
             if (snap.val() !== null) {
-              console.log("Data retrieved from firebase:");
+              console.log("Grabbing data for easyID: " + this.state.easyID);
               const val = snap.val();
-
               for (const key in val) {
                 this.setState({ answers: val[key].answers, canSubmit: true });
                 getAnswers(val[key].answers);
@@ -62,7 +57,7 @@ class Generate extends React.Component {
           });
       }
     } else {
-      console.log("Woah there, what's that?");
+      console.log("Error: submitted ID is invalid.");
     }
   };
 
@@ -79,8 +74,6 @@ class Generate extends React.Component {
     });
   };
   submitID = () => {
-    console.log("Submit button pushed");
-
     // Reference data from the database
     ref = database.ref("users");
 
@@ -107,11 +100,7 @@ class Generate extends React.Component {
         ) : (
           <div className="generator">
             <div className="art">
-              <P5Wrapper
-                sketch={sketch}
-                rotation={200}
-                answers={this.state.answers}
-              />
+              <P5Wrapper sketch={sketch} />
             </div>
           </div>
         )}
