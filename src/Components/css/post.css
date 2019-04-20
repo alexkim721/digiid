@@ -26,6 +26,16 @@
 #post .text p {
   margin-bottom: 25px;
   line-height: 32px;
+  color: rgb(224, 224, 224);
+}
+#post .text ol {
+  margin: 25px 0;
+}
+#post .text li {
+  margin-bottom: 15px;
+  line-height: 32px;
+  color: rgb(224, 224, 224);
+  font-size: 18px;
 }
 
 #post .text img {
