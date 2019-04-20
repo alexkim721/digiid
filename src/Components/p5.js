@@ -1,9 +1,29 @@
-let allAnswers;
+let qFirstName;
+let qLastName;
+let qBirthday;
+let qWhereLive;
+let qPizza;
+let qSleep;
+let qPet;
+let qMess;
+let qVert;
+let qPlan;
 
 export const getAnswers = answers => {
-  allAnswers = answers;
   console.log("Following answers have been loaded into p5.js:");
-  console.log(allAnswers);
+  console.log(answers);
+
+  // Change answer data to more explicit variable names
+  qFirstName = answers.quest1.nfirst;
+  qLastName = answers.quest1.nlast;
+  qBirthday = answers.quest2;
+  qWhereLive = answers.quest3;
+  qPizza = answers.quest4;
+  qSleep = answers.quest5;
+  qPet = answers.quest6;
+  qMess = answers.quest7;
+  qVert = answers.quest8;
+  qPlan = answers.quest9;
 };
 
 const sketch = p => {
@@ -12,7 +32,7 @@ const sketch = p => {
     p.createCanvas(window.innerWidth, window.innerHeight);
 
     setTimeout(() => {
-      p.symShapes(allAnswers.quest1.nfirst);
+      p.symShapes(qFirstName);
     }, 100);
 
     //p.gradientBackground(p.hexWithAlpha("#222222", 0.5), p.hexWithAlpha("#222222", 0.5));
