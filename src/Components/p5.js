@@ -39,7 +39,10 @@ const sketch = p => {
 
     //p.gradientBackground(p.hexWithAlpha("#222222", 0.5), p.hexWithAlpha("#222222", 0.5));
 
-    p.symShapes("richard");
+    setTimeout(() => {
+      p.symShapes(allAnswers.quest1.nfirst);
+      console.log(allAnswers);
+    }, 100);
 
     //p.circGrid(40, p.color(0), p.color(255));
 
