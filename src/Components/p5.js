@@ -1,48 +1,41 @@
-import firebase from "firebase";
-
-let allAnswers;
+let qFirstName;
+let qLastName;
+let qBirthday;
+let qWhereLive;
+let qPizza;
+let qSleep;
+let qPet;
+let qMess;
+let qVert;
+let qPlan;
 
 export const getAnswers = answers => {
-  allAnswers = answers;
-  console.log(allAnswers);
+  console.log("Following answers have been loaded into p5.js:");
+  console.log(answers);
+
+  // Change answer data to more explicit variable names
+  qFirstName = answers.quest1.nfirst;
+  qLastName = answers.quest1.nlast;
+  qBirthday = answers.quest2;
+  qWhereLive = answers.quest3;
+  qPizza = answers.quest4;
+  qSleep = answers.quest5;
+  qPet = answers.quest6;
+  qMess = answers.quest7;
+  qVert = answers.quest8;
+  qPlan = answers.quest9;
 };
 
 const sketch = p => {
-  let database;
-  let ref;
-  let storage;
-  let easyIDvar;
-  let answers;
-
   p.setup = function() {
-    // console.log(props);
     // Create the canvas
     p.createCanvas(window.innerWidth, window.innerHeight);
 
-    // Create a database variable from firebase
-    database = firebase.database();
-
-    // Create a storage variable for firebase
-    storage = firebase.storage();
-
-    // // Reference data from the database
-    // ref = database.ref('users');
-
-    // // Grab the data from the database
-    // ref.on('value', p.assignEasyID, p.errData);
-
-    // firebase.auth().signInAnonymously()
-    //   .then( () => {
-    //     console.log("User " + firebase.auth().currentUser.uid + " signed in with an easyID of " + easyIDvar);
-    //     p.submitData();
-    //   });
+    setTimeout(() => {
+      p.symShapes(qFirstName);
+    }, 100);
 
     //p.gradientBackground(p.hexWithAlpha("#222222", 0.5), p.hexWithAlpha("#222222", 0.5));
-
-    setTimeout(() => {
-      p.symShapes(allAnswers.quest1.nfirst);
-      console.log(allAnswers);
-    }, 100);
 
     //p.circGrid(40, p.color(0), p.color(255));
 
@@ -59,114 +52,9 @@ const sketch = p => {
     //p.drawNewTriangle(300, 200, 400, 200, 0, 0, 255);
 
     //p.polygon(200, 200, 150, 6);
-
-    // QUIZ ANSWERS
-    let qFirstName = "Frank";
-
-    let qLastName = "Furter";
-
-    let qBirthMonth = "may";
-
-    let qWhereLive = "city";
-    // let qWhereLive = "country";
-    // let qWhereLive = "suburbs";
-
-    let qPizza = 1;
-
-    let qSleep = "morning person";
-    // let qSleep = "night owl";
-    // let qSleep = "neither";
-
-    let qPet = "cats";
-    // let qPet = "dogs";
-    // let qPet = "both";
-    // let qPet = "neither";
-
-    let qMess = 1;
-
-    let qVert = 1;
-
-    let qPlan = "methodical";
-    // let qPlan = "spontaneous";
-
-    // // Log user out of firebase
-    // setTimeout(() => {
-    //   firebase.auth().signOut();
-    //   console.log("User " + firebase.auth().currentUser.uid + " has logged out.");
-    // }, 1000);
   };
 
   p.draw = function() {};
-
-  // // Sends data to firebase
-  // p.submitData = function() {
-  //   let data = {
-  //     easyID: easyIDvar
-  //   };
-
-  //   // See what's being sent
-  //   console.log("Following data is being sent to the database:");
-  //   console.log(data);
-
-  //   // Create a reference to the database
-  //   ref = database.ref('users/' + firebase.auth().currentUser.uid );
-
-  //   // Push the data to the database
-  //   ref.push(data);
-
-  //   // Confirm send
-  //   console.log("Data sent.");
-  // }
-
-  // p.assignEasyID = function(data) {
-  //   let results = data.val();
-  //   let keys = Object.keys(results);
-  //   let keyLength = keys.length;
-  //   easyIDvar = keys.length;
-  // }
-
-  // // Throw an error if data can't be gotten
-  // p.errData = function(err) {
-  //   console.log('Error!');
-  //   console.log(err);
-  // }
-
-  // // Snag the canvas element and send it to firebase
-  // p.uploadImg = function() {
-  //   // Create storage reference in the database
-  //   let storageRef = storage.ref('test/' + firebase.auth().currentUser.uid);
-
-  //   // Select the canvas in the document
-  //   const canvas = document.getElementById('defaultCanvas0');
-
-  //   // Convert the canvas into a blob and upload it using the storageRef
-  //   canvas.toBlob(function(canvasBlob){
-  //     // Upload the image using the newly created blob
-  //     storageRef.put(canvasBlob);
-
-  //     // Confirmations
-  //     console.log("Sending the following blob:");
-  //     console.log(canvasBlob);
-  //     console.log("Blob location: " + storageRef);
-  //   });
-  // }
-
-  p.alexMockupPlaceholder = function() {
-    let color1 = p.color(174, 21, 255);
-    let color2 = p.color(255, 62, 250);
-    let color3 = p.color(98, 249, 98);
-    let color4 = p.color(255, 255, 100);
-    p.scales(25, color1, color2);
-    p.noFill();
-    p.stroke(255);
-    p.strokeWeight(2);
-    p.ellipse((p.width / 11) * 4, (p.height / 5) * 2, 700);
-    p.gradCircle(800, 300, 200, color3, color4);
-    p.gradCircle(100, 50, 100, color1, color2);
-
-    p.fill(255);
-    p.ellipse((p.width / 4) * 3, 250, 150);
-  };
 
   // Creates a gradient circle with an offset stroke
   p.gradCircle = function(x, y, r, c1, c2) {
@@ -267,15 +155,7 @@ const sketch = p => {
   };
 
   // Draws a triangle based on two side lengths
-  p.drawTriangle = function(
-    xCoord,
-    yCoord,
-    lengthSideA,
-    lengthSideB,
-    rotationAngle,
-    from,
-    to
-  ) {
+  p.drawTriangle = function(xCoord, yCoord, lengthSideA, lengthSideB, rotationAngle, from, to) {
     p.push();
     p.translate(xCoord, yCoord);
     p.angleMode(p.DEGREES);
@@ -290,14 +170,7 @@ const sketch = p => {
   };
 
   // Draws an equilateral triangle
-  p.drawEqualTriangle = function(
-    xCoord,
-    yCoord,
-    sideLength,
-    rotationAngle,
-    from,
-    to
-  ) {
+  p.drawEqualTriangle = function(xCoord, yCoord, sideLength, rotationAngle, from, to) {
     p.push();
     p.translate(xCoord, yCoord);
     p.angleMode(p.DEGREES);
@@ -313,15 +186,7 @@ const sketch = p => {
   };
 
   // Draws a right triangle based on length of base and height
-  p.drawNewTriangle = function(
-    xCoord,
-    yCoord,
-    triangleLength,
-    triangleHeight,
-    rotationAngle,
-    from,
-    to
-  ) {
+  p.drawNewTriangle = function(xCoord, yCoord, triangleLength, triangleHeight, rotationAngle, from, to) {
     p.push();
     p.translate(xCoord, yCoord);
     p.angleMode(p.DEGREES);
