@@ -132,6 +132,16 @@ class Quiz extends React.Component {
       this.state.pagenum
     })`;
     console.log(this.state);
+    if (
+      this.state.answers.quest1.nfirst !== "" &&
+      this.state.answers.quest1.nlast !== ""
+    ) {
+      document.querySelector(".page1 .next").classList.add("active");
+    }
+
+    if (this.state.answers.quest2 !== "") {
+      document.querySelector(".page2 .next").classList.add("active");
+    }
   }
   nextPage = () => {
     if (this.state.ctrlhidden && this.state.pagenum === 0) {
@@ -184,12 +194,6 @@ class Quiz extends React.Component {
         }
       }
     });
-    if (
-      this.state.answers.quest1.nfirst !== "" &&
-      this.state.answers.quest1.nlast !== ""
-    ) {
-      document.querySelector(".page1 .next").classList.add("active");
-    }
   };
   handleChange(date) {
     this.setState({
@@ -200,9 +204,6 @@ class Quiz extends React.Component {
       },
       startDate: date
     });
-    if (this.state.answers.quest2 !== "") {
-      document.querySelector(".page2 .next").classList.add("active");
-    }
   }
   fiveScale = quest => {
     let style = {
@@ -246,13 +247,15 @@ class Quiz extends React.Component {
                   onChange={this.handleTextChange}
                 />
               </div>
-              <div
-                className="next"
-                onClick={() => {
-                  this.nextPage();
-                }}
-              >
-                next
+              <div className="nextCont">
+                <div
+                  className="next"
+                  onClick={() => {
+                    this.nextPage();
+                  }}
+                >
+                  next
+                </div>
               </div>
             </div>
           </div>
@@ -271,13 +274,15 @@ class Quiz extends React.Component {
                   placeholderText="Click to select a date"
                 />
               </div>
-              <div
-                className="next"
-                onClick={() => {
-                  this.nextPage();
-                }}
-              >
-                next
+              <div className="nextCont">
+                <div
+                  className="next"
+                  onClick={() => {
+                    this.nextPage();
+                  }}
+                >
+                  next
+                </div>
               </div>
             </div>
           </div>

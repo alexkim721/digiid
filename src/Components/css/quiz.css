@@ -18,20 +18,25 @@ p {
   height: 100%;
 }
 #quiz .pages .page .content {
-  width: 835px;
+  width: 90%;
   height: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+}
+#quiz .pages .page .content .nextCont {
+  position: absolute;
+  bottom: 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 #quiz .pages .page .content .next {
   border: 2px solid white;
   color: white;
-  align-self: center;
   padding: 20px 30px;
-  position: absolute;
-  bottom: 100px;
   opacity: 0.3;
   transition: 0.2s;
 }
@@ -39,6 +44,7 @@ p {
   opacity: 1;
   color: #ff00c7;
   border: 2px solid #ff00c7;
+  cursor: pointer;
 }
 #quiz .pages .page1 .content .subheader,
 #quiz .pages .page2 .content .subheader {
@@ -112,6 +118,7 @@ p {
   height: 300px;
   transition: 0.2s;
   opacity: 0.5;
+  cursor: pointer;
 }
 #quiz .pages .page3 .options .option.active,
 #quiz .pages .page5 .options .option.active,
@@ -203,6 +210,7 @@ p {
   border: 2px solid white;
   background-color: black;
   z-index: 2;
+  cursor: pointer;
 }
 #quiz .pages .options .scale .line {
   width: 100%;
@@ -334,7 +342,11 @@ p {
   position: absolute;
   margin-left: 11px;
   transition: 0.3s;
+  top: 8px;
 }
 .colored {
   color: #ff00c7;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  /* STYLES GO HERE */
 }
