@@ -854,43 +854,52 @@ class Quiz extends React.Component {
               <div className="answers">
                 <p className="answer">
                   Name:{" "}
-                  {`${this.state.answers.quest1.nfirst} ${
-                    this.state.answers.quest1.nlast
-                  }`}
+                  <span className="resp">
+                    {`${this.state.answers.quest1.nfirst} ${
+                      this.state.answers.quest1.nlast
+                    }`}
+                  </span>
                 </p>
                 <p className="answer">
                   Birthday:{" "}
-                  {`${this.state.answers.quest2
-                    .split(" ")
-                    .slice(1)
-                    .join(" ")}`}
+                  <span className="resp">
+                    {`${this.state.answers.quest2
+                      .split(" ")
+                      .slice(1)
+                      .join(" ")}`}
+                  </span>
                 </p>
                 <p className="answer">
                   Would you rather live in the city, suburbs or country?:{" "}
-                  {`${this.state.answers.quest3}`}
+                  <span className="resp">{`${this.state.answers.quest3}`}</span>
                 </p>
                 <p className="answer">
                   How does pinapple on pizza make you feel?:{" "}
-                  {`${this.state.answers.quest4}`}
+                  <span className="resp">{`${this.state.answers.quest4}`}</span>
                 </p>
                 <p className="answer">
                   Are you a morning person or a night owl?:{" "}
-                  {`${this.state.answers.quest5}`}
+                  <span className="resp">{`${this.state.answers.quest5}`}</span>
                 </p>
                 <p className="answer">
-                  Do you prefer Dogs or Cats?: {`${this.state.answers.quest6}`}
+                  Do you prefer Dogs or Cats?:{" "}
+                  <span className="resp">{`${this.state.answers.quest6}`}</span>
                 </p>
                 <p className="answer">
                   From a scale of 1 to 5, how messy or organized do you consider
-                  yourself? {`${this.state.answers.quest7 + 1}`}
+                  yourself?{" "}
+                  <span className="resp">{`${this.state.answers.quest7 +
+                    1}`}</span>
                 </p>
                 <p className="answer">
                   From a scale of 1 to 5, how Introverted or Extroverted do you
-                  think you are?: {`${this.state.answers.quest8 + 1}`}
+                  think you are?:{" "}
+                  <span className="resp">{`${this.state.answers.quest8 +
+                    1}`}</span>
                 </p>
                 <p className="answer">
                   Do you consider yourself more Methodical or Spontaneous?:{" "}
-                  {`${this.state.answers.quest9}`}
+                  <span className="resp">{`${this.state.answers.quest9}`}</span>
                 </p>
               </div>
               <div className="ctrls">

@@ -262,6 +262,9 @@ p {
 #quiz .pages .page10 .answer {
   margin: 20px 0;
 }
+#quiz .pages .page10 .answer .resp {
+  color: #ff00c7;
+}
 #quiz .pages .page10 .ctrls {
   display: flex;
   justify-content: center;
@@ -277,6 +280,7 @@ p {
 #quiz .pages .page10 .ctrls .ctrl.submit {
   color: #ff00c7;
   border: 2px solid #ff00c7;
+  padding: 20px 30px;
 }
 #quiz .pages .page10 .ctrls .ctrl.submit.inactive {
   color: white;
