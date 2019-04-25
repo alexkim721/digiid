@@ -70,6 +70,13 @@ p.subheader {
   transition: 0.2s;
   font-weight: 600;
 }
+#navbar .content .navitem .inactiveLink {
+  color: #ff00c7;
+  text-decoration: none;
+  margin-left: 40px;
+  transition: 0.2s;
+  font-weight: 600;
+}
 
 #navbar .content .navitem a:hover {
   color: #ff00c7;

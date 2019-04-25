@@ -13,12 +13,20 @@
   margin-top: 50px;
 }
 
-#gallery .items .item {
+#gallery .items .item-cont {
   width: 23%;
   padding-top: 23%;
-  background-color: red;
   margin-bottom: 2vw;
   border: 2px solid white;
+  position: relative;
+}
+#gallery .items .item-cont .item {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
 
 .submit {

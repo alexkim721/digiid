@@ -1,79 +1,91 @@
 import React from "react";
-import firebase from "firebase";
 import "../Components/css/main.css";
 import "./css/gallery.css";
 
-let database;
+// let database;
+// let storage;
 let ref;
-let storage;
-let returnedKey = "initial";
+let returnedKey;
 let numKeys;
 
 class Gallery extends React.Component {
-  componentWillMount() {
-    // Initialize Firebase
-    let config = {
-      apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
-      authDomain: "digital-identities.firebaseapp.com",
-      databaseURL: "https://digital-identities.firebaseio.com",
-      projectId: "digital-identities",
-      storageBucket: "digital-identities.appspot.com",
-      messagingSenderId: "834438338603"
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true
     };
+  }
+  componentWillMount() {
+    console.log(this.props);
+    // // Initialize Firebase
+    // let config = {
+    //   apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
+    //   authDomain: "digital-identities.firebaseapp.com",
+    //   databaseURL: "https://digital-identities.firebaseio.com",
+    //   projectId: "digital-identities",
+    //   storageBucket: "digital-identities.appspot.com",
+    //   messagingSenderId: "834438338603"
+    // };
 
-    firebase.initializeApp(config);
+    // firebase.initializeApp(config);
 
-    // Create a database variable from firebase
-    database = firebase.database();
+    // // Create a database variable from firebase
+    // database = firebase.database();
 
-    // Create a storage variable for firebase
-    storage = firebase.storage();
+    // // Create a storage variable for firebase
+    // storage = firebase.storage();
 
-    ref = database.ref('users/');
-    ref.on('value', function(snap) {
+    ref = this.props.dbdata.ref("users/");
+    ref.on("value", snap => {
       let results = snap.val();
       let keys = Object.keys(results);
       numKeys = keys.length;
       console.log("Number of completed results: " + numKeys);
+      this.setState({
+        loading: false
+      });
     });
   }
 
-  addGalleryImage = (uid) => {
+  addGalleryImage = uid => {
+    let cont = document.createElement("DIV");
     let x = document.createElement("IMG");
 
-    storage.ref('test/' + uid + ".png").getDownloadURL().then(function(fbURL) {
-      let url = fbURL;
+    this.props.strdata
+      .ref("test/" + uid + ".png")
+      .getDownloadURL()
+      .then(function(fbURL) {
+        let url = fbURL;
 
-      x.setAttribute("src", url);
-    });
-
-    x.setAttribute("width", "304");
-
-    x.setAttribute("height", "228");
-
-    document.body.appendChild(x);
+        x.setAttribute("src", url);
+      });
+    cont.classList.add("item-cont");
+    x.classList.add("item");
+    cont.appendChild(x);
+    document.querySelector(".items").appendChild(cont);
   };
 
-  getUIDfromEasyID = (easyID) => {
-    if(easyID !== null) {
-      ref = database.ref('users');
-      ref.on('value', function(data) {
+  getUIDfromEasyID = easyID => {
+    if (easyID !== null) {
+      ref = this.props.dbdata.ref("users");
+      ref.on("value", data => {
         let results = data.val();
         let keys = Object.keys(results);
         numKeys = keys.length;
         if (easyID <= keys.length) {
           for (let i = 0; i < numKeys; i++) {
-            ref = database.ref("users/" + keys[i]);
+            ref = this.props.dbdata.ref("users/" + keys[i]);
             ref
-            .orderByChild("easyID")
-            .equalTo(parseInt(easyID))
-            .on("value", snap => {
-              if (snap.val() !== null) {
-                console.log("Grabbing UID " + ref.key + " for easyID: " + easyID);
-                const val = snap.val();
-                returnedKey = ref.key;
-              }
-            });
+              .orderByChild("easyID")
+              .equalTo(parseInt(easyID))
+              .on("value", snap => {
+                if (snap.val() !== null) {
+                  console.log(
+                    "Grabbing UID " + ref.key + " for easyID: " + easyID
+                  );
+                  returnedKey = ref.key;
+                }
+              });
           }
         }
       });
@@ -86,8 +98,9 @@ class Gallery extends React.Component {
   };
 
   generateImagery = () => {
-    for(let i = 0; i < numKeys; i++) {
-      this.getUIDfromEasyID((i+1).toString());
+    console.log("called");
+    for (let i = 0; i < numKeys; i++) {
+      this.getUIDfromEasyID((i + 1).toString());
       setTimeout(() => {
         console.log(`returnedKey ${returnedKey} set`);
         this.addGalleryImage(returnedKey);
@@ -99,8 +112,8 @@ class Gallery extends React.Component {
     return (
       <div className="gallery maincontent" id="gallery">
         <p className="header">gallery</p>
-        <div className="submit" onClick={() => this.generateImagery()}>
-          submit
+        <div className="items">
+          {!this.state.loading && this.generateImagery()}
         </div>
       </div>
     );

@@ -13,24 +13,59 @@ class Navbar extends React.Component {
         ) : (
           <div className="content">
             <div className="navitem">
-              <NavLink to="" activeClassName="selectedlink">
-                home
-              </NavLink>
+              {this.props.history.location.pathname.split("/")[1] === "" ||
+              this.props.history.location.pathname.split("/")[1] === "home" ? (
+                <div className="inactiveLink">home</div>
+              ) : (
+                <NavLink
+                  to="/home"
+                  className="home"
+                  activeClassName="selectedlink"
+                >
+                  home
+                </NavLink>
+              )}
             </div>
             <div className="navitem">
-              <NavLink to="/about" activeClassName="selectedlink">
-                about
-              </NavLink>
+              {this.props.history.location.pathname.split("/")[1] ===
+              "about" ? (
+                <div className="inactiveLink">about</div>
+              ) : (
+                <NavLink
+                  to="/about"
+                  className="about"
+                  activeClassName="selectedlink"
+                >
+                  about
+                </NavLink>
+              )}
             </div>
             <div className="navitem">
-              <NavLink to="/gallery" activeClassName="selectedlink">
-                gallery
-              </NavLink>
+              {this.props.history.location.pathname.split("/")[1] ===
+              "gallery" ? (
+                <div className="inactiveLink">gallery</div>
+              ) : (
+                <NavLink
+                  to="/gallery"
+                  className="gallery"
+                  activeClassName="selectedlink"
+                >
+                  gallery
+                </NavLink>
+              )}
             </div>
             <div className="navitem">
-              <NavLink to="/blog" activeClassName="selectedlink">
-                blog
-              </NavLink>
+              {this.props.history.location.pathname.split("/")[1] === "blog" ? (
+                <div className="inactiveLink">blog</div>
+              ) : (
+                <NavLink
+                  to="/blog"
+                  className="blog"
+                  activeClassName="selectedlink"
+                >
+                  blog
+                </NavLink>
+              )}
             </div>
           </div>
         )}

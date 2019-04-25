@@ -13,6 +13,7 @@ import Mobilefooter from "./Components/Mobilefooter";
 import logo from "./images/logo.png";
 import Generate from "./Components/Generate";
 import posed from "react-pose";
+import firebase from "firebase";
 
 const Circ1 = posed.div({
   hidden: {
@@ -103,7 +104,9 @@ class App extends Component {
       height: 0,
       mobile: false,
       bartoggle: false,
-      quizBG: true
+      quizBG: true,
+      database: "",
+      storage: ""
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
@@ -114,7 +117,33 @@ class App extends Component {
       this.setState({ quizBG: false });
     }
   };
+  componentWillMount() {
+    // Initialize Firebase
+    let config = {
+      apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
+      authDomain: "digital-identities.firebaseapp.com",
+      databaseURL: "https://digital-identities.firebaseio.com",
+      projectId: "digital-identities",
+      storageBucket: "digital-identities.appspot.com",
+      messagingSenderId: "834438338603"
+    };
 
+    firebase.initializeApp(config);
+
+    // // Create a database variable from firebase
+    // let database = firebase.database();
+
+    // // Create a storage variable for firebase
+    // let storage = firebase.storage();
+
+    this.setState({
+      database: firebase.database(),
+      storage: firebase.storage()
+    });
+  }
+  componentDidUpdate() {
+    console.log(this.state.database);
+  }
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
@@ -157,7 +186,9 @@ class App extends Component {
       case "about":
         return <About />;
       case "gallery":
-        return <Gallery />;
+        return (
+          <Gallery dbdata={this.state.database} strdata={this.state.storage} />
+        );
       case "blog":
         return <Blog />;
       case "quiz":
@@ -177,11 +208,13 @@ class App extends Component {
       this.props.history.location.pathname.split("/")[1] === "generate"
     ) {
       return "inquiz";
-    } else if (
-      this.props.history.location.pathname.split("/")[1] === "gallery"
-    ) {
-      return "nocontent";
-    } else {
+    }
+    // else if (
+    //   this.props.history.location.pathname.split("/")[1] === "gallery"
+    // ) {
+    //   return "nocontent";
+    // }
+    else {
       return "";
     }
   };
