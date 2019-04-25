@@ -357,6 +357,7 @@ p {
   width: 100%;
   top: 0;
   left: 0;
+  overflow: hidden;
 }
 .bg .elm1 {
   background-image: url("../../images/bg/gradcirc.png");
