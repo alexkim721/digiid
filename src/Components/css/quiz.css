@@ -343,13 +343,12 @@ p {
   position: absolute;
   margin-left: 11px;
   transition: 0.3s;
-  top: 7px;
 }
 .colored {
   color: #ff00c7;
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   #quiz .pgnum .curpg {
-    top: 7px !important;
+    top: 6px !important;
   }
 }
