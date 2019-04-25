@@ -11,6 +11,7 @@
     "react-datepicker": "^2.4.0",
     "react-dom": "^16.8.3",
     "react-p5-wrapper": "0.0.4",
+    "react-pose": "^4.0.8",
     "react-render-html": "^0.6.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.5"

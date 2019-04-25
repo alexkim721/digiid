@@ -351,6 +351,80 @@ p {
 .colored {
   color: #ff00c7;
 }
+.bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.bg .elm1 {
+  background-image: url("../../images/bg/gradcirc.png");
+  width: 250px;
+  height: 250px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.bg .elm2 {
+  background-image: url("../../images/bg/quizSqBlank.png");
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.bg .elm3 {
+  background-image: url("../../images/bg/gradtri2.png");
+  width: 300px;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.bg .elm4 {
+  background-image: url("../../images/bg/gradtri1.png");
+  width: 300px;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.bg .elm5 {
+  background-image: url("../../images/bg/gradsq.png");
+  width: 250px;
+  height: 250px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.bg .elm6 {
+  background-image: url("../../images/bg/quizCircBlank.png");
+  width: 120px;
+  height: 120px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   #quiz .pgnum .curpg {
     top: 6px !important;

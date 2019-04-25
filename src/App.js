@@ -12,13 +12,108 @@ import Mobilebar from "./Components/Mobilebar";
 import Mobilefooter from "./Components/Mobilefooter";
 import logo from "./images/logo.png";
 import Generate from "./Components/Generate";
+import posed from "react-pose";
+
+const Circ1 = posed.div({
+  hidden: {
+    x: -250,
+    y: -150,
+    transition: { duration: 500 }
+  },
+  visible: {
+    x: -20,
+    y: -20,
+    transition: { type: "spring", duration: 500, damping: 10, stiffness: 150 }
+  }
+});
+const Squ1 = posed.div({
+  hidden: {
+    x: 160,
+    y: -150,
+    rotate: 25,
+    transition: { duration: 500 }
+  },
+  visible: {
+    x: 160,
+    y: 80,
+    rotate: -25,
+    transition: { type: "spring", duration: 500, damping: 10, stiffness: 150 }
+  }
+});
+const Tri1 = posed.div({
+  hidden: {
+    x: 350,
+    y: -150,
+    rotate: 0,
+    transition: { duration: 500 }
+  },
+  visible: {
+    x: 50,
+    y: -100,
+    rotate: -25,
+    transition: { type: "spring", duration: 500, damping: 10, stiffness: 150 }
+  }
+});
+const Tri2 = posed.div({
+  hidden: {
+    x: -350,
+    y: 200,
+    rotate: 65,
+    transition: { duration: 500 }
+  },
+  visible: {
+    x: -50,
+    y: 100,
+    rotate: 95,
+    transition: { type: "spring", duration: 500, damping: 10, stiffness: 150 }
+  }
+});
+const Squ2 = posed.div({
+  hidden: {
+    x: 200,
+    y: 250,
+    rotate: -10,
+    transition: { duration: 500 }
+  },
+  visible: {
+    x: 0,
+    y: 80,
+    rotate: 10,
+    transition: { type: "spring", duration: 500, damping: 10, stiffness: 150 }
+  }
+});
+const Circ2 = posed.div({
+  hidden: {
+    x: 150,
+    y: -300,
+    transition: { duration: 500 }
+  },
+  visible: {
+    x: -170,
+    y: -60,
+    transition: { type: "spring", duration: 500, damping: 10, stiffness: 150 }
+  }
+});
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { width: 0, height: 0, mobile: false, bartoggle: false };
+    this.state = {
+      width: 0,
+      height: 0,
+      mobile: false,
+      bartoggle: false,
+      quizBG: true
+    };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
+  getPage = show => {
+    if (show) {
+      this.setState({ quizBG: true });
+    } else {
+      this.setState({ quizBG: false });
+    }
+  };
 
   componentDidMount() {
     this.updateWindowDimensions();
@@ -66,7 +161,7 @@ class App extends Component {
       case "blog":
         return <Blog />;
       case "quiz":
-        return <Quiz />;
+        return <Quiz getPage={this.getPage} />;
       case "generate":
         return <Generate />;
       case "":
@@ -94,6 +189,35 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {this.props.history.location.pathname.split("/")[1] === "quiz" && (
+          <div className="bg">
+            <Circ1
+              className="elm1"
+              pose={this.state.quizBG ? "visible" : "hidden"}
+            />
+            <Squ1
+              className="elm2"
+              pose={this.state.quizBG ? "visible" : "hidden"}
+            />
+            <Tri1
+              className="elm3"
+              pose={this.state.quizBG ? "visible" : "hidden"}
+            />
+            <Tri2
+              className="elm4"
+              pose={this.state.quizBG ? "visible" : "hidden"}
+            />
+            <Squ2
+              className="elm5"
+              pose={this.state.quizBG ? "visible" : "hidden"}
+            />
+            <Circ2
+              className="elm6"
+              pose={this.state.quizBG ? "visible" : "hidden"}
+            />
+          </div>
+        )}
+
         <div
           id="content"
           className={
