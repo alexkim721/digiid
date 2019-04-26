@@ -3,9 +3,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Components/css/quiz.css";
 import firebase from "firebase";
+import P5Wrapper from "react-p5-wrapper";
+import sketch from "./p5.js";
+import { getAnswers } from "./p5.js";
 
 let ref;
 let easyIDvar;
+let storage;
 
 class Quiz extends React.Component {
   constructor(props) {
@@ -51,6 +55,8 @@ class Quiz extends React.Component {
     // // Create a database variable from firebase
     // database = firebase.database();
 
+    storage = firebase.storage();
+
     // Reference data from the database
     ref = this.props.dbdata.ref("users");
 
@@ -90,16 +96,40 @@ class Quiz extends React.Component {
     document.querySelector(
       ".pgnum"
     ).style.width = `calc(30px * ${document.querySelector(".pages")
-      .childElementCount - 3})`;
+      .childElementCount - 4})`;
     document.querySelector(".pgnum").appendChild(div);
   }
+
+  uploadImg = () => {
+    // Create storage reference in the database
+    var storageRef = storage.ref('test/' + firebase.auth().currentUser.uid);
+    console.log("current user " + firebase.auth().currentUser.uid);
+
+    // Select the canvas in the document
+    const canvas = document.getElementById('defaultCanvas0');
+
+    // Convert the canvas into a blob and upload it using the storageRef
+    canvas.toBlob(function(canvasBlob){
+        // Upload the image using the newly created blob
+        var uploadTask = storageRef.put(canvasBlob);
+
+        // Confirmations
+        console.log("Sending the following blob:");
+        console.log(canvasBlob);
+        console.log("Blob location: " + storageRef);
+    });
+  }
+
   // Sends data to firebase
   submitData = () => {
+    this.uploadImg();
     let data = {
       easyID: easyIDvar,
       answers: this.state.answers
     };
     this.setState({ easyID: easyIDvar });
+
+    getAnswers(data.answers);
 
     // See what's being sent
     console.log("Following data is being sent to the database:");
@@ -989,6 +1019,11 @@ class Quiz extends React.Component {
                 <p className="bye">
                   Thank you for visiting digital identities!
                 </p>
+              </div>
+            </div>
+            <div className="page page12">
+              <div className="content">
+                <P5Wrapper sketch={sketch} />
               </div>
             </div>
           </div>

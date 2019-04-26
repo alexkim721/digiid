@@ -32,7 +32,8 @@ const sketch = p => {
     p.createCanvas(window.innerWidth, window.innerHeight);
 
     setTimeout(() => {
-      p.symShapes(qFirstName);
+      // p.symShapes(qFirstName);
+      p.gradientBackground('#35a2f1', '#7e24ce');
     }, 100);
 
     //p.gradientBackground(p.hexWithAlpha("#222222", 0.5), p.hexWithAlpha("#222222", 0.5));
