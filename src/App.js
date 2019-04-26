@@ -14,6 +14,7 @@ import logo from "./images/logo.png";
 import Generate from "./Components/Generate";
 import posed from "react-pose";
 import firebase from "firebase";
+import { NavLink } from "react-router-dom";
 
 const Circ1 = posed.div({
   hidden: {
@@ -298,6 +299,9 @@ class App extends Component {
           this.props.history.location.pathname.split("/")[1] === "" && (
             <img src={logo} alt="logo" className="floatingbg" />
           )} */}
+        <NavLink to="/quiz" className="secret">
+          {" "}
+        </NavLink>
       </div>
     );
   }
