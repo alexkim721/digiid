@@ -192,7 +192,7 @@ class App extends Component {
       case "quiz":
         return <Quiz getPage={this.getPage} dbdata={this.state.database} />;
       case "generate":
-        return <Generate dbdata={this.state.database} />;
+        return <Generate dbdata={this.state.database} getPage={this.getPage} />;
       case "":
         return <Home />;
       default:
@@ -220,34 +220,36 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.props.history.location.pathname.split("/")[1] === "quiz" && (
-          <div className="bg">
-            <Circ1
-              className="elm1"
-              pose={this.state.quizBG ? "visible" : "hidden"}
-            />
-            <Squ1
-              className="elm2"
-              pose={this.state.quizBG ? "visible" : "hidden"}
-            />
-            <Tri1
-              className="elm3"
-              pose={this.state.quizBG ? "visible" : "hidden"}
-            />
-            <Tri2
-              className="elm4"
-              pose={this.state.quizBG ? "visible" : "hidden"}
-            />
-            <Squ2
-              className="elm5"
-              pose={this.state.quizBG ? "visible" : "hidden"}
-            />
-            <Circ2
-              className="elm6"
-              pose={this.state.quizBG ? "visible" : "hidden"}
-            />
-          </div>
-        )}
+        {this.props.history.location.pathname.split("/")[1] === "quiz" ||
+          (this.props.history.location.pathname.split("/")[1] ===
+            "generate" && (
+            <div className="bg">
+              <Circ1
+                className="elm1"
+                pose={this.state.quizBG ? "visible" : "hidden"}
+              />
+              <Squ1
+                className="elm2"
+                pose={this.state.quizBG ? "visible" : "hidden"}
+              />
+              <Tri1
+                className="elm3"
+                pose={this.state.quizBG ? "visible" : "hidden"}
+              />
+              <Tri2
+                className="elm4"
+                pose={this.state.quizBG ? "visible" : "hidden"}
+              />
+              <Squ2
+                className="elm5"
+                pose={this.state.quizBG ? "visible" : "hidden"}
+              />
+              <Circ2
+                className="elm6"
+                pose={this.state.quizBG ? "visible" : "hidden"}
+              />
+            </div>
+          ))}
 
         <div
           id="content"
@@ -286,7 +288,8 @@ class App extends Component {
           alt="logo"
           className={
             this.state.width > 1050 &&
-            this.props.history.location.pathname.split("/")[1] === ""
+            this.props.history.location.pathname.split("/")[1] === "" &&
+            this.props.history.location.pathname.split("/")[1] === "home"
               ? "floatingbg"
               : "floatingbg hidden"
           }

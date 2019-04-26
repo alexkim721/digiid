@@ -17,20 +17,6 @@ class Generate extends React.Component {
       canSubmit: false
     };
   }
-  componentWillMount() {
-    // Initialize Firebase
-    // let config = {
-    //   apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
-    //   authDomain: "digital-identities.firebaseapp.com",
-    //   databaseURL: "https://digital-identities.firebaseio.com",
-    //   projectId: "digital-identities",
-    //   storageBucket: "digital-identities.appspot.com",
-    //   messagingSenderId: "834438338603"
-    // };
-    // firebase.initializeApp(config);
-    // // Create a database variable from firebase
-    // database = firebase.database();
-  }
 
   getSurveyResults = data => {
     let results = data.val();
@@ -89,9 +75,19 @@ class Generate extends React.Component {
               placeholder="User ID"
               onChange={this.handleChange}
             />
-            <div className="submit" onClick={() => this.submitID()}>
-              submit
-            </div>
+            {this.state.easyID ? (
+              <div
+                className="submit"
+                onClick={() => {
+                  this.submitID();
+                  this.props.getPage(false);
+                }}
+              >
+                submit
+              </div>
+            ) : (
+              <div className="submit inactive">submit</div>
+            )}
           </div>
         ) : (
           <div className="generator">
