@@ -102,23 +102,23 @@ class Quiz extends React.Component {
 
   uploadImg = () => {
     // Create storage reference in the database
-    var storageRef = storage.ref('test/' + firebase.auth().currentUser.uid);
+    var storageRef = storage.ref("test/" + firebase.auth().currentUser.uid);
     console.log("current user " + firebase.auth().currentUser.uid);
 
     // Select the canvas in the document
-    const canvas = document.getElementById('defaultCanvas0');
+    const canvas = document.getElementById("defaultCanvas0");
 
     // Convert the canvas into a blob and upload it using the storageRef
-    canvas.toBlob(function(canvasBlob){
-        // Upload the image using the newly created blob
-        var uploadTask = storageRef.put(canvasBlob);
+    canvas.toBlob(function(canvasBlob) {
+      // Upload the image using the newly created blob
+      var uploadTask = storageRef.put(canvasBlob);
 
-        // Confirmations
-        console.log("Sending the following blob:");
-        console.log(canvasBlob);
-        console.log("Blob location: " + storageRef);
+      // Confirmations
+      console.log("Sending the following blob:");
+      console.log(canvasBlob);
+      console.log("Blob location: " + storageRef);
     });
-  }
+  };
 
   // Sends data to firebase
   submitData = () => {
@@ -190,7 +190,7 @@ class Quiz extends React.Component {
         this.setState({ pagenum: this.state.pagenum + 1 });
       }
     } else {
-      if (this.state.pagenum === this.state.pages - 3) {
+      if (this.state.pagenum === this.state.pages - 4) {
         this.setState({ ctrlhidden: true, pagenum: this.state.pagenum + 1 });
       } else {
         this.setState({

@@ -11,8 +11,7 @@ class Gallery extends React.Component {
       loading: true,
       data: [],
       imgKeys: [],
-      imgurl: "",
-      done: true
+      imgurl: ""
     };
   }
   componentWillMount() {
@@ -42,7 +41,6 @@ class Gallery extends React.Component {
           x.classList.add("item");
           document.querySelector(".items").appendChild(cont);
           cont.appendChild(x);
-          this.setState({ done: false });
         })
         .catch(error => {});
     });
@@ -53,9 +51,7 @@ class Gallery extends React.Component {
       <div className="gallery maincontent" id="gallery">
         <p className="header">gallery</p>
         <div className="items">
-          {this.state.imgKeys &&
-            this.state.done &&
-            this.getImgUrl(this.state.imgKeys)
+          {this.state.imgKeys && this.getImgUrl(this.state.imgKeys)
           // <img
           //   src={this.props.strdata
           //     .ref(`test/${this.state.imgKeys[0]}`)

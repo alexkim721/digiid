@@ -141,9 +141,7 @@ class App extends Component {
       storage: firebase.storage()
     });
   }
-  componentDidUpdate() {
-    console.log(this.state.database);
-  }
+  componentDidUpdate() {}
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);

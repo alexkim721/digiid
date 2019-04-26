@@ -1,5 +1,4 @@
 #gallery {
-  height: calc(100vh - 70px);
 }
 
 #gallery .soon {
@@ -9,16 +8,15 @@
 #gallery .items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 50px;
+  margin: 50px -1%;
 }
 
 #gallery .items .item-cont {
   width: 23%;
   padding-top: 23%;
-  margin-bottom: 2vw;
   border: 2px solid white;
   position: relative;
+  margin: 0 0.8% 2vw;
 }
 #gallery .items .item-cont .item {
   object-fit: cover;
