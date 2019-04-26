@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../Components/css/quiz.css";
 import firebase from "firebase";
 
-let database;
 let ref;
 let easyIDvar;
 
@@ -37,23 +36,23 @@ class Quiz extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   componentWillMount() {
-    // Initialize Firebase
-    let config = {
-      apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
-      authDomain: "digital-identities.firebaseapp.com",
-      databaseURL: "https://digital-identities.firebaseio.com",
-      projectId: "digital-identities",
-      storageBucket: "digital-identities.appspot.com",
-      messagingSenderId: "834438338603"
-    };
+    // // Initialize Firebase
+    // let config = {
+    //   apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
+    //   authDomain: "digital-identities.firebaseapp.com",
+    //   databaseURL: "https://digital-identities.firebaseio.com",
+    //   projectId: "digital-identities",
+    //   storageBucket: "digital-identities.appspot.com",
+    //   messagingSenderId: "834438338603"
+    // };
 
-    firebase.initializeApp(config);
+    // firebase.initializeApp(config);
 
-    // Create a database variable from firebase
-    database = firebase.database();
+    // // Create a database variable from firebase
+    // database = firebase.database();
 
     // Reference data from the database
-    ref = database.ref("users");
+    ref = this.props.dbdata.ref("users");
 
     // Grab the data from the database
     ref.on("value", this.assignEasyID, this.errData);
@@ -107,7 +106,7 @@ class Quiz extends React.Component {
     console.log(data);
 
     // Create a reference to the database
-    ref = database.ref("users/" + firebase.auth().currentUser.uid);
+    ref = this.props.dbdata.ref("users/" + firebase.auth().currentUser.uid);
 
     // Push the data to the database
     ref.push(data);
@@ -196,7 +195,7 @@ class Quiz extends React.Component {
       }
     });
   };
-  handleChange(date) {
+  handleChange = date => {
     this.setState({
       ...this.state,
       answers: {
@@ -205,7 +204,7 @@ class Quiz extends React.Component {
       },
       startDate: date
     });
-  }
+  };
   fiveScale = quest => {
     let style = {
       // transform: `translateX(calc(25% * ${this.state.answers.quest7}))`

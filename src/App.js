@@ -192,9 +192,9 @@ class App extends Component {
       case "blog":
         return <Blog />;
       case "quiz":
-        return <Quiz getPage={this.getPage} />;
+        return <Quiz getPage={this.getPage} dbdata={this.state.database} />;
       case "generate":
-        return <Generate />;
+        return <Generate dbdata={this.state.database} />;
       case "":
         return <Home />;
       default:

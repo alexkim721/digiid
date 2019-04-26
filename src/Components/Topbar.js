@@ -55,7 +55,8 @@ class Navbar extends React.Component {
               )}
             </div>
             <div className="navitem">
-              {this.props.history.location.pathname.split("/")[1] === "blog" ? (
+              {this.props.history.location.pathname.split("/")[1] === "blog" &&
+              !this.props.history.location.pathname.split("/")[2] ? (
                 <div className="inactiveLink">blog</div>
               ) : (
                 <NavLink

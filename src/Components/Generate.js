@@ -1,11 +1,9 @@
 import React from "react";
-import firebase from "firebase";
 import "../Components/css/main.css";
 import P5Wrapper from "react-p5-wrapper";
 import sketch from "./p5.js";
 import { getAnswers } from "./p5.js";
 
-let database;
 let ref;
 
 class Generate extends React.Component {
@@ -21,19 +19,17 @@ class Generate extends React.Component {
   }
   componentWillMount() {
     // Initialize Firebase
-    let config = {
-      apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
-      authDomain: "digital-identities.firebaseapp.com",
-      databaseURL: "https://digital-identities.firebaseio.com",
-      projectId: "digital-identities",
-      storageBucket: "digital-identities.appspot.com",
-      messagingSenderId: "834438338603"
-    };
-
-    firebase.initializeApp(config);
-
-    // Create a database variable from firebase
-    database = firebase.database();
+    // let config = {
+    //   apiKey: "AIzaSyCLCtrfymafzgxNQCJpUVSEnmWiZAgbP84",
+    //   authDomain: "digital-identities.firebaseapp.com",
+    //   databaseURL: "https://digital-identities.firebaseio.com",
+    //   projectId: "digital-identities",
+    //   storageBucket: "digital-identities.appspot.com",
+    //   messagingSenderId: "834438338603"
+    // };
+    // firebase.initializeApp(config);
+    // // Create a database variable from firebase
+    // database = firebase.database();
   }
 
   getSurveyResults = data => {
@@ -41,7 +37,7 @@ class Generate extends React.Component {
     let keys = Object.keys(results);
     if (this.state.easyID <= keys.length) {
       for (let i = 0; i < keys.length; i++) {
-        ref = database.ref("users/" + keys[i]);
+        ref = this.props.dbdata.ref("users/" + keys[i]);
         ref
           .orderByChild("easyID")
           .equalTo(parseInt(this.state.easyID))
@@ -75,7 +71,7 @@ class Generate extends React.Component {
   };
   submitID = () => {
     // Reference data from the database
-    ref = database.ref("users");
+    ref = this.props.dbdata.ref("users");
 
     // Get data from the firebase
     ref.on("value", this.getSurveyResults, this.errData);
