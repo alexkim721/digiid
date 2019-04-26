@@ -55,6 +55,8 @@ class Quiz extends React.Component {
     // // Create a database variable from firebase
     // database = firebase.database();
 
+    this.props.getPage(true);
+
     storage = firebase.storage();
 
     // Reference data from the database
