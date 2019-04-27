@@ -1095,7 +1095,7 @@ class Quiz extends React.Component {
                     }`}</span>
                   </p>
                   <p className="answer">
-                    Would you rather live in the city, suburbs or country?:{" "}
+                    Would you rather live in the city, suburbs, or country?:{" "}
                     <span className="resp">{`${
                       this.state.answers.quest3
                     }`}</span>
@@ -1119,13 +1119,13 @@ class Quiz extends React.Component {
                     }`}</span>
                   </p>
                   <p className="answer">
-                    From a scale of 1 to 5, how messy or organized are you at
+                    On a scale of 1 to 5, how messy or organized are you at
                     home?:{" "}
                     <span className="resp">{`${this.state.answers.quest7 +
                       1}`}</span>
                   </p>
                   <p className="answer">
-                    From a scale of 1 to 5, how likely are you to go out to a
+                    On a scale of 1 to 5, how likely are you to go out to a
                     party?:{" "}
                     <span className="resp">{`${this.state.answers.quest8 +
                       1}`}</span>
