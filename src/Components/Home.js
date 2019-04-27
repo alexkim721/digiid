@@ -76,10 +76,10 @@ class Home extends React.Component {
           <p className="subheader">visualizing individuality</p>
           <NavLink
             className="button"
-            to="gallery"
+            to="generate"
             activeClassName="selectedlink"
           >
-            see the gallery <span>→</span>
+            view image generator <span>→</span>
           </NavLink>
           <p className="introheader">Imagine RIT | April 27th</p>
           <p className="intro">
