@@ -35,7 +35,8 @@ class Quiz extends React.Component {
       ctrlhidden: true,
       startDate: new Date(),
       answeredQs: 0,
-      easyID: ""
+      easyID: "",
+      generated: false
     };
   }
   componentWillMount() {
@@ -58,11 +59,7 @@ class Quiz extends React.Component {
 
     storage = firebase.storage();
 
-    // Reference data from the database
-    ref = this.props.dbdata.ref("users");
-
-    // Grab the data from the database
-    ref.on("value", this.assignEasyID, this.errData);
+    
 
     firebase
       .auth()
@@ -102,6 +99,10 @@ class Quiz extends React.Component {
   }
 
   uploadImg = () => {
+
+
+
+
     // Create storage reference in the database
     var storageRef = storage.ref("test/" + firebase.auth().currentUser.uid);
     console.log("current user " + firebase.auth().currentUser.uid);
@@ -123,7 +124,6 @@ class Quiz extends React.Component {
 
   // Sends data to firebase
   submitData = () => {
-    this.uploadImg();
     let data = {
       easyID: easyIDvar,
       answers: this.state.answers
@@ -136,6 +136,8 @@ class Quiz extends React.Component {
     console.log("Following data is being sent to the database:");
     console.log(data);
 
+    
+
     // Create a reference to the database
     ref = this.props.dbdata.ref("users/" + firebase.auth().currentUser.uid);
 
@@ -144,7 +146,19 @@ class Quiz extends React.Component {
 
     // Confirm send
     console.log("Data sent.");
+
+    this.setState({generated: true});
+
   };
+
+
+  easyIdEvent = () => {
+    // Reference data from the database
+    ref = this.props.dbdata.ref("users");
+
+    // Grab the data from the database
+    ref.on("value", this.assignEasyID, this.errData);
+  }
 
   assignEasyID = data => {
     let results = data.val();
@@ -169,6 +183,11 @@ class Quiz extends React.Component {
       document.querySelector(".page1 .next").classList.add("active");
     }
     console.log(this.props);
+    if(this.state.pagenum === 10){
+      console.log(this.state);
+      this.easyIdEvent();
+    }
+    
   }
   nextPage = () => {
     if (this.state.ctrlhidden && this.state.pagenum === 0) {
@@ -1212,7 +1231,7 @@ class Quiz extends React.Component {
             </div>
             <div className="page page12">
               <div className="content">
-                <P5Wrapper sketch={sketch} />
+                {this.state.generated && <P5Wrapper sketch={sketch} />}
               </div>
             </div>
           </div>
