@@ -102,7 +102,7 @@ const sketch = p => {
       } 
       if (qPlan == "spontaneous") {
         console.log("Running Patrick's gradient shapes code");
-        p.bgCircles((window.innerWidth/2)-300, (window.innerHeight/2)-300);
+        p.bgCircles((window.innerWidth/2), (window.innerHeight/2));
         p.partickForegroundShapes();
       }
       
@@ -113,7 +113,7 @@ const sketch = p => {
         console.log("Running Matthew's outline code");
         p.shapes((window.innerWidth/2), (window.innerHeight/2));
       }
-    }, 100);
+    }, 1000);
 
     //p.gradientBackground(p.hexWithAlpha("#222222", 0.5), p.hexWithAlpha("#222222", 0.5));
 
@@ -138,176 +138,436 @@ const sketch = p => {
 
   p.pizzacircle = function(){
     // Initializes arrays that will hold shapeSize and the positions of the polygons
-    let shapeSize = [];
-    let leftShapesArray = [];
-    let rightShapesArray = [];
-    let topShapesArray = [];
-    let bottomShapesArray = [];
+    var half = window.innerWidth/2;
+    var heighthalf = window.innerHeight/2;
+    var fraction;
+    var heightfraction;
+    var fractionTimes;
+    var heightfractionTimes;
+    var rightside;
+    var bottomside;
 
-    // Grab necessary data for shape placement and shove it into a variable
-    let halfWidth = window.innerWidth / 2;
-    let halfHeight = window.innerHeight / 2;
-    let gridWidth26 = halfWidth / 26;
-    let gridHeight26 = halfHeight / 26;
 
-    // Toss data into the shape arrays
-    for (let i = 0; i < qFirstName.length; i++) {
-      if (qFirstName.charAt(i) === "a") {
-        leftShapesArray.push(gridWidth26);
-        topShapesArray.push(gridHeight26);
-        rightShapesArray.push(window.innerWidth - gridWidth26);
-        bottomShapesArray.push(window.innerHeight - gridHeight26);
-      }
-      if (qFirstName.charAt(i) === "b") {
-        leftShapesArray.push(gridWidth26 * 2);
-        topShapesArray.push(gridHeight26 * 2);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 2);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 2);
-      }
-      if (qFirstName.charAt(i) === "c") {
-        leftShapesArray.push(gridWidth26 * 3);
-        topShapesArray.push(gridHeight26 * 3);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 3);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 3);
-      }
-      if (qFirstName.charAt(i) === "d") {
-        leftShapesArray.push(gridWidth26 * 4);
-        topShapesArray.push(gridHeight26 * 4);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 4);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 4);
-      }
-      if (qFirstName.charAt(i) === "e") {
-        leftShapesArray.push(gridWidth26 * 5);
-        topShapesArray.push(gridHeight26 * 5);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 5);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 5);
-      }
-      if (qFirstName.charAt(i) === "f") {
-        leftShapesArray.push(gridWidth26 * 6);
-        topShapesArray.push(gridHeight26 * 6);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 6);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 6);
-      }
-      if (qFirstName.charAt(i) === "g") {
-        leftShapesArray.push(gridWidth26 * 7);
-        topShapesArray.push(gridHeight26 * 7);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 7);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 7);
-      }
-      if (qFirstName.charAt(i) === "h") {
-        leftShapesArray.push(gridWidth26 * 8);
-        topShapesArray.push(gridHeight26 * 8);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 8);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 8);
-      }
-      if (qFirstName.charAt(i) === "i") {
-        leftShapesArray.push(gridWidth26 * 9);
-        topShapesArray.push(gridHeight26 * 9);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 9);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 9);
-      }
-      if (qFirstName.charAt(i) === "j") {
-        leftShapesArray.push(gridWidth26 * 10);
-        topShapesArray.push(gridHeight26 * 10);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 10);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 10);
-      }
-      if (qFirstName.charAt(i) === "k") {
-        leftShapesArray.push(gridWidth26 * 11);
-        topShapesArray.push(gridHeight26 * 11);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 11);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 11);
-      }
-      if (qFirstName.charAt(i) === "l") {
-        leftShapesArray.push(gridWidth26 * 12);
-        topShapesArray.push(gridHeight26 * 12);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 12);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 12);
-      }
-      if (qFirstName.charAt(i) === "m") {
-        leftShapesArray.push(gridWidth26 * 13);
-        topShapesArray.push(gridHeight26 * 13);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 13);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 13);
-      }
-      if (qFirstName.charAt(i) === "n") {
-        leftShapesArray.push(gridWidth26 * 14);
-        topShapesArray.push(gridHeight26 * 14);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 14);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 14);
-      }
-      if (qFirstName.charAt(i) === "o") {
-        leftShapesArray.push(gridWidth26 * 15);
-        topShapesArray.push(gridHeight26 * 15);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 15);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 15);
-      }
-      if (qFirstName.charAt(i) === "p") {
-        leftShapesArray.push(gridWidth26 * 16);
-        topShapesArray.push(gridHeight26 * 16);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 16);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 16);
-      }
-      if (qFirstName.charAt(i) === "q") {
-        leftShapesArray.push(gridWidth26 * 17);
-        topShapesArray.push(gridHeight26 * 17);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 17);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 17);
-      }
-      if (qFirstName.charAt(i) === "r") {
-        leftShapesArray.push(gridWidth26 * 18);
-        topShapesArray.push(gridHeight26 * 18);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 18);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 18);
-      }
-      if (qFirstName.charAt(i) === "s") {
-        leftShapesArray.push(gridWidth26 * 19);
-        topShapesArray.push(gridHeight26 * 19);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 19);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 19);
-      }
-      if (qFirstName.charAt(i) === "t") {
-        leftShapesArray.push(gridWidth26 * 20);
-        topShapesArray.push(gridHeight26 * 20);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 20);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 20);
-      }
-      if (qFirstName.charAt(i) === "u") {
-        leftShapesArray.push(gridWidth26 * 21);
-        topShapesArray.push(gridHeight26 * 21);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 21);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 21);
-      }
-      if (qFirstName.charAt(i) === "v") {
-        leftShapesArray.push(gridWidth26 * 22);
-        topShapesArray.push(gridHeight26 * 22);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 22);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 22);
-      }
-      if (qFirstName.charAt(i) === "w") {
-        leftShapesArray.push(gridWidth26 * 23);
-        topShapesArray.push(gridHeight26 * 23);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 23);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 23);
-      }
-      if (qFirstName.charAt(i) === "x") {
-        leftShapesArray.push(gridWidth26 * 24);
-        topShapesArray.push(gridHeight26 * 24);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 24);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 24);
-      }
-      if (qFirstName.charAt(i) === "y") {
-        leftShapesArray.push(gridWidth26 * 25);
-        topShapesArray.push(gridHeight26 * 25);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 25);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 25);
-      }
-      if (qFirstName.charAt(i) === "z") {
-        leftShapesArray.push(gridWidth26 * 26);
-        topShapesArray.push(gridHeight26 * 26);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 26);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 26);
-      }
+    let nameleftTop = [];
+    let nameleftBottom = [];
+    let namerightBottom = [];
+    let namerightTop = [];
+
+    for(let i=0; i<qLastName.length; i++) {
+      if(qLastName.charAt(i)=='a')
+        {
+          fraction=half/26;
+          nameleftTop.push(fraction);
+          rightside=window.innerWidth-fraction;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='a')
+        {
+          heightfraction=heighthalf/26;
+          namerightTop.push(heightfraction);
+          bottomside=window.innerHeight-heightfraction;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='b')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*2;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='b')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*2;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='c')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*3;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='c')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*3;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='d')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*4;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='d')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*4
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='e')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*5;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='e')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*5;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='f')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*6;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='f')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*6;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='g')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*7;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='g')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*7;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='h')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*8;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='h')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*8;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='i')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*9;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='i')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*9;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='j')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*10;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='j')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*10;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='k')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*11;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='k')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*11;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='l')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*12;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='l')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*12;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='m')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*13;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='m')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*13;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='n')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*14;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='n')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*14;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='o')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*15;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='o')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*15;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='p')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*16;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='p')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*16;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='q')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*17;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='q')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*17;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='r')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*18;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='r')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*18;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='s')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*19;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='s')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*19;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='t')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*20;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='t')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*20;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='u')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*21;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='u')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*21;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='v')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*22;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='v')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*22;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='w')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*23;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='w')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*23;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='x')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*24;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='x')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*24;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='y')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*25;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='y')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*25;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='z')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*26;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='z')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*26;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
     }
 
     var location = qWhereLive;
@@ -320,7 +580,7 @@ const sketch = p => {
     if(s == "spontaneous") {
       start = 5;
     } else if(s == "methodical") {
-      start = 4;
+      start = 2;
     }
 
     var daycount;
@@ -358,25 +618,25 @@ const sketch = p => {
           p.ellipse(centerwidth, centerheight+(i*pizzadistance), daycount, daycount); //bottom
           p.ellipse(centerwidth+(i*pizzadistance), centerheight, daycount, daycount); //left
         } else if(messy=="4") {
-          p.ellipse(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i]); //top
+          p.ellipse(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i]); //top
           p.ellipse(centerwidth-(i*pizzadistance), centerheight, daycount, daycount); //right
           p.ellipse(centerwidth, centerheight+(i*pizzadistance), daycount, daycount); //bottom
           p.ellipse(centerwidth+(i*pizzadistance), centerheight, daycount, daycount); //left
         } else if(messy=="3") {
-          p.ellipse(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i]); //top
-          p.ellipse(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i]); //right
+          p.ellipse(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i]); //top
+          p.ellipse(centerwidth-(i*pizzadistance), centerheight, nameleftBottom[i]); //right
           p.ellipse(centerwidth, centerheight+(i*pizzadistance), daycount, daycount); //bottom
           p.ellipse(centerwidth+(i*pizzadistance), centerheight, daycount, daycount); //left
         } else if(messy=="2") {
-          p.ellipse(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i]); //top
-          p.ellipse(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i]); //right
-          p.ellipse(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i]); //bottom
+          p.ellipse(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i]); //top
+          p.ellipse(centerwidth-(i*pizzadistance), centerheight, nameleftBottom[i]); //right
+          p.ellipse(centerwidth, centerheight+(i*pizzadistance), namerightBottom[i]); //bottom
           p.ellipse(centerwidth+(i*pizzadistance), centerheight, daycount, daycount); //left
         } else if(messy=="1") {
-          p.ellipse(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i]); //top
-          p.ellipse(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i]); //right
-          p.ellipse(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i]); //bottom
-          p.ellipse(centerwidth+(i*pizzadistance), centerheight, rightShapesArray[i]); //left
+          p.ellipse(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i]); //top
+          p.ellipse(centerwidth-(i*pizzadistance), centerheight, nameleftBottom[i]); //right
+          p.ellipse(centerwidth, centerheight+(i*pizzadistance), namerightBottom[i]); //bottom
+          p.ellipse(centerwidth+(i*pizzadistance), centerheight, namerightTop[i]); //left
         }
       } else if(location=="city") {
         points = 4;
@@ -386,25 +646,25 @@ const sketch = p => {
           p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
           p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
         } else if(messy=="4") {
-          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i], points); //top
           p.polygon(centerwidth-(i*pizzadistance), centerheight, daycount, points); //right
           p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
           p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
         } else if(messy=="3") {
-          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
-          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, nameleftBottom[i], points); //right
           p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
           p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
         } else if(messy=="2") {
-          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
-          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
-          p.polygon(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i], points); //bottom
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, nameleftBottom[i], points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), namerightBottom[i], points); //bottom
           p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
         } else if(messy=="1") {
-          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
-          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
-          p.polygon(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i], points); //bottom
-          p.polygon(centerwidth+(i*pizzadistance), centerheight, rightShapesArray[i], points); //left
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, nameleftBottom[i], points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), namerightBottom[i], points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, namerightTop[i], points); //left
         }
       } else if(location=="suburb") {
         points = 6;
@@ -414,25 +674,25 @@ const sketch = p => {
           p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
           p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
         } else if(messy=="4") {
-          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i], points); //top
           p.polygon(centerwidth-(i*pizzadistance), centerheight, daycount, points); //right
           p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
           p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
         } else if(messy=="3") {
-          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
-          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, nameleftBottom[i], points); //right
           p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
           p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
         } else if(messy=="2") {
-          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
-          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
-          p.polygon(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i], points); //bottom
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, nameleftBottom[i], points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), namerightBottom[i], points); //bottom
           p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
         } else if(messy=="1") {
-          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
-          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
-          p.polygon(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i], points); //bottom
-          p.polygon(centerwidth+(i*pizzadistance), centerheight, rightShapesArray[i], points); //left
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), nameleftTop[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, nameleftBottom[i], points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), namerightBottom[i], points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, namerightTop[i], points); //left
         }
       }
     }
@@ -440,176 +700,436 @@ const sketch = p => {
 
   p.partickForegroundShapes = function() {
     // Initializes arrays that will hold shapeSize and the positions of the polygons
-    let shapeSize = [];
-    let leftShapesArray = [];
-    let rightShapesArray = [];
-    let topShapesArray = [];
-    let bottomShapesArray = [];
+    var half = window.innerWidth/2;
+    var heighthalf = window.innerHeight/2;
+    var fraction;
+    var heightfraction;
+    var fractionTimes;
+    var heightfractionTimes;
+    var rightside;
+    var bottomside;
 
-    // Grab necessary data for shape placement and shove it into a variable
-    let halfWidth = window.innerWidth / 2;
-    let halfHeight = window.innerHeight / 2;
-    let gridWidth26 = halfWidth / 26;
-    let gridHeight26 = halfHeight / 26;
 
-    // Toss data into the shape arrays
-    for (let i = 0; i < qFirstName.length; i++) {
-      if (qFirstName.charAt(i) === "a") {
-        leftShapesArray.push(gridWidth26);
-        topShapesArray.push(gridHeight26);
-        rightShapesArray.push(window.innerWidth - gridWidth26);
-        bottomShapesArray.push(window.innerHeight - gridHeight26);
-      }
-      if (qFirstName.charAt(i) === "b") {
-        leftShapesArray.push(gridWidth26 * 2);
-        topShapesArray.push(gridHeight26 * 2);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 2);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 2);
-      }
-      if (qFirstName.charAt(i) === "c") {
-        leftShapesArray.push(gridWidth26 * 3);
-        topShapesArray.push(gridHeight26 * 3);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 3);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 3);
-      }
-      if (qFirstName.charAt(i) === "d") {
-        leftShapesArray.push(gridWidth26 * 4);
-        topShapesArray.push(gridHeight26 * 4);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 4);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 4);
-      }
-      if (qFirstName.charAt(i) === "e") {
-        leftShapesArray.push(gridWidth26 * 5);
-        topShapesArray.push(gridHeight26 * 5);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 5);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 5);
-      }
-      if (qFirstName.charAt(i) === "f") {
-        leftShapesArray.push(gridWidth26 * 6);
-        topShapesArray.push(gridHeight26 * 6);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 6);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 6);
-      }
-      if (qFirstName.charAt(i) === "g") {
-        leftShapesArray.push(gridWidth26 * 7);
-        topShapesArray.push(gridHeight26 * 7);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 7);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 7);
-      }
-      if (qFirstName.charAt(i) === "h") {
-        leftShapesArray.push(gridWidth26 * 8);
-        topShapesArray.push(gridHeight26 * 8);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 8);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 8);
-      }
-      if (qFirstName.charAt(i) === "i") {
-        leftShapesArray.push(gridWidth26 * 9);
-        topShapesArray.push(gridHeight26 * 9);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 9);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 9);
-      }
-      if (qFirstName.charAt(i) === "j") {
-        leftShapesArray.push(gridWidth26 * 10);
-        topShapesArray.push(gridHeight26 * 10);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 10);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 10);
-      }
-      if (qFirstName.charAt(i) === "k") {
-        leftShapesArray.push(gridWidth26 * 11);
-        topShapesArray.push(gridHeight26 * 11);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 11);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 11);
-      }
-      if (qFirstName.charAt(i) === "l") {
-        leftShapesArray.push(gridWidth26 * 12);
-        topShapesArray.push(gridHeight26 * 12);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 12);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 12);
-      }
-      if (qFirstName.charAt(i) === "m") {
-        leftShapesArray.push(gridWidth26 * 13);
-        topShapesArray.push(gridHeight26 * 13);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 13);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 13);
-      }
-      if (qFirstName.charAt(i) === "n") {
-        leftShapesArray.push(gridWidth26 * 14);
-        topShapesArray.push(gridHeight26 * 14);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 14);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 14);
-      }
-      if (qFirstName.charAt(i) === "o") {
-        leftShapesArray.push(gridWidth26 * 15);
-        topShapesArray.push(gridHeight26 * 15);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 15);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 15);
-      }
-      if (qFirstName.charAt(i) === "p") {
-        leftShapesArray.push(gridWidth26 * 16);
-        topShapesArray.push(gridHeight26 * 16);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 16);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 16);
-      }
-      if (qFirstName.charAt(i) === "q") {
-        leftShapesArray.push(gridWidth26 * 17);
-        topShapesArray.push(gridHeight26 * 17);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 17);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 17);
-      }
-      if (qFirstName.charAt(i) === "r") {
-        leftShapesArray.push(gridWidth26 * 18);
-        topShapesArray.push(gridHeight26 * 18);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 18);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 18);
-      }
-      if (qFirstName.charAt(i) === "s") {
-        leftShapesArray.push(gridWidth26 * 19);
-        topShapesArray.push(gridHeight26 * 19);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 19);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 19);
-      }
-      if (qFirstName.charAt(i) === "t") {
-        leftShapesArray.push(gridWidth26 * 20);
-        topShapesArray.push(gridHeight26 * 20);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 20);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 20);
-      }
-      if (qFirstName.charAt(i) === "u") {
-        leftShapesArray.push(gridWidth26 * 21);
-        topShapesArray.push(gridHeight26 * 21);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 21);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 21);
-      }
-      if (qFirstName.charAt(i) === "v") {
-        leftShapesArray.push(gridWidth26 * 22);
-        topShapesArray.push(gridHeight26 * 22);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 22);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 22);
-      }
-      if (qFirstName.charAt(i) === "w") {
-        leftShapesArray.push(gridWidth26 * 23);
-        topShapesArray.push(gridHeight26 * 23);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 23);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 23);
-      }
-      if (qFirstName.charAt(i) === "x") {
-        leftShapesArray.push(gridWidth26 * 24);
-        topShapesArray.push(gridHeight26 * 24);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 24);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 24);
-      }
-      if (qFirstName.charAt(i) === "y") {
-        leftShapesArray.push(gridWidth26 * 25);
-        topShapesArray.push(gridHeight26 * 25);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 25);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 25);
-      }
-      if (qFirstName.charAt(i) === "z") {
-        leftShapesArray.push(gridWidth26 * 26);
-        topShapesArray.push(gridHeight26 * 26);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 26);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 26);
-      }
+    let nameleftTop = [];
+    let nameleftBottom = [];
+    let namerightBottom = [];
+    let namerightTop = [];
+
+    for(let i=0; i<qLastName.length; i++) {
+      if(qLastName.charAt(i)=='a')
+        {
+          fraction=half/26;
+          nameleftTop.push(fraction);
+          rightside=window.innerWidth-fraction;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='a')
+        {
+          heightfraction=heighthalf/26;
+          namerightTop.push(heightfraction);
+          bottomside=window.innerHeight-heightfraction;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='b')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*2;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='b')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*2;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='c')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*3;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='c')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*3;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='d')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*4;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='d')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*4
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='e')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*5;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='e')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*5;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='f')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*6;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='f')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*6;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='g')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*7;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='g')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*7;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='h')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*8;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='h')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*8;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='i')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*9;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='i')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*9;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='j')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*10;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='j')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*10;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='k')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*11;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='k')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*11;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='l')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*12;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='l')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*12;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='m')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*13;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='m')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*13;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='n')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*14;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='n')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*14;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='o')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*15;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='o')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*15;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='p')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*16;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='p')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*16;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='q')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*17;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='q')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*17;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='r')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*18;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='r')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*18;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='s')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*19;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='s')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*19;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='t')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*20;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='t')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*20;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='u')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*21;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='u')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*21;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='v')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*22;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='v')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*22;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='w')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*23;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='w')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*23;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='x')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*24;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='x')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*24;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='y')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*25;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='y')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*25;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
+      if(qLastName.charAt(i)=='z')
+        {
+          fraction=half/26;
+          fractionTimes=fraction*26;
+          nameleftTop.push(fractionTimes);
+          rightside=window.innerWidth-fractionTimes;
+          namerightBottom.push(rightside);
+        }
+      if(qLastName.charAt(i)=='z')
+        {
+          heightfraction=heighthalf/26;
+          heightfractionTimes=heightfraction*26;
+          namerightTop.push(heightfractionTimes);
+          bottomside=window.innerHeight-heightfractionTimes;
+          nameleftBottom.push(bottomside);
+        }
     }
 
     let season = qBirthday;
@@ -629,49 +1149,49 @@ const sketch = p => {
     }
 
     if (season=="september" || season=="october" || season=="november") {
-      for(var j=0; j<=leftShapesArray.length; j++) {
+      for(var j=0; j<=nameleftTop.length; j++) {
         p.noStroke();
         p.push();
-        p.gradCircle(leftShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
-        p.gradCircle(bottomShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
-        p.gradCircle(leftShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
-        p.gradCircle(bottomShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
+        p.gradCircle(nameleftTop[j],namerightTop[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
+        p.gradCircle(namerightBottom[j],namerightTop[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
+        p.gradCircle(nameleftTop[j],nameleftBottom[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
+        p.gradCircle(namerightBottom[j],nameleftBottom[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
         p.pop();
       }
     }
     
     if (season=="december" || season=="january" || season=="february") {
-      for(var j=0; j<=leftShapesArray.length; j++) {
+      for(var j=0; j<=nameleftTop.length; j++) {
         p.noStroke();
         p.push();
-        p.gradCircle(leftShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
-        p.gradCircle(bottomShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
-        p.gradCircle(leftShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
-        p.gradCircle(bottomShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
+        p.gradCircle(nameleftTop[j],namerightTop[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
+        p.gradCircle(namerightBottom[j],namerightTop[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
+        p.gradCircle(nameleftTop[j],nameleftBottom[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
+        p.gradCircle(namerightBottom[j],nameleftBottom[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
         p.pop();
       }
     }
     
     if (season=="march" || season=="april" || season=="may") {
-      for(var j=0; j<=leftShapesArray.length; j++) {
+      for(var j=0; j<=nameleftTop.length; j++) {
         p.noStroke();
         p.push();
-        p.gradCircle(leftShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
-        p.gradCircle(bottomShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
-        p.gradCircle(leftShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
-        p.gradCircle(bottomShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
+        p.gradCircle(nameleftTop[j],namerightTop[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
+        p.gradCircle(namerightBottom[j],namerightTop[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
+        p.gradCircle(nameleftTop[j],nameleftBottom[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
+        p.gradCircle(namerightBottom[j],nameleftBottom[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
         p.pop();
       }
     }
     
     if (season=="june" || season=="july" || season=="august") {
-      for(var j=0; j<=leftShapesArray.length; j++) {
+      for(var j=0; j<=nameleftTop.length; j++) {
         p.noStroke();
         p.push();
-        p.gradCircle(leftShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
-        p.gradCircle(bottomShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
-        p.gradCircle(leftShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
-        p.gradCircle(bottomShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
+        p.gradCircle(nameleftTop[j],namerightTop[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
+        p.gradCircle(namerightBottom[j],namerightTop[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
+        p.gradCircle(nameleftTop[j],nameleftBottom[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
+        p.gradCircle(namerightBottom[j],nameleftBottom[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
         p.pop();
       }
     }
@@ -679,6 +1199,8 @@ const sketch = p => {
 
   // Creates a gradient circle with an offset stroke
   p.gradCircle = function(x, y, r, c1, c2) {
+    p.push();
+    p.translate(-r, -r);
     const lineW = 1;
     const lines = (r * 2) / lineW;
 
@@ -694,6 +1216,7 @@ const sketch = p => {
     p.stroke(255);
     p.noFill();
     p.ellipse(x + r + 20, y + r + 20, r * 2);
+    p.pop();
   };
 
   p.squareRow = function(centerX, centerY) {
