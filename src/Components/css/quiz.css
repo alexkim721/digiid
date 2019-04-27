@@ -581,7 +581,6 @@ p {
   background-position: center;
   background-repeat: no-repeat;
 }
-
 .page8 #homequiz {
   background-image: url("../../images/quiz/8_illustration_quiz_home_2.png");
   background-size: contain;
@@ -601,8 +600,8 @@ p {
   background-repeat: no-repeat;
 }
 
-.page9 #methodical {
-  background-image: url("../../images/quiz/9_illustration_quiz_methodical.png");
+.page9 #spontaneous {
+  background-image: url("../../images/quiz/9_illustration_quiz_spontanious.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -611,8 +610,8 @@ p {
   line-height: 600px;
   font-size: 600;
 }
-.page9 #spontaneous {
-  background-image: url("../../images/quiz/9_illustration_quiz_spontanious.png");
+.page9 #methodical {
+  background-image: url("../../images/quiz/9_illustration_quiz_methodical.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
