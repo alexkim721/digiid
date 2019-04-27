@@ -43,15 +43,15 @@ class Navbar extends React.Component {
             </div>
             <div className="navitem">
               {this.props.history.location.pathname.split("/")[1] ===
-              "gallery" ? (
-                <div className="inactiveLink">gallery</div>
+              "generate" ? (
+                <div className="inactiveLink">generate</div>
               ) : (
                 <NavLink
-                  to="/gallery"
-                  className="gallery"
+                  to="/generate"
+                  className="generate"
                   activeClassName="selectedlink"
                 >
-                  gallery
+                  generate
                 </NavLink>
               )}
             </div>
