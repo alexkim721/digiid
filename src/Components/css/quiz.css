@@ -445,18 +445,30 @@ p {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 650px;
+  font-size: 600;
 }
 .page3 #suburbs {
   background-image: url("../../images/quiz/3_digiid-illustrations_suburb.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 650px;
+  font-size: 600;
 }
 .page3 #country {
   background-image: url("../../images/quiz/3_digiid-illustrations_country.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 650px;
+  font-size: 600;
 }
 
 .page4 .img {
@@ -471,18 +483,30 @@ p {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 650px;
+  font-size: 600;
 }
 .page5 #night {
   background-image: url("../../images/quiz/5_illustration_quiz_nightowl.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 650px;
+  font-size: 600;
 }
 .page5 #daynight {
   background-image: url("../../images/quiz/5_illustration_quiz_morning_night_both.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 650px;
+  font-size: 600;
 }
 
 .page6 #dogs {
@@ -490,24 +514,40 @@ p {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 650px;
+  font-size: 600;
 }
 .page6 #cats {
   background-image: url("../../images/quiz/6_illustration_quiz_cat.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 650px;
+  font-size: 600;
 }
 .page6 #catdog {
   background-image: url("../../images/quiz/6_illustration_quiz_cat_dog_both.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 650px;
+  font-size: 600;
 }
 .page6 #neither {
   background-image: url("../../images/quiz/6_illustration_quiz_cat_dog_neither.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 650px;
+  font-size: 600;
 }
 .page7 .imgs,
 .page8 .imgs {
@@ -565,13 +605,19 @@ p {
   background-image: url("../../images/quiz/9_illustration_quiz_methodical.png");
   background-size: contain;
   background-position: center;
-
   background-repeat: no-repeat;
-  background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 600px;
+  font-size: 600;
 }
 .page9 #spontaneous {
   background-image: url("../../images/quiz/9_illustration_quiz_spontanious.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  line-height: 600px;
+  font-size: 600;
 }

@@ -492,7 +492,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    city
+                  </div>
                   <div
                     className={
                       this.state.answers.quest3 === "suburbs"
@@ -510,7 +512,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    suburbs
+                  </div>
                   <div
                     className={
                       this.state.answers.quest3 === "country"
@@ -528,7 +532,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    country
+                  </div>
                 </div>
               </div>
             </div>
@@ -610,7 +616,7 @@ class Quiz extends React.Component {
                           }
                         />
                       </span>
-                      indifference
+                      indifferent
                     </div>
                     <div
                       className="option"
@@ -687,7 +693,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    morning
+                  </div>
                   <div
                     className={
                       this.state.answers.quest5 === "both"
@@ -705,7 +713,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    both
+                  </div>
                   <div
                     className={
                       this.state.answers.quest5 === "night"
@@ -723,7 +733,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    night
+                  </div>
                 </div>
               </div>
             </div>
@@ -748,7 +760,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    dogs
+                  </div>
                   <div
                     className={
                       this.state.answers.quest6 === "both"
@@ -766,7 +780,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    both
+                  </div>
                   <div
                     className={
                       this.state.answers.quest6 === "cats"
@@ -784,7 +800,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    cats
+                  </div>
                   <div
                     className={
                       this.state.answers.quest6 === "neither"
@@ -802,7 +820,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    neither
+                  </div>
                 </div>
               </div>
             </div>
@@ -1019,7 +1039,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    methodical
+                  </div>
                   <div
                     className={
                       this.state.answers.quest9 === "spontaneous"
@@ -1037,7 +1059,9 @@ class Quiz extends React.Component {
                       });
                       this.nextPage();
                     }}
-                  />
+                  >
+                    spontaneous
+                  </div>
                 </div>
               </div>
             </div>
@@ -1056,7 +1080,7 @@ class Quiz extends React.Component {
                   <p className="answer">
                     Birthday Month:{" "}
                     <span className="resp">{`${
-                      this.state.answers.quest3
+                      this.state.answers.quest2
                     }`}</span>
                   </p>
                   <p className="answer">
