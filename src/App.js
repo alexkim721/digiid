@@ -15,6 +15,7 @@ import Generate from "./Components/Generate";
 import posed from "react-pose";
 import firebase from "firebase";
 import { NavLink } from "react-router-dom";
+import Info from "./Components/Info";
 
 const Circ1 = posed.div({
   hidden: {
@@ -196,6 +197,8 @@ class App extends Component {
         return <Generate dbdata={this.state.database} getPage={this.getPage} />;
       case "":
         return <Home />;
+      case "infographic":
+        return <Info />;
       default:
         return <Home />;
     }
@@ -207,13 +210,11 @@ class App extends Component {
       this.props.history.location.pathname.split("/")[1] === "generate"
     ) {
       return "inquiz";
-    }
-    // else if (
-    //   this.props.history.location.pathname.split("/")[1] === "gallery"
-    // ) {
-    //   return "nocontent";
-    // }
-    else {
+    } else if (
+      this.props.history.location.pathname.split("/")[1] === "infographic"
+    ) {
+      return "infographic";
+    } else {
       return "";
     }
   };
@@ -315,8 +316,7 @@ class App extends Component {
           alt="logo"
           className={
             this.state.width > 1050 &&
-            this.props.history.location.pathname.split("/")[1] === "" &&
-            this.props.history.location.pathname.split("/")[1] === "home"
+            this.props.history.location.pathname.split("/")[1] === ""
               ? "floatingbg"
               : "floatingbg hidden"
           }

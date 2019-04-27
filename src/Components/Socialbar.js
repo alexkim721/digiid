@@ -7,7 +7,8 @@ class Socialbar extends React.Component {
     return (
       <div className="socialbar" id="socialbar">
         {this.props.history.location.pathname.split("/")[1] === "quiz" ||
-        this.props.history.location.pathname.split("/")[1] === "generate" ? (
+        this.props.history.location.pathname.split("/")[1] === "generate" ||
+        this.props.history.location.pathname.split("/")[1] === "infographic" ? (
           <div />
         ) : (
           <div className="content">
