@@ -1,13 +1,37 @@
-let qFirstName;
-let qLastName;
-let qBirthday;
-let qWhereLive;
+let qFirstName = "";
+let qLastName = "";
+let qBirthday = "";
+let qWhereLive = "";
 let qPizza;
-let qSleep;
-let qPet;
+let qSleep = "";
+let qPet = "";
 let qMess;
 let qVert;
-let qPlan;
+let qPlan = "";
+
+let winterP1 = '#2be7d9';
+let winterP2 = '#2e34da';
+
+let winterB1 = '#1ca7fc';
+let winterB2 = '#166ffb';
+
+let springY1 = '#fffb37';
+let springY2 = '#ae15ff';
+
+let springO1 = '#ffac06';
+let springO2 = '#62f962';
+
+let summerB1 = '#4ef9c6';
+let summerB2 = '#ff4e4e';
+
+let summerR1 = '#fbff52';
+let summerR2 = '#0098ff';
+
+let fallR1 = '#feb313';
+let fallR2 = '#be25f4';
+
+let fallP1 = '#ff3911';
+let fallP2 = '#760cd8';
 
 export const getAnswers = answers => {
   console.log("Following answers have been loaded into p5.js:");
@@ -31,9 +55,64 @@ const sketch = p => {
     // Create the canvas
     p.createCanvas(window.innerWidth, window.innerHeight);
 
+
+
     setTimeout(() => {
-      // p.symShapes(qFirstName);
-      p.gradientBackground('#35a2f1', '#7e24ce');
+      console.log("It's working!");
+      console.log("First name: " + qFirstName);
+      console.log("Last name: " + qLastName);
+      console.log("Birth month: " + qBirthday);
+      console.log("Wants to live: " + qWhereLive);
+      console.log("Pizza scale: " + qPizza);
+      console.log("Morning person/night owl: " + qSleep);
+      console.log("Cats or dogs: " + qPet);
+      console.log("Messy/organized: " + qMess);
+      console.log("Introvert/extrovert: " + qVert);
+      console.log("Methodical/spontaneous: " + qPlan);
+
+      let season = qBirthday;
+    
+      if (season=="september" || season=="october" || season=="november") {
+        p.background(p.hexWithAlpha('#ff3911'));
+      }
+      if (season=="december" || season=="january" || season=="february") {
+        p.background(p.hexWithAlpha('#745cfb'));
+      }
+      if (season=="march" || season=="april" || season=="may") {
+        p.background(p.hexWithAlpha('#ae15ff'));
+      }
+      if (season=="june" || season=="july" || season=="august") {
+        p.background(p.hexWithAlpha('#ff4e4e'));
+      }
+      
+      p.mood();
+      
+      if (qPlan == "methodical") {
+        console.log("Running Matthew's gradient shapes code");
+        p.bgSquares((window.innerWidth/2), (window.innerHeight/2));
+
+        let livin = qWhereLive;
+        if (livin == "city") {
+          p.squareRow((window.innerWidth/2), (window.innerHeight/2));
+        } else if (livin == "country") {
+          p.circleRow((window.innerWidth/2), (window.innerHeight/2));
+        } else if (livin == "suburbs") {
+          p.duoRow((window.innerWidth/2), (window.innerHeight/2));
+        }
+      } 
+      if (qPlan == "spontaneous") {
+        console.log("Running Patrick's gradient shapes code");
+        p.bgCircles((window.innerWidth/2)-300, (window.innerHeight/2)-300);
+        p.partickForegroundShapes();
+      }
+      
+      if(qPizza < 3) {
+        console.log("Running Patrick's outline code");
+        p.pizzacircle();
+      } else {
+        console.log("Running Matthew's outline code");
+        p.shapes((window.innerWidth/2), (window.innerHeight/2));
+      }
     }, 100);
 
     //p.gradientBackground(p.hexWithAlpha("#222222", 0.5), p.hexWithAlpha("#222222", 0.5));
@@ -57,6 +136,547 @@ const sketch = p => {
 
   p.draw = function() {};
 
+  p.pizzacircle = function(){
+    // Initializes arrays that will hold shapeSize and the positions of the polygons
+    let shapeSize = [];
+    let leftShapesArray = [];
+    let rightShapesArray = [];
+    let topShapesArray = [];
+    let bottomShapesArray = [];
+
+    // Grab necessary data for shape placement and shove it into a variable
+    let halfWidth = window.innerWidth / 2;
+    let halfHeight = window.innerHeight / 2;
+    let gridWidth26 = halfWidth / 26;
+    let gridHeight26 = halfHeight / 26;
+
+    // Toss data into the shape arrays
+    for (let i = 0; i < qFirstName.length; i++) {
+      if (qFirstName.charAt(i) === "a") {
+        leftShapesArray.push(gridWidth26);
+        topShapesArray.push(gridHeight26);
+        rightShapesArray.push(window.innerWidth - gridWidth26);
+        bottomShapesArray.push(window.innerHeight - gridHeight26);
+      }
+      if (qFirstName.charAt(i) === "b") {
+        leftShapesArray.push(gridWidth26 * 2);
+        topShapesArray.push(gridHeight26 * 2);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 2);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 2);
+      }
+      if (qFirstName.charAt(i) === "c") {
+        leftShapesArray.push(gridWidth26 * 3);
+        topShapesArray.push(gridHeight26 * 3);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 3);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 3);
+      }
+      if (qFirstName.charAt(i) === "d") {
+        leftShapesArray.push(gridWidth26 * 4);
+        topShapesArray.push(gridHeight26 * 4);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 4);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 4);
+      }
+      if (qFirstName.charAt(i) === "e") {
+        leftShapesArray.push(gridWidth26 * 5);
+        topShapesArray.push(gridHeight26 * 5);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 5);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 5);
+      }
+      if (qFirstName.charAt(i) === "f") {
+        leftShapesArray.push(gridWidth26 * 6);
+        topShapesArray.push(gridHeight26 * 6);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 6);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 6);
+      }
+      if (qFirstName.charAt(i) === "g") {
+        leftShapesArray.push(gridWidth26 * 7);
+        topShapesArray.push(gridHeight26 * 7);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 7);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 7);
+      }
+      if (qFirstName.charAt(i) === "h") {
+        leftShapesArray.push(gridWidth26 * 8);
+        topShapesArray.push(gridHeight26 * 8);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 8);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 8);
+      }
+      if (qFirstName.charAt(i) === "i") {
+        leftShapesArray.push(gridWidth26 * 9);
+        topShapesArray.push(gridHeight26 * 9);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 9);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 9);
+      }
+      if (qFirstName.charAt(i) === "j") {
+        leftShapesArray.push(gridWidth26 * 10);
+        topShapesArray.push(gridHeight26 * 10);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 10);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 10);
+      }
+      if (qFirstName.charAt(i) === "k") {
+        leftShapesArray.push(gridWidth26 * 11);
+        topShapesArray.push(gridHeight26 * 11);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 11);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 11);
+      }
+      if (qFirstName.charAt(i) === "l") {
+        leftShapesArray.push(gridWidth26 * 12);
+        topShapesArray.push(gridHeight26 * 12);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 12);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 12);
+      }
+      if (qFirstName.charAt(i) === "m") {
+        leftShapesArray.push(gridWidth26 * 13);
+        topShapesArray.push(gridHeight26 * 13);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 13);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 13);
+      }
+      if (qFirstName.charAt(i) === "n") {
+        leftShapesArray.push(gridWidth26 * 14);
+        topShapesArray.push(gridHeight26 * 14);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 14);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 14);
+      }
+      if (qFirstName.charAt(i) === "o") {
+        leftShapesArray.push(gridWidth26 * 15);
+        topShapesArray.push(gridHeight26 * 15);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 15);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 15);
+      }
+      if (qFirstName.charAt(i) === "p") {
+        leftShapesArray.push(gridWidth26 * 16);
+        topShapesArray.push(gridHeight26 * 16);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 16);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 16);
+      }
+      if (qFirstName.charAt(i) === "q") {
+        leftShapesArray.push(gridWidth26 * 17);
+        topShapesArray.push(gridHeight26 * 17);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 17);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 17);
+      }
+      if (qFirstName.charAt(i) === "r") {
+        leftShapesArray.push(gridWidth26 * 18);
+        topShapesArray.push(gridHeight26 * 18);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 18);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 18);
+      }
+      if (qFirstName.charAt(i) === "s") {
+        leftShapesArray.push(gridWidth26 * 19);
+        topShapesArray.push(gridHeight26 * 19);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 19);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 19);
+      }
+      if (qFirstName.charAt(i) === "t") {
+        leftShapesArray.push(gridWidth26 * 20);
+        topShapesArray.push(gridHeight26 * 20);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 20);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 20);
+      }
+      if (qFirstName.charAt(i) === "u") {
+        leftShapesArray.push(gridWidth26 * 21);
+        topShapesArray.push(gridHeight26 * 21);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 21);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 21);
+      }
+      if (qFirstName.charAt(i) === "v") {
+        leftShapesArray.push(gridWidth26 * 22);
+        topShapesArray.push(gridHeight26 * 22);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 22);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 22);
+      }
+      if (qFirstName.charAt(i) === "w") {
+        leftShapesArray.push(gridWidth26 * 23);
+        topShapesArray.push(gridHeight26 * 23);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 23);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 23);
+      }
+      if (qFirstName.charAt(i) === "x") {
+        leftShapesArray.push(gridWidth26 * 24);
+        topShapesArray.push(gridHeight26 * 24);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 24);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 24);
+      }
+      if (qFirstName.charAt(i) === "y") {
+        leftShapesArray.push(gridWidth26 * 25);
+        topShapesArray.push(gridHeight26 * 25);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 25);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 25);
+      }
+      if (qFirstName.charAt(i) === "z") {
+        leftShapesArray.push(gridWidth26 * 26);
+        topShapesArray.push(gridHeight26 * 26);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 26);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 26);
+      }
+    }
+
+    var location = qWhereLive;
+    var pizzanumber = 5;
+    var messy = qMess;
+    var day = qSleep;
+    var s = qPlan;
+    var start;
+
+    if(s == "spontaneous") {
+      start = 5;
+    } else if(s == "methodical") {
+      start = 4;
+    }
+
+    var daycount;
+    if(day == "morning person") {
+      daycount = 200;
+    } else if(day == "night owl") {
+      daycount = 300
+    } else if(day == "neither") {
+      daycount = 100;
+    }
+
+    let pizzadistance = pizzanumber*10;
+    var points;
+    var centerwidth = window.innerWidth/2;
+    var centerheight = window.innerHeight/2;
+    p.noFill();
+    p.stroke(255, 255, 255);
+    p.strokeWeight(5);
+    var begin;
+    var end;
+
+    if(start <= pizzanumber) {
+      begin = start;
+      end = pizzanumber;
+    } else if(pizzanumber < start) {
+      begin = pizzanumber;
+      end = start;
+    }
+
+    for(var i=begin; i<=end; i++) {
+      if(location=="country") {
+        if(messy=="5") {
+          p.ellipse(centerwidth, centerheight-(i*pizzadistance), daycount, daycount); //top
+          p.ellipse(centerwidth-(i*pizzadistance), centerheight, daycount, daycount); //right
+          p.ellipse(centerwidth, centerheight+(i*pizzadistance), daycount, daycount); //bottom
+          p.ellipse(centerwidth+(i*pizzadistance), centerheight, daycount, daycount); //left
+        } else if(messy=="4") {
+          p.ellipse(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i]); //top
+          p.ellipse(centerwidth-(i*pizzadistance), centerheight, daycount, daycount); //right
+          p.ellipse(centerwidth, centerheight+(i*pizzadistance), daycount, daycount); //bottom
+          p.ellipse(centerwidth+(i*pizzadistance), centerheight, daycount, daycount); //left
+        } else if(messy=="3") {
+          p.ellipse(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i]); //top
+          p.ellipse(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i]); //right
+          p.ellipse(centerwidth, centerheight+(i*pizzadistance), daycount, daycount); //bottom
+          p.ellipse(centerwidth+(i*pizzadistance), centerheight, daycount, daycount); //left
+        } else if(messy=="2") {
+          p.ellipse(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i]); //top
+          p.ellipse(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i]); //right
+          p.ellipse(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i]); //bottom
+          p.ellipse(centerwidth+(i*pizzadistance), centerheight, daycount, daycount); //left
+        } else if(messy=="1") {
+          p.ellipse(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i]); //top
+          p.ellipse(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i]); //right
+          p.ellipse(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i]); //bottom
+          p.ellipse(centerwidth+(i*pizzadistance), centerheight, rightShapesArray[i]); //left
+        }
+      } else if(location=="city") {
+        points = 4;
+        if(messy=="5") {
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), daycount, points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, daycount, points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
+        } else if(messy=="4") {
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, daycount, points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
+        } else if(messy=="3") {
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
+        } else if(messy=="2") {
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i], points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
+        } else if(messy=="1") {
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i], points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, rightShapesArray[i], points); //left
+        }
+      } else if(location=="suburb") {
+        points = 6;
+        if(messy=="5") {
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), daycount, points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, daycount, points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
+        } else if(messy=="4") {
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, daycount, points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
+        } else if(messy=="3") {
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), daycount, points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
+        } else if(messy=="2") {
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i], points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, daycount, points); //left
+        } else if(messy=="1") {
+          p.polygon(centerwidth, centerheight-(i*pizzadistance), topShapesArray[i], points); //top
+          p.polygon(centerwidth-(i*pizzadistance), centerheight, leftShapesArray[i], points); //right
+          p.polygon(centerwidth, centerheight+(i*pizzadistance), bottomShapesArray[i], points); //bottom
+          p.polygon(centerwidth+(i*pizzadistance), centerheight, rightShapesArray[i], points); //left
+        }
+      }
+    }
+  }
+
+  p.partickForegroundShapes = function() {
+    // Initializes arrays that will hold shapeSize and the positions of the polygons
+    let shapeSize = [];
+    let leftShapesArray = [];
+    let rightShapesArray = [];
+    let topShapesArray = [];
+    let bottomShapesArray = [];
+
+    // Grab necessary data for shape placement and shove it into a variable
+    let halfWidth = window.innerWidth / 2;
+    let halfHeight = window.innerHeight / 2;
+    let gridWidth26 = halfWidth / 26;
+    let gridHeight26 = halfHeight / 26;
+
+    // Toss data into the shape arrays
+    for (let i = 0; i < qFirstName.length; i++) {
+      if (qFirstName.charAt(i) === "a") {
+        leftShapesArray.push(gridWidth26);
+        topShapesArray.push(gridHeight26);
+        rightShapesArray.push(window.innerWidth - gridWidth26);
+        bottomShapesArray.push(window.innerHeight - gridHeight26);
+      }
+      if (qFirstName.charAt(i) === "b") {
+        leftShapesArray.push(gridWidth26 * 2);
+        topShapesArray.push(gridHeight26 * 2);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 2);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 2);
+      }
+      if (qFirstName.charAt(i) === "c") {
+        leftShapesArray.push(gridWidth26 * 3);
+        topShapesArray.push(gridHeight26 * 3);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 3);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 3);
+      }
+      if (qFirstName.charAt(i) === "d") {
+        leftShapesArray.push(gridWidth26 * 4);
+        topShapesArray.push(gridHeight26 * 4);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 4);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 4);
+      }
+      if (qFirstName.charAt(i) === "e") {
+        leftShapesArray.push(gridWidth26 * 5);
+        topShapesArray.push(gridHeight26 * 5);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 5);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 5);
+      }
+      if (qFirstName.charAt(i) === "f") {
+        leftShapesArray.push(gridWidth26 * 6);
+        topShapesArray.push(gridHeight26 * 6);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 6);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 6);
+      }
+      if (qFirstName.charAt(i) === "g") {
+        leftShapesArray.push(gridWidth26 * 7);
+        topShapesArray.push(gridHeight26 * 7);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 7);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 7);
+      }
+      if (qFirstName.charAt(i) === "h") {
+        leftShapesArray.push(gridWidth26 * 8);
+        topShapesArray.push(gridHeight26 * 8);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 8);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 8);
+      }
+      if (qFirstName.charAt(i) === "i") {
+        leftShapesArray.push(gridWidth26 * 9);
+        topShapesArray.push(gridHeight26 * 9);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 9);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 9);
+      }
+      if (qFirstName.charAt(i) === "j") {
+        leftShapesArray.push(gridWidth26 * 10);
+        topShapesArray.push(gridHeight26 * 10);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 10);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 10);
+      }
+      if (qFirstName.charAt(i) === "k") {
+        leftShapesArray.push(gridWidth26 * 11);
+        topShapesArray.push(gridHeight26 * 11);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 11);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 11);
+      }
+      if (qFirstName.charAt(i) === "l") {
+        leftShapesArray.push(gridWidth26 * 12);
+        topShapesArray.push(gridHeight26 * 12);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 12);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 12);
+      }
+      if (qFirstName.charAt(i) === "m") {
+        leftShapesArray.push(gridWidth26 * 13);
+        topShapesArray.push(gridHeight26 * 13);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 13);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 13);
+      }
+      if (qFirstName.charAt(i) === "n") {
+        leftShapesArray.push(gridWidth26 * 14);
+        topShapesArray.push(gridHeight26 * 14);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 14);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 14);
+      }
+      if (qFirstName.charAt(i) === "o") {
+        leftShapesArray.push(gridWidth26 * 15);
+        topShapesArray.push(gridHeight26 * 15);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 15);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 15);
+      }
+      if (qFirstName.charAt(i) === "p") {
+        leftShapesArray.push(gridWidth26 * 16);
+        topShapesArray.push(gridHeight26 * 16);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 16);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 16);
+      }
+      if (qFirstName.charAt(i) === "q") {
+        leftShapesArray.push(gridWidth26 * 17);
+        topShapesArray.push(gridHeight26 * 17);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 17);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 17);
+      }
+      if (qFirstName.charAt(i) === "r") {
+        leftShapesArray.push(gridWidth26 * 18);
+        topShapesArray.push(gridHeight26 * 18);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 18);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 18);
+      }
+      if (qFirstName.charAt(i) === "s") {
+        leftShapesArray.push(gridWidth26 * 19);
+        topShapesArray.push(gridHeight26 * 19);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 19);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 19);
+      }
+      if (qFirstName.charAt(i) === "t") {
+        leftShapesArray.push(gridWidth26 * 20);
+        topShapesArray.push(gridHeight26 * 20);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 20);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 20);
+      }
+      if (qFirstName.charAt(i) === "u") {
+        leftShapesArray.push(gridWidth26 * 21);
+        topShapesArray.push(gridHeight26 * 21);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 21);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 21);
+      }
+      if (qFirstName.charAt(i) === "v") {
+        leftShapesArray.push(gridWidth26 * 22);
+        topShapesArray.push(gridHeight26 * 22);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 22);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 22);
+      }
+      if (qFirstName.charAt(i) === "w") {
+        leftShapesArray.push(gridWidth26 * 23);
+        topShapesArray.push(gridHeight26 * 23);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 23);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 23);
+      }
+      if (qFirstName.charAt(i) === "x") {
+        leftShapesArray.push(gridWidth26 * 24);
+        topShapesArray.push(gridHeight26 * 24);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 24);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 24);
+      }
+      if (qFirstName.charAt(i) === "y") {
+        leftShapesArray.push(gridWidth26 * 25);
+        topShapesArray.push(gridHeight26 * 25);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 25);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 25);
+      }
+      if (qFirstName.charAt(i) === "z") {
+        leftShapesArray.push(gridWidth26 * 26);
+        topShapesArray.push(gridHeight26 * 26);
+        rightShapesArray.push(window.innerWidth - gridWidth26 * 26);
+        bottomShapesArray.push(window.innerHeight - gridHeight26 * 26);
+      }
+    }
+
+    let season = qBirthday;
+
+    let size;
+
+    if(qVert == "0") {
+      size = window.innerWidth/(5*5);
+    } else if(qVert == "1") {
+      size = window.innerWidth/(5*4);
+    } else if(qVert == "2") {
+      size = window.innerWidth/(5*3);
+    } else if(qVert == "3") {
+      size = window.innerWidth/(5*2);
+    } else if(qVert == "4") {
+      size = window.innerWidth/(5*1);
+    }
+
+    if (season=="september" || season=="october" || season=="november") {
+      for(var j=0; j<=leftShapesArray.length; j++) {
+        p.noStroke();
+        p.push();
+        p.gradCircle(leftShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
+        p.gradCircle(bottomShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
+        p.gradCircle(leftShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
+        p.gradCircle(bottomShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(fallR1, 1),p.hexWithAlpha(fallR2, 1));
+        p.pop();
+      }
+    }
+    
+    if (season=="december" || season=="january" || season=="february") {
+      for(var j=0; j<=leftShapesArray.length; j++) {
+        p.noStroke();
+        p.push();
+        p.gradCircle(leftShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
+        p.gradCircle(bottomShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
+        p.gradCircle(leftShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
+        p.gradCircle(bottomShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(winterP1, 1),p.hexWithAlpha(winterP2, 1));
+        p.pop();
+      }
+    }
+    
+    if (season=="march" || season=="april" || season=="may") {
+      for(var j=0; j<=leftShapesArray.length; j++) {
+        p.noStroke();
+        p.push();
+        p.gradCircle(leftShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
+        p.gradCircle(bottomShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
+        p.gradCircle(leftShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
+        p.gradCircle(bottomShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(springY1, 1),p.hexWithAlpha(springY2, 1));
+        p.pop();
+      }
+    }
+    
+    if (season=="june" || season=="july" || season=="august") {
+      for(var j=0; j<=leftShapesArray.length; j++) {
+        p.noStroke();
+        p.push();
+        p.gradCircle(leftShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
+        p.gradCircle(bottomShapesArray[j],rightShapesArray[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
+        p.gradCircle(leftShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
+        p.gradCircle(bottomShapesArray[j],topShapesArray[j],size,p.hexWithAlpha(summerR1, 1),p.hexWithAlpha(summerB2, 1));
+        p.pop();
+      }
+    }
+  }
+
   // Creates a gradient circle with an offset stroke
   p.gradCircle = function(x, y, r, c1, c2) {
     const lineW = 1;
@@ -65,7 +685,7 @@ const sketch = p => {
     p.noStroke();
     for (var i = 0; i <= lines; i++) {
       let inter = p.map(i, 0, r, 0, 0.8);
-      let c = p.lerpColor(c1, c2, inter);
+      let c = p.lerpColor(p.color(c1), p.color(c2), inter);
       p.fill(c);
       const s = i * lineW + lineW;
       const chordLength = Math.sqrt(2 * s * r - s * s) * 2;
@@ -75,6 +695,380 @@ const sketch = p => {
     p.noFill();
     p.ellipse(x + r + 20, y + r + 20, r * 2);
   };
+
+  p.squareRow = function(centerX, centerY) {
+    let season = qBirthday;
+    
+    let scale = p.int(qMess);
+    
+    let pos = p.map(scale, 1, 5, 0, 200);
+    
+    
+    if (season=="september" || season=="october" || season=="november") {
+      p.drawSquare(centerX+175, centerY+pos, 50, 45, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 1));
+      p.drawSquare(centerX-175, centerY-pos, 50, 45, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 1));
+      
+      p.drawSquare(centerX+100, centerY-pos, 100, 45, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 1));
+      p.drawSquare(centerX-100, centerY+pos, 100, 45, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 1));
+      
+      p.drawSquare(centerX, centerY, 150, 45, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 1));
+    }
+    
+    if (season=="december" || season=="january" || season=="february") {
+      p.drawSquare(centerX+175, centerY+pos, 50, 45, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 1));
+      p.drawSquare(centerX-175, centerY-pos, 50, 45, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 1));
+      
+      p.drawSquare(centerX+100, centerY-pos, 100, 45, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 1));
+      p.drawSquare(centerX-100, centerY+pos, 100, 45, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 1));
+      
+      p.drawSquare(centerX, centerY, 150, 45, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 1));
+    }
+    
+    if (season=="march" || season=="april" || season=="may") {
+      p.drawSquare(centerX+175, centerY+pos, 50, 45, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 1));
+      p.drawSquare(centerX-175, centerY-pos, 50, 45, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 1));
+      
+      p.drawSquare(centerX+100, centerY-pos, 100, 45, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 1));
+      p.drawSquare(centerX-100, centerY+pos, 100, 45, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 1));
+      
+      p.drawSquare(centerX, centerY, 150, 45, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 1));
+    }
+    
+    if (season=="june" || season=="july" || season=="august") {
+      p.drawSquare(centerX+175, centerY+pos, 50, 45, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 1));
+      p.drawSquare(centerX-175, centerY-pos, 50, 45, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 1));
+      
+      p.drawSquare(centerX+100, centerY-pos, 100, 45, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 1));
+      p.drawSquare(centerX-100, centerY+pos, 100, 45, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 1));
+      
+      p.drawSquare(centerX, centerY, 150, 45, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 1));
+    }
+  }
+
+  p.circleRow = function(centerX, centerY) {
+    let season = qBirthday;
+    
+    let scale = p.int(qMess);
+    
+    let pos = p.map(scale, 1, 5, 0, 200);
+    
+    
+    if (season=="september" || season=="october" || season=="november") {    
+      p.gradCircle(centerX-175, (centerY-25)+pos, 25, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 0.7));
+      p.gradCircle(centerX+125, (centerY-25)-pos, 25, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 0.7));
+        
+      p.gradCircle(centerX-150, (centerY-50)-pos, 50, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 0.7));
+      p.gradCircle(centerX+50, (centerY-50)+pos, 50, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 0.7));
+        
+      p.gradCircle(centerX-75, centerY-75, 75, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 0.7));
+    }
+    
+    if (season=="december" || season=="january" || season=="february") {
+      p.gradCircle(centerX-175, (centerY-25)+pos, 25, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 0.7));
+      p.gradCircle(centerX+125, (centerY-25)-pos, 25, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 0.7));
+      
+      p.gradCircle(centerX-150, (centerY-50)-pos, 50, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 0.7));
+      p.gradCircle(centerX+50, (centerY-50)+pos, 50, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 0.7));
+      
+      p.gradCircle(centerX-75, centerY-75, 75, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 0.7));
+    }
+    
+    if (season=="march" || season=="april" || season=="may") {
+      p.gradCircle(centerX-175, (centerY-25)+pos, 25, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 0.7));
+      p.gradCircle(centerX+125, (centerY-25)-pos, 25, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 0.7));
+      
+      p.gradCircle(centerX-150, (centerY-50)-pos, 50, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 0.7));
+      p.gradCircle(centerX+50, (centerY-50)+pos, 50, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 0.7));
+      
+      p.gradCircle(centerX-75, centerY-75, 75, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 0.7));
+    }
+    
+    if (season=="june" || season=="july" || season=="august") {
+      p.gradCircle(centerX-175, (centerY-25)+pos, 25, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 0.7));
+      p.gradCircle(centerX+125, (centerY-25)-pos, 25, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 0.7));
+      
+      p.gradCircle(centerX-150, (centerY-50)-pos, 50, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 0.7));
+      p.gradCircle(centerX+50, (centerY-50)+pos, 50, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 0.7));
+      
+      p.gradCircle(centerX-75, centerY-75, 75, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 0.7));
+    }
+  }
+
+  p.duoRow = function(centerX, centerY) {
+    let season = qBirthday;
+    
+    let scale = p.int(qMess);
+    
+    let pos = p.map(scale, 1, 5, 0, 200);
+    
+    
+    if (season=="september" || season=="october" || season=="november") {    
+      p.gradCircle(centerX-200, (centerY-25)+pos, 25, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 0.7));
+      p.gradCircle(centerX+150, (centerY-25)-pos, 25, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 0.7));
+        
+      p.drawSquare(centerX+100, centerY+pos, 100, 45, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 1));
+      p.drawSquare(centerX-100, centerY-pos, 100, 45, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 1));
+        
+      p.gradCircle(centerX-75, centerY-75, 75, p.hexWithAlpha(fallR1, 1), p.hexWithAlpha(fallR2, 0.7));
+    }
+    
+    if (season=="december" || season=="january" || season=="february") {
+      p.gradCircle(centerX-200, (centerY-25)+pos, 25, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 0.7));
+      p.gradCircle(centerX+150, (centerY-25)-pos, 25, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 0.7));
+      
+      p.drawSquare(centerX+100, centerY+pos, 100, 45, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 1));
+      p.drawSquare(centerX-100, centerY-pos, 100, 45, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 1));
+      
+      p.gradCircle(centerX-75, centerY-75, 75, p.hexWithAlpha(winterP1, 1), p.hexWithAlpha(winterP2, 0.7));
+    }
+    
+    if (season=="march" || season=="april" || season=="may") {
+      p.gradCircle(centerX-200, (centerY-25)+pos, 25, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 0.7));
+      p.gradCircle(centerX+150, (centerY-25)-pos, 25, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 0.7));
+      
+      p.drawSquare(centerX+100, centerY+pos, 100, 45, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 1));
+      p.drawSquare(centerX-100, centerY-pos, 100, 45, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 1));
+      
+      p.gradCircle(centerX-75, centerY-75, 75, p.hexWithAlpha(springY1, 1), p.hexWithAlpha(springY2, 0.7));
+    }
+    
+    if (season=="june" || season=="july" || season=="august") {
+      p.gradCircle(centerX-200, (centerY-25)+pos, 25, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 0.7));
+      p.gradCircle(centerX+150, (centerY-25)-pos, 25, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 0.7));
+      
+      p.drawSquare(centerX+100, centerY+pos, 100, 45, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 1));
+      p.drawSquare(centerX-100, centerY-pos, 100, 45, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 1));
+      
+      p.gradCircle(centerX-75, centerY-75, 75, p.hexWithAlpha(summerR1, 1), p.hexWithAlpha(summerB2, 0.7));
+    }
+  }
+
+  p.shapes = function(centerX, centerY) {
+    let name = qFirstName.length;
+    
+    let life = qWhereLive;
+    
+    let prox = qPet;
+    let dist;
+    if (prox == "cats") {
+      dist = 100;
+    } else if (prox == "dogs") {
+      dist = -100;
+    } else if (prox == "both" || prox == "neither") {
+      dist = 0;
+    }
+    
+    let person = p.int(qVert);
+    let perSq = p.map(person, 1, 5, 25, 400);
+    
+    let perCr = p.map(person, 1, 5, 25, 200);
+    
+    let square1 = perSq;
+    let square2 = perSq+100;
+    let square3 = square2+100;
+    
+    let circle1 = perCr;
+    let circle2 = perCr+50;
+    let circle3 = circle2+50;
+    
+    p.stroke(255);
+    p.noFill();
+    if (name%2 == 0) {
+      console.log('even');
+      
+      if (life == "country") {
+        p.ellipse(centerX, centerY-(circle1+dist), circle1, circle1); //top
+        p.ellipse(centerX+(circle1+dist), centerY, circle1, circle1); //right
+        p.ellipse(centerX, centerY+(circle1+dist), circle1, circle1); //bottom
+        p.ellipse(centerX-(circle1+dist), centerY, circle1, circle1); //left
+
+        p.ellipse(centerX, centerY-(circle2+dist), circle2, circle2); //top
+        p.ellipse(centerX, centerY+(circle2+dist), circle2, circle2); //bottom
+
+        p.ellipse(centerX, centerY-(circle3+dist), circle3, circle3); //top
+        p.ellipse(centerX, centerY+(circle3+dist), circle3, circle3); //bottom
+        p.ellipse(centerX-(circle3+dist), centerY, circle3, circle3); //left
+        p.ellipse(centerX+(circle3+dist), centerY, circle3, circle3); //right
+
+      } else if (life == "city") {            
+        p.rect(centerX-(square1/2), centerY-(square1+dist), square1, square1); //top
+        p.rect(centerX+dist, centerY-(square1/2), square1, square1); //right
+        p.rect(centerX-(square1/2), centerY+dist, square1, square1); //bottom
+        p.rect(centerX-(square1+dist), centerY-(square1/2), square1, square1); //left
+        
+        p.rect(centerX-(square2/2), centerY-(square2+dist), square2, square2); //top
+        p.rect(centerX-(square2/2), centerY+dist, square2, square2); //bottom
+        
+        p.rect(centerX-(square3/2), centerY-(square3+dist), square3, square3); //top
+        p.rect(centerX+dist, centerY-(square3/2), square3, square3); //right
+        p.rect(centerX-(square3/2), centerY+dist, square3, square3); //bottom
+        p.rect(centerX-(square3+dist), centerY-(square3/2), square3, square3); //left
+          
+      } else if (life == "suburbs") {
+        p.ellipse(centerX, centerY-(circle1+dist), circle1, circle1); //top
+        p.ellipse(centerX+(circle1+dist), centerY, circle1, circle1); //right
+        p.ellipse(centerX, centerY+(circle1+dist), circle1, circle1); //bottom
+        p.ellipse(centerX-(circle1+dist), centerY, circle1, circle1); //left
+
+        p.rect(centerX-(square2/2), centerY-(square2+dist), square2, square2); //top
+        p.rect(centerX-(square2/2), centerY+dist, square2, square2); //bottom
+        
+        p.rect(centerX-(square3/2), centerY-(square3+dist), square3, square3); //top
+        p.rect(centerX+dist, centerY-(square3/2), square3, square3); //right
+        p.rect(centerX-(square3/2), centerY+dist, square3, square3); //bottom
+        p.rect(centerX-(square3+dist), centerY-(square3/2), square3, square3); //left
+      }
+        
+    } else {
+      console.log('odd');
+      
+      let square1_2 = square1/2;
+      let square2_2 = square2/2;
+      let square3_2 = square3/2;
+      
+      if (life == "country") {
+        p.ellipse(centerX, centerY-((circle1/2)+dist), circle1/2, circle1/2); //top
+        p.ellipse(centerX+(circle1+dist), centerY, circle1, circle1); //right
+        p.ellipse(centerX, centerY+(circle1+dist), circle1, circle1); //bottom
+        p.ellipse(centerX-(circle1+dist), centerY, circle1, circle1); //left
+
+        p.ellipse(centerX, centerY-((circle1-25)+dist), circle1-25, circle1-25); //top
+        p.ellipse(centerX, centerY+(circle2+dist), circle2, circle2); //bottom
+
+        p.ellipse(centerX, centerY-((circle1+25)+dist), (circle1+25), (circle1+25)); //top
+        p.ellipse(centerX, centerY+(circle3+dist), circle3, circle3); //bottom
+        p.ellipse(centerX-(circle3+dist), centerY, circle3, circle3); //left
+        p.ellipse(centerX+(circle3+dist), centerY, circle3, circle3); //right
+          
+      } else if (life == "city") {            
+        p.rect(centerX-(square1_2/2), centerY-(square1_2+dist), square1_2, square1_2); //top
+        p.rect(centerX+dist, centerY-(square1/2), square1, square1); //right
+        p.rect(centerX-(square1/2), centerY+dist, square1, square1); //bottom
+        p.rect(centerX-(square1+dist), centerY-(square1/2), square1, square1); //left
+        
+        p.rect(centerX-(square2_2/2), centerY-(square2_2+dist), square2_2, square2_2); //top
+        p.rect(centerX-(square2/2), centerY+dist, square2, square2); //bottom
+        
+        p.rect(centerX-(square3_2/2), centerY-(square3_2+dist), square3_2, square3_2); //top
+        p.rect(centerX+dist, centerY-(square3/2), square3, square3); //right
+        p.rect(centerX-(square3/2), centerY+dist, square3, square3); //bottom
+        p.rect(centerX-(square3+dist), centerY-(square3/2), square3, square3); //left
+          
+      } else if (life == "suburbs") {
+        p.ellipse(centerX, centerY-((circle1/2)+dist), circle1/2, circle1/2); //top
+        p.ellipse(centerX+(circle1+dist), centerY, circle1, circle1); //right
+        p.ellipse(centerX, centerY+(circle1+dist), circle1, circle1); //bottom
+        p.ellipse(centerX-(circle1+dist), centerY, circle1, circle1); //left
+
+        p.rect(centerX-(square2_2/2), centerY-(square2_2+dist), square2_2, square2_2); //top
+        p.rect(centerX-(square2/2), centerY+dist, square2, square2); //bottom
+        
+        p.rect(centerX-(square3_2/2), centerY-(square3_2+dist), square3_2, square3_2); //top
+        p.rect(centerX+dist, centerY-(square3/2), square3, square3); //right
+        p.rect(centerX-(square3/2), centerY+dist, square3, square3); //bottom
+        p.rect(centerX-(square3+dist), centerY-(square3/2), square3, square3); //left
+      }
+    }
+  }
+
+  p.bgSquares = function(centerX, centerY) {
+    let season = qBirthday;
+    
+    let scale = p.int(qMess);
+    
+    let pos = p.map(scale, 1, 5, 0, 300);
+    
+    if (season=="september" || season=="october" || season=="november") {
+      p.drawSquare(centerX-400, centerY+pos, 600, 45, p.hexWithAlpha(fallP1, 0.7), p.hexWithAlpha(fallP2, 0.7));
+      p.drawSquare(centerX-200, centerY-pos, 600, 45, p.hexWithAlpha(fallR1, 0.7), p.hexWithAlpha(fallR2, 0.7));
+      
+      p.drawSquare(centerX+400, centerY-pos, 600, 45, p.hexWithAlpha(fallP1, 0.7), p.hexWithAlpha(fallP2, 0.7));
+      p.drawSquare(centerX+200, centerY+pos, 600, 45, p.hexWithAlpha(fallR1, 0.7), p.hexWithAlpha(fallR2, 0.7));
+      p.drawSquare(centerX, centerY, 600, 45, p.hexWithAlpha(fallP1, 0.7), p.hexWithAlpha(fallP2, 0.7));
+    }
+    
+    if (season=="december" || season=="january" || season=="february") {
+      p.drawSquare(centerX-400, centerY+pos, 600, 45, p.hexWithAlpha(winterP1, 0.7), p.hexWithAlpha(winterP2, 0.7));
+      p.drawSquare(centerX-200, centerY-pos, 600, 45, p.hexWithAlpha(winterB1, 0.7), p.hexWithAlpha(winterB2, 0.7));
+      
+      p.drawSquare(centerX+400, centerY-pos, 600, 45, p.hexWithAlpha(winterP1, 0.7), p.hexWithAlpha(winterP2, 0.7));
+      p.drawSquare(centerX+200, centerY+pos, 600, 45, p.hexWithAlpha(winterB1, 0.7), p.hexWithAlpha(winterB2, 0.7));
+      p.drawSquare(centerX, centerY, 600, 45, p.hexWithAlpha(winterP1, 0.7), p.hexWithAlpha(winterP2, 0.7));
+    }
+    
+    if (season=="march" || season=="april" || season=="may") {
+      p.drawSquare(centerX-400, centerY+pos, 600, 45, p.hexWithAlpha(springY1, 0.7), p.hexWithAlpha(springY2, 0.7));
+      p.drawSquare(centerX-200, centerY-pos, 600, 45, p.hexWithAlpha(springO1, 0.7), p.hexWithAlpha(springO2, 0.7));
+      
+      p.drawSquare(centerX+400, centerY-pos, 600, 45, p.hexWithAlpha(springY1, 0.7), p.hexWithAlpha(springY2, 0.7));
+      p.drawSquare(centerX+200, centerY+pos, 600, 45, p.hexWithAlpha(springO1, 0.7), p.hexWithAlpha(springO2, 0.7));
+      p.drawSquare(centerX, centerY, 600, 45, p.hexWithAlpha(springY1, 0.7), p.hexWithAlpha(springY2, 0.7));
+    }
+    
+    if (season=="june" || season=="july" || season=="august") {
+      p.drawSquare(centerX-400, centerY+pos, 600, 45, p.hexWithAlpha(summerR1, 0.7), p.hexWithAlpha(summerR2, 0.7));
+      p.drawSquare(centerX-200, centerY-pos, 600, 45, p.hexWithAlpha(summerB1, 0.7), p.hexWithAlpha(summerB2, 0.7));
+      
+      p.drawSquare(centerX+400, centerY-pos, 600, 45, p.hexWithAlpha(summerR1, 0.7), p.hexWithAlpha(summerR2, 0.7));
+      p.drawSquare(centerX+200, centerY+pos, 600, 45, p.hexWithAlpha(summerB1, 0.7), p.hexWithAlpha(summerB2, 0.7));
+      p.drawSquare(centerX, centerY, 600, 45, p.hexWithAlpha(summerR1, 0.7), p.hexWithAlpha(summerR2, 0.7));
+    }
+  }
+
+  p.bgCircles = function(centerX, centerY) {
+    let season = qBirthday;
+    
+    let scale = p.int(qMess);
+    
+    let pos = p.map(scale, 1, 5, 0, 300);
+    
+    if (season=="september" || season=="october" || season=="november") {        
+      p.gradCircle(centerX-400, centerY+pos, 300, p.hexWithAlpha(fallP1, 0.7), p.hexWithAlpha(fallP2, 0.7));
+      p.gradCircle(centerX-200, centerY-pos, 300, p.hexWithAlpha(fallR1, 0.7), p.hexWithAlpha(fallR2, 0.7));
+      
+      p.gradCircle(centerX+400, centerY-pos, 300, p.hexWithAlpha(fallP1, 0.7), p.hexWithAlpha(fallP2, 0.7));
+      p.gradCircle(centerX+200, centerY+pos, 300, p.hexWithAlpha(fallR1, 0.7), p.hexWithAlpha(fallR2, 0.7));
+      p.gradCircle(centerX, centerY, 300, p.hexWithAlpha(fallP1, 0.7), p.hexWithAlpha(fallP2, 0.7));
+    }
+    
+    if (season=="december" || season=="january" || season=="february") {        
+      p.gradCircle(centerX-400, centerY+pos, 300, p.hexWithAlpha(winterP1, 0.7), p.hexWithAlpha(winterP2, 0.7));
+      p.gradCircle(centerX-200, centerY-pos, 300, p.hexWithAlpha(winterB1, 0.7), p.hexWithAlpha(winterB2, 0.7));
+      
+      p.gradCircle(centerX+400, centerY-pos, 300, p.hexWithAlpha(winterP1, 0.7), p.hexWithAlpha(winterP2, 0.7));
+      p.gradCircle(centerX+200, centerY+pos, 300, p.hexWithAlpha(winterB1, 0.7), p.hexWithAlpha(winterB2, 0.7));
+      p.gradCircle(centerX, centerY, 300, p.hexWithAlpha(winterP1, 0.7), p.hexWithAlpha(winterP2, 0.7));
+    }
+    
+    if (season=="march" || season=="april" || season=="may") {        
+      p.gradCircle(centerX-400, centerY+pos, 300, p.hexWithAlpha(springY1, 0.7), p.hexWithAlpha(springY2, 0.7));
+      p.gradCircle(centerX-200, centerY-pos, 300, p.hexWithAlpha(springO1, 0.7), p.hexWithAlpha(springO2, 0.7));
+      
+      p.gradCircle(centerX+400, centerY-pos, 300, p.hexWithAlpha(springY1, 0.7), p.hexWithAlpha(springY2, 0.7));
+      p.gradCircle(centerX+200, centerY+pos, 300, p.hexWithAlpha(springO1, 0.7), p.hexWithAlpha(springO2, 0.7));
+      p.gradCircle(centerX, centerY, 300, p.hexWithAlpha(springY1, 0.7), p.hexWithAlpha(springY2, 0.7));
+    }
+    
+    if (season=="june" || season=="july" || season=="august") {        
+      p.gradCircle(centerX-400, centerY+pos, 300, p.hexWithAlpha(summerR1, 0.7), p.hexWithAlpha(summerR2, 0.7));
+      p.gradCircle(centerX-200, centerY-pos, 300, p.hexWithAlpha(summerB1, 0.7), p.hexWithAlpha(summerB2, 0.7));
+      
+      p.gradCircle(centerX+400, centerY-pos, 300, p.hexWithAlpha(summerR1, 0.7), p.hexWithAlpha(summerR2, 0.7));
+      p.gradCircle(centerX+200, centerY+pos, 300, p.hexWithAlpha(summerB1, 0.7), p.hexWithAlpha(summerB2, 0.7));
+      p.gradCircle(centerX, centerY, 300, p.hexWithAlpha(summerR1, 0.7), p.hexWithAlpha(summerR2, 0.7));
+    }
+  }
+
+  p.mood = function() {
+    let time = qSleep;
+    
+    if (time == "morning person") {
+      p.background(255);
+    } 
+    if (time == "night owl") {
+      p.background(0);
+    }
+  }
 
   // Creates a scale background of overlapping circles
   p.scales = function(r, c1, c2) {
@@ -213,219 +1207,6 @@ const sketch = p => {
       }
     }
     p.pop();
-  };
-
-  // Creates a variety of shapes reflected around the center of the window based on a name input
-  p.symShapes = function(name) {
-    // Initializes arrays that will hold shapeSize and the positions of the polygons
-    let shapeSize = [];
-    let leftShapesArray = [];
-    let rightShapesArray = [];
-    let topShapesArray = [];
-    let bottomShapesArray = [];
-
-    // Grab necessary data for shape placement and shove it into a variable
-    var halfWidth = window.innerWidth / 2;
-    var halfHeight = window.innerHeight / 2;
-    var gridWidth26 = halfWidth / 26;
-    var gridHeight26 = halfHeight / 26;
-
-    // Determine the size of the polygons
-    for (var g = 0; g < 10; g++) {
-      let size = Math.floor(Math.random() * 100) + 10;
-      shapeSize.push(size);
-    }
-
-    // Toss data into the shape arrays
-    for (var i = 0; i < name.length; i++) {
-      if (name.charAt(i) === "a") {
-        leftShapesArray.push(gridWidth26);
-        topShapesArray.push(gridHeight26);
-        rightShapesArray.push(window.innerWidth - gridWidth26);
-        bottomShapesArray.push(window.innerHeight - gridHeight26);
-      }
-      if (name.charAt(i) === "b") {
-        leftShapesArray.push(gridWidth26 * 2);
-        topShapesArray.push(gridHeight26 * 2);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 2);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 2);
-      }
-      if (name.charAt(i) === "c") {
-        leftShapesArray.push(gridWidth26 * 3);
-        topShapesArray.push(gridHeight26 * 3);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 3);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 3);
-      }
-      if (name.charAt(i) === "d") {
-        leftShapesArray.push(gridWidth26 * 4);
-        topShapesArray.push(gridHeight26 * 4);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 4);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 4);
-      }
-      if (name.charAt(i) === "e") {
-        leftShapesArray.push(gridWidth26 * 5);
-        topShapesArray.push(gridHeight26 * 5);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 5);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 5);
-      }
-      if (name.charAt(i) === "f") {
-        leftShapesArray.push(gridWidth26 * 6);
-        topShapesArray.push(gridHeight26 * 6);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 6);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 6);
-      }
-      if (name.charAt(i) === "g") {
-        leftShapesArray.push(gridWidth26 * 7);
-        topShapesArray.push(gridHeight26 * 7);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 7);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 7);
-      }
-      if (name.charAt(i) === "h") {
-        leftShapesArray.push(gridWidth26 * 8);
-        topShapesArray.push(gridHeight26 * 8);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 8);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 8);
-      }
-      if (name.charAt(i) === "i") {
-        leftShapesArray.push(gridWidth26 * 9);
-        topShapesArray.push(gridHeight26 * 9);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 9);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 9);
-      }
-      if (name.charAt(i) === "j") {
-        leftShapesArray.push(gridWidth26 * 10);
-        topShapesArray.push(gridHeight26 * 10);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 10);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 10);
-      }
-      if (name.charAt(i) === "k") {
-        leftShapesArray.push(gridWidth26 * 11);
-        topShapesArray.push(gridHeight26 * 11);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 11);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 11);
-      }
-      if (name.charAt(i) === "l") {
-        leftShapesArray.push(gridWidth26 * 12);
-        topShapesArray.push(gridHeight26 * 12);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 12);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 12);
-      }
-      if (name.charAt(i) === "m") {
-        leftShapesArray.push(gridWidth26 * 13);
-        topShapesArray.push(gridHeight26 * 13);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 13);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 13);
-      }
-      if (name.charAt(i) === "n") {
-        leftShapesArray.push(gridWidth26 * 14);
-        topShapesArray.push(gridHeight26 * 14);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 14);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 14);
-      }
-      if (name.charAt(i) === "o") {
-        leftShapesArray.push(gridWidth26 * 15);
-        topShapesArray.push(gridHeight26 * 15);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 15);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 15);
-      }
-      if (name.charAt(i) === "p") {
-        leftShapesArray.push(gridWidth26 * 16);
-        topShapesArray.push(gridHeight26 * 16);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 16);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 16);
-      }
-      if (name.charAt(i) === "q") {
-        leftShapesArray.push(gridWidth26 * 17);
-        topShapesArray.push(gridHeight26 * 17);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 17);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 17);
-      }
-      if (name.charAt(i) === "r") {
-        leftShapesArray.push(gridWidth26 * 18);
-        topShapesArray.push(gridHeight26 * 18);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 18);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 18);
-      }
-      if (name.charAt(i) === "s") {
-        leftShapesArray.push(gridWidth26 * 19);
-        topShapesArray.push(gridHeight26 * 19);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 19);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 19);
-      }
-      if (name.charAt(i) === "t") {
-        leftShapesArray.push(gridWidth26 * 20);
-        topShapesArray.push(gridHeight26 * 20);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 20);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 20);
-      }
-      if (name.charAt(i) === "u") {
-        leftShapesArray.push(gridWidth26 * 21);
-        topShapesArray.push(gridHeight26 * 21);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 21);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 21);
-      }
-      if (name.charAt(i) === "v") {
-        leftShapesArray.push(gridWidth26 * 22);
-        topShapesArray.push(gridHeight26 * 22);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 22);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 22);
-      }
-      if (name.charAt(i) === "w") {
-        leftShapesArray.push(gridWidth26 * 23);
-        topShapesArray.push(gridHeight26 * 23);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 23);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 23);
-      }
-      if (name.charAt(i) === "x") {
-        leftShapesArray.push(gridWidth26 * 24);
-        topShapesArray.push(gridHeight26 * 24);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 24);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 24);
-      }
-      if (name.charAt(i) === "y") {
-        leftShapesArray.push(gridWidth26 * 25);
-        topShapesArray.push(gridHeight26 * 25);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 25);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 25);
-      }
-      if (name.charAt(i) === "z") {
-        leftShapesArray.push(gridWidth26 * 26);
-        topShapesArray.push(gridHeight26 * 26);
-        rightShapesArray.push(window.innerWidth - gridWidth26 * 26);
-        bottomShapesArray.push(window.innerHeight - gridHeight26 * 26);
-      }
-    }
-
-    // Draw polygons based on the data in the arrays
-    for (let i = 0; i < leftShapesArray.length; i++) {
-      p.fill(0, 0, 0);
-      p.push();
-      p.polygon(
-        leftShapesArray[i],
-        topShapesArray[i],
-        shapeSize[i],
-        name.length
-      );
-      p.polygon(
-        rightShapesArray[i],
-        topShapesArray[i],
-        shapeSize[i],
-        name.length
-      );
-      p.polygon(
-        leftShapesArray[i],
-        bottomShapesArray[i],
-        shapeSize[i],
-        name.length
-      );
-      p.polygon(
-        rightShapesArray[i],
-        bottomShapesArray[i],
-        shapeSize[i],
-        name.length
-      );
-      p.pop();
-    }
   };
 
   // Creates a polygon based on radius and number of vertex points
