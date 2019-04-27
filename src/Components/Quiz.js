@@ -37,7 +37,6 @@ class Quiz extends React.Component {
       answeredQs: 0,
       easyID: ""
     };
-    this.handleChange = this.handleChange.bind(this);
   }
   componentWillMount() {
     // // Initialize Firebase
@@ -169,10 +168,6 @@ class Quiz extends React.Component {
     ) {
       document.querySelector(".page1 .next").classList.add("active");
     }
-
-    if (this.state.answers.quest2 !== "") {
-      document.querySelector(".page2 .next").classList.add("active");
-    }
     console.log(this.props);
   }
   nextPage = () => {
@@ -185,10 +180,6 @@ class Quiz extends React.Component {
         this.state.answers.quest1.nfirst !== "" &&
         this.state.answers.quest1.nlast !== ""
       ) {
-        this.setState({ pagenum: this.state.pagenum + 1 });
-      }
-    } else if (this.state.pagenum === 2) {
-      if (this.state.answers.quest2 !== "") {
         this.setState({ pagenum: this.state.pagenum + 1 });
       }
     } else {
@@ -225,16 +216,6 @@ class Quiz extends React.Component {
           [e.target.name]: e.target.value
         }
       }
-    });
-  };
-  handleChange = date => {
-    this.setState({
-      ...this.state,
-      answers: {
-        ...this.state.answers,
-        quest2: date.toDateString()
-      },
-      startDate: date
     });
   };
   fiveScale = quest => {
@@ -298,28 +279,192 @@ class Quiz extends React.Component {
             </div>
             <div className="page page2">
               <div className="content">
-                <p className="subheader">When is your birthday?</p>
+                <p className="subheader">What is your birth month?</p>
                 {/* <div className="inputs">
                 <input type="text" name="bmonth" placeholder="month" />
                 <input type="text" name="bday" placeholder="day" />
                 <input type="text" name="byear" placeholder="year" />
               </div> */}
                 <div className="calendar">
-                  <DatePicker
-                    selected={this.state.startDate}
-                    onChange={this.handleChange}
-                    placeholderText="Click to select a date"
-                  />
-                </div>
-                <div className="nextCont">
                   <div
-                    className="next"
+                    className="months"
                     onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "january"
+                        }
+                      });
                       this.nextPage();
-                      // this.props.getPage(true);
                     }}
                   >
-                    next
+                    january
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "february"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    february
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "march"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    march
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "april"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    april
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "may"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    may
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "june"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    june
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "july"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    july
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "august"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    august
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "september"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    september
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "october"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    october
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "november"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    november
+                  </div>
+                  <div
+                    className="months"
+                    onClick={() => {
+                      this.setState({
+                        ...this.state,
+                        answers: {
+                          ...this.state.answers,
+                          quest2: "december"
+                        }
+                      });
+                      this.nextPage();
+                    }}
+                  >
+                    december
                   </div>
                 </div>
               </div>
@@ -333,8 +478,8 @@ class Quiz extends React.Component {
                   <div
                     className={
                       this.state.answers.quest3 === "city"
-                        ? "option active"
-                        : "option"
+                        ? "city option active"
+                        : "city option"
                     }
                     id="city"
                     onClick={() => {
@@ -351,8 +496,8 @@ class Quiz extends React.Component {
                   <div
                     className={
                       this.state.answers.quest3 === "suburbs"
-                        ? "option active"
-                        : "option"
+                        ? "suburbs option active"
+                        : "suburbs option"
                     }
                     id="suburbs"
                     onClick={() => {
@@ -369,8 +514,8 @@ class Quiz extends React.Component {
                   <div
                     className={
                       this.state.answers.quest3 === "country"
-                        ? "option active"
-                        : "option"
+                        ? "country option active"
+                        : "country option"
                     }
                     id="country"
                     onClick={() => {
@@ -402,7 +547,7 @@ class Quiz extends React.Component {
                           ...this.state,
                           answers: {
                             ...this.state.answers,
-                            quest4: "Disgust"
+                            quest4: 1
                           }
                         });
                         this.nextPage();
@@ -411,13 +556,13 @@ class Quiz extends React.Component {
                       <span className="circle">
                         <span
                           className={
-                            this.state.answers.quest4 === "Disgust"
+                            this.state.answers.quest4 === 1
                               ? "select selected"
                               : "select"
                           }
                         />
                       </span>
-                      Disgust
+                      disgust
                     </div>
                     <div
                       className="option"
@@ -426,7 +571,7 @@ class Quiz extends React.Component {
                           ...this.state,
                           answers: {
                             ...this.state.answers,
-                            quest4: "Disagreement"
+                            quest4: 2
                           }
                         });
                         this.nextPage();
@@ -435,13 +580,13 @@ class Quiz extends React.Component {
                       <span className="circle">
                         <span
                           className={
-                            this.state.answers.quest4 === "Disagreement"
+                            this.state.answers.quest4 === 2
                               ? "select selected"
                               : "select"
                           }
                         />
                       </span>
-                      Disagreement
+                      disagreement
                     </div>
                     <div
                       className="option"
@@ -450,7 +595,7 @@ class Quiz extends React.Component {
                           ...this.state,
                           answers: {
                             ...this.state.answers,
-                            quest4: "Discomfort"
+                            quest4: 3
                           }
                         });
                         this.nextPage();
@@ -459,13 +604,13 @@ class Quiz extends React.Component {
                       <span className="circle">
                         <span
                           className={
-                            this.state.answers.quest4 === "Discomfort"
+                            this.state.answers.quest4 === 3
                               ? "select selected"
                               : "select"
                           }
                         />
                       </span>
-                      Discomfort
+                      indifference
                     </div>
                     <div
                       className="option"
@@ -474,7 +619,7 @@ class Quiz extends React.Component {
                           ...this.state,
                           answers: {
                             ...this.state.answers,
-                            quest4: "Indifference"
+                            quest4: 4
                           }
                         });
                         this.nextPage();
@@ -483,13 +628,13 @@ class Quiz extends React.Component {
                       <span className="circle">
                         <span
                           className={
-                            this.state.answers.quest4 === "Indifference"
+                            this.state.answers.quest4 === 4
                               ? "select selected"
                               : "select"
                           }
                         />
                       </span>
-                      Indifference
+                      agreeable
                     </div>
                     <div
                       className="option"
@@ -498,7 +643,7 @@ class Quiz extends React.Component {
                           ...this.state,
                           answers: {
                             ...this.state.answers,
-                            quest4: "Elated"
+                            quest4: 5
                           }
                         });
                         this.nextPage();
@@ -507,13 +652,13 @@ class Quiz extends React.Component {
                       <span className="circle">
                         <span
                           className={
-                            this.state.answers.quest4 === "Elated"
+                            this.state.answers.quest4 === 5
                               ? "select selected"
                               : "select"
                           }
                         />
                       </span>
-                      Elated
+                      elated
                     </div>
                   </div>
                 </div>
@@ -549,7 +694,7 @@ class Quiz extends React.Component {
                         ? "option active"
                         : "option"
                     }
-                    id="both"
+                    id="daynight"
                     onClick={() => {
                       this.setState({
                         ...this.state,
@@ -610,7 +755,7 @@ class Quiz extends React.Component {
                         ? "option active"
                         : "option"
                     }
-                    id="both"
+                    id="catdog"
                     onClick={() => {
                       this.setState({
                         ...this.state,
@@ -664,9 +809,14 @@ class Quiz extends React.Component {
             <div className="page page7">
               <div className="content">
                 <p className="subheader">
-                  From a scale of 1 to 5, how messy or organized do you consider
-                  yourself?
+                  From a scale of 1 to 5, how messy or organized are you at
+                  home?
                 </p>
+                <div className="imgs">
+                  <div id="messy" className="img" />
+                  <div id="messmid" className="img" />
+                  <div id="org" className="img" />
+                </div>
                 <div className="options">
                   <div className="scale">
                     <div
@@ -754,9 +904,14 @@ class Quiz extends React.Component {
             <div className="page page8">
               <div className="content">
                 <p className="subheader">
-                  From a scale of 1 to 5, how Introverted or Extroverted do you
-                  think you are?
+                  From a scale of 1 to 5, how likely are you to go out to a
+                  party?
                 </p>
+                <div className="imgs">
+                  <div id="homequiz" className="img" />
+                  <div id="homeparty" className="img" />
+                  <div id="party" className="img" />
+                </div>
                 <div className="options">
                   <div className="scale">
                     <div
@@ -835,8 +990,8 @@ class Quiz extends React.Component {
                     />
                   </div>
                   <div className="labels">
-                    <div className="label">Introvert</div>
-                    <div className="label">Extrovert</div>
+                    <div className="label">Stay at Home</div>
+                    <div className="label">Go out to Party</div>
                   </div>
                 </div>
               </div>
@@ -899,13 +1054,10 @@ class Quiz extends React.Component {
                     </span>
                   </p>
                   <p className="answer">
-                    Birthday:{" "}
-                    <span className="resp">
-                      {`${this.state.answers.quest2
-                        .split(" ")
-                        .slice(1)
-                        .join(" ")}`}
-                    </span>
+                    Birthday Month:{" "}
+                    <span className="resp">{`${
+                      this.state.answers.quest3
+                    }`}</span>
                   </p>
                   <p className="answer">
                     Would you rather live in the city, suburbs or country?:{" "}
@@ -932,14 +1084,14 @@ class Quiz extends React.Component {
                     }`}</span>
                   </p>
                   <p className="answer">
-                    From a scale of 1 to 5, how messy or organized do you
-                    consider yourself?{" "}
+                    From a scale of 1 to 5, how messy or organized are you at
+                    home?:{" "}
                     <span className="resp">{`${this.state.answers.quest7 +
                       1}`}</span>
                   </p>
                   <p className="answer">
-                    From a scale of 1 to 5, how Introverted or Extroverted do
-                    you think you are?:{" "}
+                    From a scale of 1 to 5, how likely are you to go out to a
+                    party?:{" "}
                     <span className="resp">{`${this.state.answers.quest8 +
                       1}`}</span>
                   </p>
