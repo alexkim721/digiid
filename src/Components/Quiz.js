@@ -225,6 +225,19 @@ class Quiz extends React.Component {
     };
     return style;
   };
+  pineappleAnswer = num => {
+    if (num === 1) {
+      return "disgust";
+    } else if (num === 2) {
+      return "disagreement";
+    } else if (num === 3) {
+      return "indifferent";
+    } else if (num === 4) {
+      return "agreeable";
+    } else if (num === 5) {
+      return "elated";
+    }
+  };
 
   render() {
     return (
@@ -472,7 +485,7 @@ class Quiz extends React.Component {
             <div className="page page3">
               <div className="content">
                 <p className="subheader">
-                  Would you rather live in the city, suburbs or country?
+                  Would you rather live in the city, suburbs, or country?
                 </p>
                 <div className="options">
                   <div
@@ -541,7 +554,7 @@ class Quiz extends React.Component {
             <div className="page page4">
               <div className="content">
                 <p className="subheader">
-                  How does pinapple on pizza make you feel?
+                  How does pineapple on pizza make you feel?
                 </p>
                 <div className="two-colm">
                   <div className="img" />
@@ -829,8 +842,7 @@ class Quiz extends React.Component {
             <div className="page page7">
               <div className="content">
                 <p className="subheader">
-                  From a scale of 1 to 5, how messy or organized are you at
-                  home?
+                  On a scale of 1 to 5, how messy or organized are you at home?
                 </p>
                 <div className="imgs">
                   <div id="messy" className="img" />
@@ -924,8 +936,7 @@ class Quiz extends React.Component {
             <div className="page page8">
               <div className="content">
                 <p className="subheader">
-                  From a scale of 1 to 5, how likely are you to go out to a
-                  party?
+                  On a scale of 1 to 5, how likely are you to go out to a party?
                 </p>
                 <div className="imgs">
                   <div id="homequiz" className="img" />
@@ -1090,10 +1101,10 @@ class Quiz extends React.Component {
                     }`}</span>
                   </p>
                   <p className="answer">
-                    How does pinapple on pizza make you feel?:{" "}
-                    <span className="resp">{`${
-                      this.state.answers.quest4
-                    }`}</span>
+                    How does pineapple on pizza make you feel?:{" "}
+                    <span className="resp">
+                      {this.pineappleAnswer(this.state.answers.quest4)}
+                    </span>
                   </p>
                   <p className="answer">
                     Are you a morning person or a night owl?:{" "}
